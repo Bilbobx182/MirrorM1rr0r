@@ -1,12 +1,22 @@
 package com.github.bilbobx182.mirrorm1rr0r;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+
+import java.net.URL;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -19,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String result = validateInput();
-                Log.d("Hashed", result);
+                if (!result.equals("ERROR: 1337")) {
+                    Log.d("Hashed", result);
+                    new CreateAWSQueue().execute(result);
+                }
             }
         });
     }
@@ -36,6 +49,21 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
             return "Woops empty fields";
+        }
+    }
+
+    private class CreateAWSQueue extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String[] hashedTopic) {
+            AWS aws = new AWS();
+            aws.createQueue(hashedTopic[0]);
+            return "Done";
+        }
+
+        @Override
+        protected void onPostExecute(String message) {
+            //process message
         }
     }
 }

@@ -6,10 +6,6 @@ package com.github.bilbobx182.mirrorm1rr0r;
 
 import android.util.Log;
 
-import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
-import com.amazonaws.services.sqs.model.AmazonSQSException;
-import com.amazonaws.services.sqs.model.CreateQueueRequest;
 
 import java.security.DigestException;
 import java.security.MessageDigest;
@@ -18,22 +14,6 @@ import java.security.NoSuchAlgorithmException;
 public class Encryptor {
 
     public  Encryptor() {
-    }
-
-    public  Encryptor(String password) {
-        String hashed = hashCode(password);
-//        AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
-//        CreateQueueRequest create_request = new CreateQueueRequest()
-//                .addAttributesEntry("DelaySeconds", "60")
-//                .addAttributesEntry("MessageRetentionPeriod", "86400");
-//
-//        try {
-//            sqs.createQueue(create_request);
-//        } catch (AmazonSQSException e) {
-//            if (!e.getErrorCode().equals("QueueAlreadyExists")) {
-//                throw e;
-//            }
-//        }
     }
 
     public String hashCode(String password) {
