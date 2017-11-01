@@ -1,6 +1,7 @@
 package com.github.bilbobx182.mirrorm1rr0r;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -8,8 +9,11 @@ import android.widget.Button;
 
 import com.polidea.rxandroidble.RxBleClient;
 import com.polidea.rxandroidble.RxBleDevice;
+import com.polidea.rxandroidble.internal.util.UUIDUtil_Factory;
 import com.polidea.rxandroidble.scan.ScanResult;
 import com.polidea.rxandroidble.scan.ScanSettings;
+
+import java.util.UUID;
 
 import rx.Subscription;
 
@@ -28,26 +32,29 @@ public class PiBluetooth extends AppCompatActivity {
                 new ScanSettings.Builder().build())
                 .subscribe(
                         scanResult -> {
-                            connectToPi(scanResult);
+                            Log.d("MainActivity", "FOUND :" + scanResult.getBleDevice().getName());
                         },
                         throwable -> {
                             Log.d("CIARANTEST", "BLEBROKE");
                             // Handle an error here.
                         }
                 );
+        scanSubscription.unsubscribe();
     }
 
     private void connectToPi(ScanResult scanResult) {
+        UUID characteristicUuid = UUID.fromString("1");
+
+        byte[] data = "test".getBytes();
         Subscription subscription = scanResult.getBleDevice().establishConnection(PiBluetooth.this, true)
                 .subscribe(rxBleConnection -> {
-                    //TODO Make it so it checks that it's connecting and sending to the PI
-                    scanResult.getBleDevice().establishConnection(PiBluetooth.this, false);
-                    //TODO the sending logic properly implemented
-//                            .flatMap(rxBleCon -> rxBleConnection.writeCharacteristic('characteristicUUID', 'bytesToWrite'))
-//                            .subscribe(characteristicValue -> {
-//                                // Characteristic value confirmed.
-//                            });
+                    scanResult.getBleDevice().establishConnection(PiBluetooth.this, false)
+                            .flatMap(rxBleCon -> rxBleConnection.writeCharacteristic(characteristicUuid, data))
+                            .subscribe(characteristicValue -> {
+                                // Characteristic value confirmed.
+                            });
                 });
+
         Log.d("CIARANTEST", scanResult.toString());
     }
 

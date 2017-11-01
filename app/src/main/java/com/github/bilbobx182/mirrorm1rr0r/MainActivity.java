@@ -9,8 +9,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.polidea.rxandroidble.RxBleClient;
+import com.polidea.rxandroidble.scan.ScanResult;
+import com.polidea.rxandroidble.scan.ScanSettings;
+
+import java.util.UUID;
+
+import rx.Subscription;
 
 public class MainActivity extends AppCompatActivity {
+
+    Subscription scanSubscription;
+    RxBleClient rxBleClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +34,37 @@ public class MainActivity extends AppCompatActivity {
             createRequestDialogue();
         }
         doneButton.setOnClickListener(v -> {
-            Intent piConnection = new Intent(getBaseContext(), PiBluetooth.class);
-            startActivity(piConnection);
+            testPiMethod();
         });
+    }
+
+    private void testPiMethod() {
+        rxBleClient = RxBleClient.create(this);
+        TextView bluetooth = (TextView) findViewById(R.id.bluetooth);
+        scanSubscription = rxBleClient.scanBleDevices(new ScanSettings.Builder().build()).subscribe(
+                scanResult -> {
+                    if (scanResult.getBleDevice().getName() != null && scanResult.getBleDevice().getName().toString().equals("test")) {
+                        doWrite(scanResult);
+                        scanSubscription.unsubscribe();
+                    }
+                },
+                throwable -> {
+                    Log.d("CIARANTEST", "BLEBROKE");
+                    // Handle an error here.
+                }
+        );
+    }
+
+    private void doWrite(ScanResult scanResult) {
+        String messageString = "I am so close";
+        byte[] message = messageString.getBytes();
+        final UUID writeID = UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffff0");
+        Subscription subscription = scanResult.getBleDevice().establishConnection(true).subscribe(rxBleConnection -> {
+            rxBleConnection.writeCharacteristic(writeID, message);
+        });
+        //TODO I AM CLOSING THE CONNECTIONS TOO FAST. PUT THIS MAYBE THE METHOD THAT CALLS IT INTO IT'S OWN THREAD / ASYNC SO IT CAN DO IT'S THANG
+        // THAT WAY IT WILL WRITE THEN CLOSE
+        subscription.unsubscribe();
     }
 
     @Override
@@ -60,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
         return getApplicationContext().checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION, android.os.Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED;
     }
 
+
+/*
+   scanResult.getBleDevice().establishConnection(MainActivity.this, false)
+                                            .flatMap(rxBleCon -> rxBleConnection.writeCharacteristic(, "test".getBytes()))
+                                            .subscribe(characteristicValue -> {
+                                                // Characteristic value confirmed.
+                                            });
+ */
 //    private String validateInput() {
 //        EditText username = (EditText) findViewById(R.id.nameEditText);
 //        EditText rawPassword = (EditText) findViewById(R.id.passwordEditText);
