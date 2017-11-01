@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.polidea.rxandroidble.RxBleClient;
+import com.polidea.rxandroidble.RxBleConnection;
+import com.polidea.rxandroidble.RxBleDevice;
 import com.polidea.rxandroidble.scan.ScanResult;
 import com.polidea.rxandroidble.scan.ScanSettings;
 
@@ -56,15 +58,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doWrite(ScanResult scanResult) {
-        String messageString = "I am so close";
+        String messageString = "testing2";
         byte[] message = messageString.getBytes();
-        final UUID writeID = UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffff0");
-        Subscription subscription = scanResult.getBleDevice().establishConnection(true).subscribe(rxBleConnection -> {
-            rxBleConnection.writeCharacteristic(writeID, message);
-        });
-        //TODO I AM CLOSING THE CONNECTIONS TOO FAST. PUT THIS MAYBE THE METHOD THAT CALLS IT INTO IT'S OWN THREAD / ASYNC SO IT CAN DO IT'S THANG
-        // THAT WAY IT WILL WRITE THEN CLOSE
-        subscription.unsubscribe();
+        final UUID writeID = UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffffff4");
+        RxBleDevice device = scanResult.getBleDevice();
+
+
+        device.establishConnection(true)
+                .flatMap(rxBleConnection -> rxBleConnection.writeCharacteristic(writeID, message))
+                .subscribe(characteristicValue -> {
+                    // Characteristic value confirmed.
+                    Log.d("HELLO",characteristicValue.toString());
+                });
+
+
+//        device.establishConnection(false)
+//                .flatMap(RxBleConnection::discoverServices)
+//                .subscribe(discoveryResult -> {
+//                    // Process service discovery result on your own.
+//                    Log.d("HELLO",discoveryResult.getCharacteristic(UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffffff4")).toString());
+//                });
+
+//        Subscription subscription = device.establishConnection(true).subscribe(rxBleConnection -> {
+//            rxBleConnection.writeCharacteristic(writeID, message);
+//        });
+//        subscription.unsubscribe();
     }
 
     @Override
