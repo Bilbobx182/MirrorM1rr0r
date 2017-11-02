@@ -5,8 +5,6 @@ sqs = boto3.client('sqs', region_name='eu-west-1')
 queue_url = 'https://sqs.eu-west-1.amazonaws.com/186314837751/MirrorM1rr0r'
 
 # Takes in input of Count messages will make it take in a queue too once done testing
-# Note it fails every 3rd/4th execution for no reason. Will continue to try fix
-
 def getMessageFromQueue(messageCountRequested):
     maxcount = float(messageCountRequested)
     count = 0
@@ -32,9 +30,9 @@ def getMessageFromQueue(messageCountRequested):
             count += 1
         return (messageItem)
 
-
+    # Because sometimes we don't get a correct response we just try the above again
     except KeyError as e:
-        getMessageFromQueue(queue_url)
+        getMessageFromQueue(maxcount)
 
 
 def lambda_handler(event, context):

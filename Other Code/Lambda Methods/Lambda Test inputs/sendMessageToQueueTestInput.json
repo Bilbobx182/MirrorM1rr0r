@@ -1,0 +1,6 @@
+{
+  "queryStringParameters": {
+    "queueName": "ciaran",
+    "message": "value1"
+  }
+}
