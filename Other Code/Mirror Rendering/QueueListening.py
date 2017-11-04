@@ -1,9 +1,8 @@
 import requests
-from bs4 import BeautifulSoup
 
-# GET the JSON using BS4 WIP
+# Keeping this as I will need a dedicated class later for queue listening
 url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?count=1"
 lm_json = requests.get(url).json()
-soup = BeautifulSoup(lm_json["Contents"],"html.parser")
+basicURL = lm_json['0']['Contents']
 
-print(soup)
+print(basicURL)

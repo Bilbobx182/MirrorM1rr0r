@@ -5,9 +5,16 @@ import subprocess
 
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage
+import requests
 
 
 class MyApp(App):
+
+    def getInformationFromQueue(self):
+        url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?count=1"
+        lm_json = requests.get(url).json()
+        return lm_json['0']['Contents']
+
     def build(self):
         Window.fullscreen = 'auto'
         # return Label(text="hello", pos=((1920/2) *-.98, 0))
@@ -24,7 +31,8 @@ class MyApp(App):
 
         layout.add_widget(Button(text='SIDE BOT LEFT'))
         layout.add_widget(Button(text='CB'))
-        layout.add_widget(AsyncImage(source='https://media.giphy.com/media/aWPGuTlDqq2yc/giphy.gif'))
+        layout.add_widget(AsyncImage(source=MyApp.getInformationFromQueue(self)))
         return layout
+
 
 MyApp().run()
