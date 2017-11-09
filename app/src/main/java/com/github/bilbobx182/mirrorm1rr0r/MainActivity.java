@@ -41,10 +41,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testPiMethod() {
+           /*
+        Reference: RxAndroidBLE documentation
+        https://www.polidea.com/blog/RxAndroidBLE_the_most_Simple_way_to_code_Bluetooth_Low_Energy_devices/
+        Last Accessed: 9/November/2017
+         */
         rxBleClient = RxBleClient.create(this);
         TextView bluetooth = (TextView) findViewById(R.id.bluetooth);
         scanSubscription = rxBleClient.scanBleDevices(new ScanSettings.Builder().build()).subscribe(
                 scanResult -> {
+                    // End Reference
                     if (scanResult.getBleDevice().getName() != null && scanResult.getBleDevice().getName().toString().equals("test")) {
                         doWrite(scanResult);
                         scanSubscription.unsubscribe();
@@ -64,13 +70,19 @@ public class MainActivity extends AppCompatActivity {
         RxBleDevice device = scanResult.getBleDevice();
 
 
+        /*
+        Reference: RxAndroidBLE documentation
+        https://www.polidea.com/blog/RxAndroidBLE_the_most_Simple_way_to_code_Bluetooth_Low_Energy_devices/
+        Last Accessed: 9/November/2017
+         */
         device.establishConnection(true)
                 .flatMap(rxBleConnection -> rxBleConnection.writeCharacteristic(writeID, message))
                 .subscribe(characteristicValue -> {
                     // Characteristic value confirmed.
-                    Log.d("HELLO",characteristicValue.toString());
+                    Log.d("HELLO", characteristicValue.toString());
                 });
 
+        // End Reference
 
 //        device.establishConnection(false)
 //                .flatMap(RxBleConnection::discoverServices)

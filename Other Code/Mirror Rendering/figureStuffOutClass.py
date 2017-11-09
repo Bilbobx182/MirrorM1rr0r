@@ -1,55 +1,67 @@
-import json
-import boto3
+from kivy import Config
+from kivy.app import App
+from kivy.core.window import Window
+from kivy.uix.button import Label, Button
+import subprocess
 
-sqs = boto3.client('sqs', region_name='eu-west-1')
-
-
-def getMessageFromQueue(messageCountRequested, queue):
-    maxcount = int(messageCountRequested)
-    count = 0
-    messageItem = {}
-    receipts = []
-
-    while (count < maxcount):
-        response = sqs.receive_message(
-            QueueUrl=queue,
-            AttributeNames=[
-                'SentTimestamp'
-            ],
-            MaxNumberOfMessages=maxcount,
-            MessageAttributeNames=[
-                'All'
-            ],
-            VisibilityTimeout=0,
-            WaitTimeSeconds=0
-        )
-        messageItem[str(count)] = {
-            "Contents": response['Messages'][0]['Body']
-        }
-        # Because we want to itterate around N amount of messages and only delete the new ones.
-        if (response['Messages'][0]['ReceiptHandle'] not in receipts):
-            receipts.append(response['Messages'][0]['ReceiptHandle'])
-            deleteResult = sqs.delete_message(QueueUrl=queue, ReceiptHandle=response['Messages'][0]['ReceiptHandle'])
-            count += 1
-
-    return (messageItem)
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.image import AsyncImage
+import requests
 
 
-def lambda_handler(event, context):
-    out = {}
+class MyApp(App):
+    def getInformationFromQueue(self):
+        url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?count=1"
+        lm_json = requests.get(url).json()
+        return lm_json['0']['Contents']
 
-    if (not event['queryStringParameters']['queue']):
-        out['statusCode'] = 400
-        out['body'] = "Queue not specified"
-    else:
-        messageCountRequested = event['queryStringParameters']['count']
-        queue = event['queryStringParameters']['queue']
-        contents = json.dumps(getMessageFromQueue(messageCountRequested, queue))
-        out['statusCode'] = 200
-        out['body'] = contents
+    def hello(self):
+        print("hello")
 
-    out['headers'] = {
-        "content-type": "application-json"
-    }
+    def build(self):
+        layout = GridLayout(cols=4, rows=4)
 
-    return (out)
+        i = 0
+        max = 16
+
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+        layout.add_widget(Button(text="hello", size_hint_x=None, width=int(Window.width) / 2, size_hint_y=None,
+                                     height=int(Window.height) / 2))
+
+
+
+        return layout
+
+# Config.set('graphics', 'width', '1000')
+# Config.set('graphics', 'height', '1000')
+Window.fullscreen = 'auto'
+MyApp().run()

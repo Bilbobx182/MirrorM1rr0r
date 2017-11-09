@@ -12,7 +12,7 @@ import requests
 class MyApp(App):
 
     def getInformationFromQueue(self):
-        url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?count=1"
+        url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?queue=https://sqs.eu-west-1.amazonaws.com/186314837751/MirrorM1rr0r&count=1"
         lm_json = requests.get(url).json()
         return lm_json['0']['Contents']
 
