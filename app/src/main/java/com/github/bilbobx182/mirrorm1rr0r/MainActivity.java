@@ -1,7 +1,6 @@
 package com.github.bilbobx182.mirrorm1rr0r;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Process;
 import android.support.v7.app.AlertDialog;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.polidea.rxandroidble.RxBleClient;
-import com.polidea.rxandroidble.RxBleConnection;
 import com.polidea.rxandroidble.RxBleDevice;
 import com.polidea.rxandroidble.scan.ScanResult;
 import com.polidea.rxandroidble.scan.ScanSettings;

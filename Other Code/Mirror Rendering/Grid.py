@@ -10,7 +10,6 @@ import requests
 
 
 class MyApp(App):
-
     def getInformationFromQueue(self):
         url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?queue=https://sqs.eu-west-1.amazonaws.com/186314837751/MirrorM1rr0r&count=1"
         lm_json = requests.get(url).json()
@@ -18,14 +17,21 @@ class MyApp(App):
 
     def hello(self):
         print("hello")
+
     def build(self):
         Config.set('graphics', 'width', '500')
         Config.set('graphics', 'height', '500')
 
-
         layout = GridLayout(cols=3, rows=3)
 
-        layout.add_widget(AsyncImage(source=MyApp.getInformationFromQueue(self)))
+        result = MyApp.getInformationFromQueue(self)
+
+        if (result.startswith('https')):
+            print("hello")
+            layout.add_widget(AsyncImage(source=result))
+        else:
+            layout.add_widget(Label(text='NERM'))
+
         layout.add_widget(Label(text='CT'))
 
         layout.add_widget(Label(text='Side Top RIGHT'))
@@ -36,7 +42,13 @@ class MyApp(App):
 
         layout.add_widget(Label(text='SIDE BOT LEFT'))
         layout.add_widget(Label(text='CB'))
-        layout.add_widget(AsyncImage(source=MyApp.getInformationFromQueue(self)))
+
+        if (result.startswith('https')):
+            print("hello")
+            layout.add_widget(AsyncImage(source=result))
+        else:
+            layout.add_widget(Label(text='NERM'))
+
         return layout
 
 
