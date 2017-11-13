@@ -11,7 +11,7 @@ import requests
 
 class MyApp(App):
     def getInformationFromQueue(self):
-        url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?queue=https://sqs.eu-west-1.amazonaws.com/186314837751/MirrorM1rr0r&count=1"
+        url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?queue=https://sqs.eu-west-1.amazonaws.com/186314837751/hello&count=1"
         lm_json = requests.get(url).json()
         return lm_json['0']['Contents']
 
@@ -19,37 +19,43 @@ class MyApp(App):
         print("hello")
 
     def build(self):
-        Config.set('graphics', 'width', '500')
-        Config.set('graphics', 'height', '500')
-
         layout = GridLayout(cols=3, rows=3)
 
-        result = MyApp.getInformationFromQueue(self)
+        import json
+        import boto3
 
-        if (result.startswith('https')):
-            print("hello")
-            layout.add_widget(AsyncImage(source=result))
-        else:
-            layout.add_widget(Label(text='NERM'))
+        def lambda_handler(event, context):
+            sqs = boto3.client('sqs')
+            response = sqs.send_message(QueueUrl=event['queryStringParameters']['queueurl'],
+                                        MessageBody=event['queryStringParameters']['message'], MessageAttributes={
+                    'MessageGroupId': "messageID"
+                })
 
-        layout.add_widget(Label(text='CT'))
+            out = {}
+            out['statusCode'] = 200
+            out['body'] = "Success"
+            out['headers'] = {
+                "content-type": "application-json"
+            }
 
-        layout.add_widget(Label(text='Side Top RIGHT'))
-        layout.add_widget(Label(text='CL'))
+            return (out)
 
-        layout.add_widget(Label(text='CM'))
-        layout.add_widget(Label(text='CR'))
+        layout.add_widget(Label(text=''))
 
-        layout.add_widget(Label(text='SIDE BOT LEFT'))
-        layout.add_widget(Label(text='CB'))
+        layout.add_widget(Label(text='NIGGA IS HERE YO THIS IS REA REALLLY'))
 
-        if (result.startswith('https')):
-            print("hello")
-            layout.add_widget(AsyncImage(source=result))
-        else:
-            layout.add_widget(Label(text='NERM'))
+        layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
+
+        layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
+
+        layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
+
+        layout.add_widget(Label(text=''))
 
         return layout
 
-
+Window.fullscreen = 'auto'
 MyApp().run()
