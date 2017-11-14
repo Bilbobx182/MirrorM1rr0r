@@ -12,8 +12,8 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Other_Code$animationExample.coverage" NAME="animationExample Coverage Results" MODIFIED="1509783947460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$sendMessageToQueue.coverage" NAME="sendMessageToQueue Coverage Results" MODIFIED="1510671658818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
-    <SUITE FILE_PATH="coverage/Other_Code$Grid.coverage" NAME="Grid Coverage Results" MODIFIED="1510688332062" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
-    <SUITE FILE_PATH="coverage/Other_Code$TestingAWS.coverage" NAME="TestingAWS Coverage Results" MODIFIED="1510688766126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
+    <SUITE FILE_PATH="coverage/Other_Code$Grid.coverage" NAME="Grid Coverage Results" MODIFIED="1510689365884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
+    <SUITE FILE_PATH="coverage/Other_Code$TestingAWS.coverage" NAME="TestingAWS Coverage Results" MODIFIED="1510688990820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$figureStuffOutClass.coverage" NAME="figureStuffOutClass Coverage Results" MODIFIED="1510569560977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$reHydrateQueue.coverage" NAME="reHydrateQueue Coverage Results" MODIFIED="1510687766669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$QueueListening.coverage" NAME="QueueListening Coverage Results" MODIFIED="1509791630257" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Grid.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Grid.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mirror Rendering/Grid.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="446">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -33,44 +33,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getMessagesFromQueue.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Lambda Methods/getMessagesFromQueue.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-403">
-              <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sendMessageToQueue.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lambda Methods/sendMessageToQueue.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TestingAWS.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mirror Rendering/TestingAWS.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="408">
+              <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WiiShopMusicIntensifies.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lambda Methods/WiiShopMusicIntensifies.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="73" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -118,8 +88,8 @@
         <option value="$PROJECT_DIR$/Lambda Methods/createQueue.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/reHydrateQueue.py" />
         <option value="$PROJECT_DIR$/Lambda Methods/WiiShopMusicIntensifies.py" />
-        <option value="$PROJECT_DIR$/Mirror Rendering/Grid.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/TestingAWS.py" />
+        <option value="$PROJECT_DIR$/Mirror Rendering/Grid.py" />
       </list>
     </option>
   </component>
@@ -296,8 +266,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.TestingAWS" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Grid" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Grid" />
+        <item index="1" class="java.lang.String" itemvalue="Python.TestingAWS" />
         <item index="2" class="java.lang.String" itemvalue="Python.reHydrateQueue" />
         <item index="3" class="java.lang.String" itemvalue="Python.getMessagesFromQueue" />
         <item index="4" class="java.lang.String" itemvalue="Python.sendMessageToQueue" />
@@ -319,7 +289,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1859375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -331,7 +300,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3913956" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3913956" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -384,13 +353,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Mirror Rendering/Grid.py</url>
-          <line>35</line>
+          <line>33</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Mirror Rendering/Grid.py</url>
-          <line>37</line>
+          <line>35</line>
           <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mirror Rendering/Grid.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mirror Rendering/TestingAWS.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mirror Rendering/TestingAWS.py</url>
+          <line>83</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mirror Rendering/Grid.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -403,18 +392,13 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="38" />
+      <option name="time" value="43" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="item" language="Python" />
-        <watch expression="contents.sort(key=operator.itemgetter('Message','Timestamp'))" language="Python" />
-        <watch expression="contents" language="Python" />
-        <watch expression="self.getInformationFromQueue(self)" language="Python" />
-        <watch expression="lm_json['0']['Contents']" language="Python" />
-        <watch expression="lm_json['0']" language="Python" />
-        <watch expression="duct.items()" language="Python" />
-        <watch expression="duct" language="Python" />
+        <watch expression="list(lm_json)" language="Python" />
+        <watch expression="lm_json.items()" language="Python" />
+        <watch expression="value" language="Python" />
       </configuration>
     </watches-manager>
   </component>
@@ -774,14 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lambda Methods/sendMessageToQueue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lambda Methods/WiiShopMusicIntensifies.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -800,10 +776,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Lambda Methods/sendMessageToQueue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lambda Methods/getMessagesFromQueue.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-352">
+          <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/TestingAWS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -812,19 +804,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/Grid.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="446">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lambda Methods/getMessagesFromQueue.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-403">
-          <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
