@@ -9,8 +9,7 @@ def lambda_handler(event, context):
     result = sqs.create_queue(QueueName=event['queryStringParameters']['queueName'] + '.fifo',
                               Attributes={
                                   'FifoQueue': 'true',
-                                  'ContentBasedDeduplication': 'true'
-                              })
+                                  'ContentBasedDeduplication': 'true' })
     out = {}
     out['statusCode'] = 200
     out['body'] = result.url

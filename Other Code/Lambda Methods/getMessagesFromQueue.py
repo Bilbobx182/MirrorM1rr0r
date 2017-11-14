@@ -2,8 +2,10 @@ import json
 import boto3
 
 # Note the region is still hardcoded to Ireland. This may change later.
+sqs = boto3.client('sqs', region_name='eu-west-1',
+                   aws_access_key_id='AKIAIDMELKX2YW6VOJ7Q',
+                   aws_secret_access_key='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')
 
-sqs = boto3.client('sqs', region_name='eu-west-1')
 
 def getMessageFromQueue(messageCountRequested, queue):
     maxcount = int(messageCountRequested)
@@ -20,9 +22,7 @@ def getMessageFromQueue(messageCountRequested, queue):
             MaxNumberOfMessages=maxcount,
             MessageAttributeNames=[
                 'All'
-            ],
-            VisibilityTimeout=0,
-            WaitTimeSeconds=0
+            ]
         )
         messageItem[str(count)] = {
             "Contents": response['Messages'][0]['Body']
@@ -36,21 +36,15 @@ def getMessageFromQueue(messageCountRequested, queue):
     return (messageItem)
 
 
-def lambda_handler(event, context):
+def lambda_handler():
     out = {}
 
-    if (not event['queryStringParameters']['queue']):
-        out['statusCode'] = 400
-        out['body'] = "Queue not specified"
-    else:
-        messageCountRequested = event['queryStringParameters']['count']
-        queue = event['queryStringParameters']['queue']
-        contents = json.dumps(getMessageFromQueue(messageCountRequested, queue))
-        out['statusCode'] = 200
-        out['body'] = contents
+    messageCountRequested = 1
+    queue = 'https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo'
 
-    out['headers'] = {
-        "content-type": "application-json"
-    }
-
+    while True:
+        response = sqs.receive_message(QueueUrl=queue)
+        print(response)
     return (out)
+
+lambda_handler()
