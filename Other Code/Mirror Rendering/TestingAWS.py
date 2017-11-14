@@ -1,9 +1,11 @@
 import json
 import boto3
+import operator
 
 sqs = boto3.client('sqs', region_name='eu-west-1',
                    aws_access_key_id='AKIAIDMELKX2YW6VOJ7Q',
                    aws_secret_access_key='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')
+
 
 def getMessageFromQueue(messageCountRequested, queue):
     maxcount = int(messageCountRequested)
@@ -26,7 +28,7 @@ def getMessageFromQueue(messageCountRequested, queue):
         )
         messageItem[str(count)] = {
             "Message": response['Messages'][0]['Body'],
-            "SentTimestamp" : response['Messages'][0]['Attributes']['SentTimestamp']
+            "SentTimestamp": response['Messages'][0]['Attributes']['SentTimestamp']
         }
         if (response['Messages'][0]['ReceiptHandle'] not in receipts):
             receipts.append(response['Messages'][0]['ReceiptHandle'])
@@ -61,9 +63,23 @@ def lambda_handler():
             out['body'] = contents
 
             out['headers'] = {
-                    "content-type": "application-json"
+                "content-type": "application-json"
             }
 
     return (out)
 
-print(lambda_handler())
+
+duct = (lambda_handler())
+print(json.loads(duct['body']))
+duct = json.loads(duct['body'])
+
+contents = []
+for key, value in duct.items():
+    item = {}
+    item['Message'] = value['Message']
+    item['Timestamp'] = int(value['SentTimestamp'])
+    contents.append(item);
+
+print("hello")
+result = (sorted(contents, key=operator.itemgetter('Message', 'Timestamp')))
+print(result)
