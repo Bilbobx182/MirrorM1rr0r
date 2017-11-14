@@ -19,24 +19,19 @@ class MyApp(App):
         print("hello")
 
     def build(self):
-        layout = GridLayout(cols=3, rows=3)
+        while (True):
+            layout = GridLayout(cols=3, rows=3)
+            layout.add_widget(Label(text=''))
+            layout.add_widget(AsyncImage(source=''))
+            layout.add_widget(Label(text=''))
+            layout.add_widget(Label(text=''))
+            layout.add_widget(Label(text=''))
+            layout.add_widget(Label(text=''))
+            layout.add_widget(Label(text=''))
+            layout.add_widget(Label(text=''))
+            layout.add_widget(AsyncImage(source=''))
+            return layout
 
-        layout.add_widget(Label(text=''))
-
-        layout.add_widget(AsyncImage(source=''))
-
-        layout.add_widget(Label(text=''))
-        layout.add_widget(Label(text=''))
-
-        layout.add_widget(Label(text=''))
-        layout.add_widget(Label(text=''))
-
-        layout.add_widget(Label(text=''))
-        layout.add_widget(Label(text=''))
-
-        layout.add_widget(AsyncImage(source=''))
-
-        return layout
 
 Window.fullscreen = 'auto'
 MyApp().run()
