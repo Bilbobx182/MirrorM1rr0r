@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Enter what you want to send to the mirror here . Links and text supported"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
+        app:layout_constraintBottom_toTopOf="@+id/queryEditText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintBottom_creator="1"
@@ -32,7 +32,7 @@
         tools:layout_constraintRight_creator="1" />
 
     <EditText
-        android:id="@+id/passwordEditText"
+        android:id="@+id/queryEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="179dp"
@@ -54,6 +54,6 @@
         android:text=" "
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
 
 </android.support.constraint.ConstraintLayout>
