@@ -11,7 +11,12 @@ while rehydrateCount < 60:
     #     lm_json = requests.get(url)
     # rehydrateCount+=1
 
-    url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendmessagetoqueue?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/hellociaran&message=" + " Message: " + str(rehydrateCount)
+    if(rehydrateCount % 2 == 0):
+        contents = 'https://image.flaticon.com/icons/png/128/168/168570.png'
+    else:
+        contents = "Message: " + str(rehydrateCount)
+
+    url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendmessagetoqueue?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/hellociaran&message=" + contents
     lm_json = requests.get(url)
     time.sleep(1)
     rehydrateCount+=1

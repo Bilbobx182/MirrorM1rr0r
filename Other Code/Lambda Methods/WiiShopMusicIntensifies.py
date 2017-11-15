@@ -1,15 +1,22 @@
-def getInformationFromQueue(self):
-    url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?queue=https://sqs.eu-west-1.amazonaws.com/186314837751/hello&count=1"
-    lm_json = requests.get(url).json()
-    duct = lm_json['0']['Contents']
-    print(json.loads(duct['body']))
-    duct = json.loads(duct['body'])
+from kivy.app import App
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.label import Label
+from kivy.clock import Clock
 
-    contents = []
-    for key, value in duct.items():
-        item = {}
-        item['Message'] = value['Message']
-        item['Timestamp'] = int(value['SentTimestamp'])
-        contents.append(item);
+import time
 
-    return contents.sort(key=operator.itemgetter('Message', 'Timestamp'))
+
+class popup(Label):
+    def update(self, *args):
+        self.text = "hello"
+
+
+class TimeApp(App):
+    def build(self):
+        popupObject = popup()
+        popupObject().open()
+        Clock.schedule_once(popupObject.update(), 0)
+        return popupObject
+
+if __name__ == "__main__":
+    TimeApp().run()

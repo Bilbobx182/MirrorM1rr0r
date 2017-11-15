@@ -5,6 +5,7 @@ from kivy.uix.button import Label, Button
 import subprocess
 import operator
 import json
+import time
 
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage
@@ -25,31 +26,32 @@ class MyApp(App):
 
         return sorted(contents, key=operator.itemgetter('Message', 'Timestamp'))
 
-    def hello(self):
-        print("hello")
-
     def build(self):
         layout = GridLayout(cols=3, rows=3)
 
         result = self.getInformationFromQueue()
-
-        layout.add_widget(Label(text=''))
-
-        layout.add_widget(Label(text=''))
-
-        layout.add_widget(Label(text=''))
-        layout.add_widget(Label(text=''))
+        if (result[0]['Message'].startswith('https')):
+            layout.add_widget(AsyncImage(source=result[0]['Message']))
+        else:
+            layout.add_widget(Label(text=(result[0]['Message'])))
 
         layout.add_widget(Label(text=''))
         layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
 
-        layout.add_widget(Label(text=''))
-        layout.add_widget(Label(text=''))
-
-        layout.add_widget(Label(text=''))
+        if (result[1]['Message'].startswith('https')):
+            layout.add_widget(AsyncImage(source=result[1]['Message']))
+        else:
+            layout.add_widget(Label(text=(result[1]['Message'])))
 
         return layout
 
 
-Window.fullscreen = 'auto'
-MyApp().run()
+# Window.fullscreen = 'auto'
+while (True):
+    MyApp().run()
+    time.sleep(1)
