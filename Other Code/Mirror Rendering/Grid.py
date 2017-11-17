@@ -14,8 +14,14 @@ import requests
 
 class MyApp(App):
     def getInformationFromQueue(self):
-        url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?queue=https://sqs.eu-west-1.amazonaws.com/186314837751/hellociaran&count=2"
-        lm_json = requests.get(url).json()
+
+        baseurl = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessage?"
+        queueParameter = "queue="
+        queueValue = "https://sqs.eu-west-1.amazonaws.com/186314837751/normalQueue"
+        countParameter = "&count="
+        countValue = "1"
+
+        lm_json = requests.get(baseurl+queueParameter+queueValue+countParameter+countValue).json()
 
         contents = []
         for key, value in lm_json.items():
@@ -42,16 +48,16 @@ class MyApp(App):
         layout.add_widget(Label(text=''))
         layout.add_widget(Label(text=''))
         layout.add_widget(Label(text=''))
+        layout.add_widget(Label(text=''))
 
-        if (result[1]['Message'].startswith('https')):
-            layout.add_widget(AsyncImage(source=result[1]['Message']))
-        else:
-            layout.add_widget(Label(text=(result[1]['Message'])))
+        # if (result[1]['Message'].startswith('https')):
+        #     layout.add_widget(AsyncImage(source=result[1]['Message']))
+        # else:
+        #     layout.add_widget(Label(text=(result[1]['Message'])))
 
         return layout
 
 
-# Window.fullscreen = 'auto'
-while (True):
-    MyApp().run()
-    time.sleep(1)
+Window.fullscreen = 'auto'
+MyApp().run()
+
