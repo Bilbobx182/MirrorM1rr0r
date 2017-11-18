@@ -1,85 +1,64 @@
 import json
 import boto3
 import operator
+import json
 
 sqs = boto3.client('sqs', region_name='eu-west-1',
                    aws_access_key_id='AKIAIDMELKX2YW6VOJ7Q',
                    aws_secret_access_key='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')
 
 
-def getMessageFromQueue(messageCountRequested, queue):
-    maxcount = int(messageCountRequested)
-    count = 0
-    messageItem = {}
-    receipts = []
+def getMessageFromQueue(queue, currentItem):
+    # Receive message from SQS queue
+    response = sqs.receive_message(
+        QueueUrl=queue,
+        MaxNumberOfMessages=1,
+        AttributeNames=[
+            'All'
+        ],
+        MessageAttributeNames=[
+            'All'
+        ],
+    )
 
-    while (count < maxcount):
-        response = sqs.receive_message(
-            QueueUrl=queue,
-            AttributeNames=[
-                'SentTimestamp'
-            ],
-            MaxNumberOfMessages=maxcount,
-            MessageAttributeNames=[
-                'All'
-            ],
-            VisibilityTimeout=0,
-            WaitTimeSeconds=0
-        )
-        messageItem[str(count)] = {
-            "Message": response['Messages'][0]['Body'],
-            "SentTimestamp": response['Messages'][0]['Attributes']['SentTimestamp']
-        }
-        if (response['Messages'][0]['ReceiptHandle'] not in receipts):
-            receipts.append(response['Messages'][0]['ReceiptHandle'])
-            deleteResult = sqs.delete_message(QueueUrl=queue, ReceiptHandle=response['Messages'][0]['ReceiptHandle'])
-            count += 1
+    outputJSON = {
+        "Contents": response['Messages'][0]['Body'],
+        "SentTimestamp": response['Messages'][0]['Attributes']['SentTimestamp']
+    }
 
-    return (messageItem)
+    message = response['Messages'][0]
+    receipt_handle = message['ReceiptHandle']
+
+    # Change visibility timeout of message from queue
+    sqs.change_message_visibility(
+        QueueUrl=queue,
+        ReceiptHandle=receipt_handle,
+        VisibilityTimeout=36000
+    )
+    deleteResult = sqs.delete_message(QueueUrl=queue, ReceiptHandle=receipt_handle)
+
+    return outputJSON
 
 
 def lambda_handler():
-    out = {}
+    result = {}
+    outJSON = {}
+    loopCount = 0
 
-    if (True):
-        messageCountRequested = 2
-        queue = 'https://sqs.eu-west-1.amazonaws.com/186314837751/hellociaran'
-        contents = json.dumps(getMessageFromQueue(messageCountRequested, queue))
-        out['statusCode'] = 200
-        out['body'] = contents
+    messageCountRequested = 2
+    queue = 'https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo'
 
-        out['headers'] = {
+    while (loopCount < messageCountRequested):
+        result[loopCount] = getMessageFromQueue(queue, messageCountRequested)
+        loopCount += 1
+
+    outJSON['statusCode'] = 200
+    outJSON['body'] = result
+
+    outJSON['headers'] = {
             "content-type": "application-json"
         }
-    else:
-        if (not event['queryStringParameters']['queue']):
-            out['statusCode'] = 400
-            out['body'] = "Queue not specified"
-        else:
-            messageCountRequested = event['queryStringParameters']['count']
-            queue = event['queryStringParameters']['queue']
-            contents = json.dumps(getMessageFromQueue(messageCountRequested, queue))
-            out['statusCode'] = 200
-            out['body'] = contents
-
-            out['headers'] = {
-                "content-type": "application-json"
-            }
-
-    return (out)
+    return (json.dumps(outJSON))
 
 
-duct = (lambda_handler())
-print(json.loads(duct['body']))
-duct = json.loads(duct['body'])
-
-contents = []
-for key, value in duct.items():
-    item = {}
-    item['Message'] = value['Message']
-    item['Timestamp'] = int(value['SentTimestamp'])
-    contents.append(item);
-
-print("hello")
-result = (sorted(contents, key=operator.itemgetter('Message', 'Timestamp')))
-print(result)
+print(lambda_handler())

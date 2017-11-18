@@ -18,6 +18,7 @@ while rehydrateCount < 10:
 
     url = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendmessagetoqueue?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/normalQueue&message=" + contents
     lm_json = requests.get(url)
+    print(lm_json)
     time.sleep(1)
     rehydrateCount+=1
     print(rehydrateCount)

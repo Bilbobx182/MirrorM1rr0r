@@ -1,10 +1,7 @@
 import json
 import boto3
 
-sqs = boto3.client('sqs', region_name='eu-west-1',
-                   aws_access_key_id='AKIAIDMELKX2YW6VOJ7Q',
-                   aws_secret_access_key='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')
-
+sqs = boto3.client('sqs', region_name='eu-west-1')
 
 def getMessageFromQueue(queue, currentItem):
     outputJSON = {}
@@ -40,27 +37,25 @@ def getMessageFromQueue(queue, currentItem):
     return outputJSON
 
 
-def lambda_handler():
-    out = {}
 
-    messageCountRequested = 2
-    queue = 'https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo'
-
+def lambda_handler(event, context):
     result = {}
-
     loopCount = 0
+    if (not event['queryStringParameters']['queue'] or not event['queryStringParameters']['count']):
+        result['statusCode'] = 400
+        result['body'] = "Queue or count not specified"
+    else:
+        messageCountRequested = event['queryStringParameters']['count']
+        queue = event['queryStringParameters']['queue']
 
-    while (loopCount < messageCountRequested):
-        result[loopCount] = getMessageFromQueue(queue, messageCountRequested)
-        loopCount += 1
+        while (loopCount < messageCountRequested):
+            result[loopCount] = getMessageFromQueue(queue, messageCountRequested)
+            loopCount += 1
 
-    out['statusCode'] = 200
-    out['body'] = result
+        result['statusCode'] = 200
+        result ['body'] = json.dumps(result)
 
-    out['headers'] = {
+    result['headers'] = {
         "content-type": "application-json"
     }
-    return (out)
-
-
-print(lambda_handler())
+    return (result)
