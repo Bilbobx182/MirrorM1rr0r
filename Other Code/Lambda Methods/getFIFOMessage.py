@@ -3,6 +3,7 @@ import boto3
 
 sqs = boto3.client('sqs', region_name='eu-west-1')
 
+
 def getMessageFromQueue(queue, currentItem):
     outputJSON = {}
 
@@ -37,25 +38,25 @@ def getMessageFromQueue(queue, currentItem):
     return outputJSON
 
 
-
 def lambda_handler(event, context):
     result = {}
+    outJSON = {}
     loopCount = 0
+
     if (not event['queryStringParameters']['queue'] or not event['queryStringParameters']['count']):
-        result['statusCode'] = 400
-        result['body'] = "Queue or count not specified"
+        outJSON['statusCode'] = 400
+        outJSON['body'] = "Queue or count not specified"
     else:
         messageCountRequested = event['queryStringParameters']['count']
         queue = event['queryStringParameters']['queue']
-
         while (loopCount < messageCountRequested):
             result[loopCount] = getMessageFromQueue(queue, messageCountRequested)
             loopCount += 1
 
-        result['statusCode'] = 200
-        result ['body'] = json.dumps(result)
+        outJSON['statusCode'] = 200
+        outJSON['body'] = result
 
-    result['headers'] = {
+    outJSON['headers'] = {
         "content-type": "application-json"
     }
-    return (result)
+    return (json.dumps(outJSON))
