@@ -1,12 +1,12 @@
 import json
 import boto3
+import operator
+import json
 
 sqs = boto3.client('sqs', region_name='eu-west-1')
 
 
 def getMessageFromQueue(queue, currentItem):
-    outputJSON = {}
-
     # Receive message from SQS queue
     response = sqs.receive_message(
         QueueUrl=queue,
@@ -19,7 +19,7 @@ def getMessageFromQueue(queue, currentItem):
         ],
     )
 
-    outputJSON[str(currentItem)] = {
+    outputJSON = {
         "Contents": response['Messages'][0]['Body'],
         "SentTimestamp": response['Messages'][0]['Attributes']['SentTimestamp']
     }
@@ -43,20 +43,17 @@ def lambda_handler(event, context):
     outJSON = {}
     loopCount = 0
 
-    if (not event['queryStringParameters']['queue'] or not event['queryStringParameters']['count']):
-        outJSON['statusCode'] = 400
-        outJSON['body'] = "Queue or count not specified"
-    else:
-        messageCountRequested = event['queryStringParameters']['count']
-        queue = event['queryStringParameters']['queue']
-        while (loopCount < messageCountRequested):
-            result[loopCount] = getMessageFromQueue(queue, messageCountRequested)
-            loopCount += 1
+    messageCountRequested = int(event['queryStringParameters']['count'])
+    queue = event['queryStringParameters']['queue']
 
-        outJSON['statusCode'] = 200
-        outJSON['body'] = result
+    while (loopCount < messageCountRequested):
+        result["Message " + str(loopCount)] = getMessageFromQueue(queue, messageCountRequested)
+        loopCount += 1
+
+    outJSON['statusCode'] = 200
+    outJSON['body'] = json.dumps(result)
 
     outJSON['headers'] = {
         "content-type": "application-json"
     }
-    return (json.dumps(outJSON))
+    return (outJSON)

@@ -1,64 +1,55 @@
-import json
 import boto3
-import operator
 import json
 
-sqs = boto3.client('sqs', region_name='eu-west-1',
-                   aws_access_key_id='AKIAIDMELKX2YW6VOJ7Q',
-                   aws_secret_access_key='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')
+
+def sendMessage(queueURL, message):
+    sqs = boto3.client('sqs', region_name='eu-west-1',
+                       aws_access_key_id='AKIAIDMELKX2YW6VOJ7Q',
+                       aws_secret_access_key='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')
+
+    # Have a method to clean the variables ie recursive try and catch
+    response = sqs.send_message(QueueUrl=queueURL,
+                                MessageBody=json.dumps(message),
+                                MessageGroupId="ID1182")
 
 
-def getMessageFromQueue(queue, currentItem):
-    # Receive message from SQS queue
-    response = sqs.receive_message(
-        QueueUrl=queue,
-        MaxNumberOfMessages=1,
-        AttributeNames=[
-            'All'
-        ],
-        MessageAttributeNames=[
-            'All'
-        ],
-    )
+def lambda_handler(event):
+    if 'messagePayload' in event['body']:
+        messagePayload = (event['body']['messagePayload'])
+        if 'queueURL' in event['body']:
+            queueURL = (event['body']['queueURL'])
 
-    outputJSON = {
-        "Contents": response['Messages'][0]['Body'],
-        "SentTimestamp": response['Messages'][0]['Attributes']['SentTimestamp']
+        message = {'messagePayload': messagePayload}
+
+        if ('fontSize' in event['body']):
+            fontSize = (event['body']['fontSize'])
+            message['fontSize'] = fontSize
+
+        if 'fontColour' in event['body']:
+            fontColour = (event['body']['fontColour'])
+            message['fontColour'] = fontColour
+
+        sendMessage(queueURL, message)
+
+        # Optional parameters
+
+
+
+    else:
+        # status 404
+        # body
+        body = "Queue or message payload were not passed :("
+
+    return (json.dumps(message))
+
+
+sample = {
+    "body": {
+        "queueURL": "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo",
+        "messagePayload": "blink182",
+        "fontSize": " ",
+        "fontColour": " "
     }
+}
 
-    message = response['Messages'][0]
-    receipt_handle = message['ReceiptHandle']
-
-    # Change visibility timeout of message from queue
-    sqs.change_message_visibility(
-        QueueUrl=queue,
-        ReceiptHandle=receipt_handle,
-        VisibilityTimeout=36000
-    )
-    deleteResult = sqs.delete_message(QueueUrl=queue, ReceiptHandle=receipt_handle)
-
-    return outputJSON
-
-
-def lambda_handler():
-    result = {}
-    outJSON = {}
-    loopCount = 0
-
-    messageCountRequested = 2
-    queue = 'https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo'
-
-    while (loopCount < messageCountRequested):
-        result[loopCount] = getMessageFromQueue(queue, messageCountRequested)
-        loopCount += 1
-
-    outJSON['statusCode'] = 200
-    outJSON['body'] = result
-
-    outJSON['headers'] = {
-            "content-type": "application-json"
-        }
-    return (json.dumps(outJSON))
-
-
-print(lambda_handler())
+print(lambda_handler(sample))
