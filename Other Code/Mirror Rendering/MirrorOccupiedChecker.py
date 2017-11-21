@@ -15,9 +15,9 @@ def populateGrid():
 # I did this so the rows would be done correctly. Meaning if there's a message there we can make sure it's not occupied already that loop.
 isOccupied = [[False, False, False], [False, False, False], [False, False, False]]
 widgetsToRender = [
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "]]
+    [".", ".", "."],
+    [".", ".", "."],
+    [".", ".", "."]]
 
 # Deal with the case of a message not having a location later
 
@@ -63,4 +63,5 @@ class MyApp(App):
             loop += 1
         return layout
 
+Window.fullscreen = 'auto'
 MyApp().run()
