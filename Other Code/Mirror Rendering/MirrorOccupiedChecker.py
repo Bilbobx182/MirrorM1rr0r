@@ -1,6 +1,9 @@
 import boto3
 import requests
 import json
+from kivy.app import App
+
+from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage
 from kivy.uix.label import Label
@@ -11,6 +14,10 @@ def populateGrid():
 
 
 isOccupied = [[False, False, False], [False, False, False], [False, False, False]]
+widgetsToRender = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]]
 
 # Deal with the case of a message not having a location later
 
@@ -29,24 +36,27 @@ xLocation = int(contents['location'].split(",")[1])
 
 isOccupied[yLocation][xLocation] = True
 
+widgetsToRender[yLocation][xLocation] = contents['messagePayload']
+
 print(isOccupied)
 
-# def build(self):
-#     layout = GridLayout(cols=3, rows=3)
-#
-#     result = self.getInformationFromQueue()
-#     if (result[0]['Message'].startswith('https')):
-#         layout.add_widget(AsyncImage(source=result[0]['Message']))
-#     else:
-#         layout.add_widget(Label(text=(result[0]['Message'])))
-#
-#     layout.add_widget(Label(text=''))
-#     layout.add_widget(Label(text=''))
-#     layout.add_widget(Label(text=''))
-#     layout.add_widget(Label(text=''))
-#     layout.add_widget(Label(text=''))
-#     layout.add_widget(Label(text=''))
-#     layout.add_widget(Label(text=''))
-#     layout.add_widget(Label(text=''))
 
-print(result)
+class MyApp(App):
+    def build(self):
+        layout = GridLayout(cols=3, rows=3)
+
+        loop = 0
+        x = 0
+        y = 0
+        while (loop < 9):
+            layout.add_widget(Label(text=widgetsToRender[y][x]))
+
+            if (x == 2):
+                x = 0
+                y += 1
+            else:
+                x += 1
+            loop += 1
+        return layout
+
+MyApp().run()
