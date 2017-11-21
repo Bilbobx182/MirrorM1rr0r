@@ -11,7 +11,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Other_Code$animationExample.coverage" NAME="animationExample Coverage Results" MODIFIED="1509783947460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
-    <SUITE FILE_PATH="coverage/Other_Code$MirrorOccupiedChecker.coverage" NAME="MirrorOccupiedChecker Coverage Results" MODIFIED="1511258116154" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
+    <SUITE FILE_PATH="coverage/Other_Code$MirrorOccupiedChecker.coverage" NAME="MirrorOccupiedChecker Coverage Results" MODIFIED="1511259486602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$sendMessageToQueue.coverage" NAME="sendMessageToQueue Coverage Results" MODIFIED="1510671658818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$getFIFOMessage.coverage" NAME="getFIFOMessage Coverage Results" MODIFIED="1511178961015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$grid2.coverage" NAME="grid2 Coverage Results" MODIFIED="1511257680791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
@@ -52,8 +52,8 @@
       <file leaf-file-name="MirrorOccupiedChecker.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorOccupiedChecker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="146">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -396,13 +396,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Mirror Rendering/MirrorOccupiedChecker.py</url>
-          <line>38</line>
+          <line>36</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Mirror Rendering/MirrorOccupiedChecker.py</url>
-          <line>36</line>
+          <line>35</line>
           <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Mirror Rendering/MirrorOccupiedChecker.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="85" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -415,7 +420,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="85" />
+      <option name="time" value="86" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -759,7 +764,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="42" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="42" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -810,8 +815,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorOccupiedChecker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="146">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>

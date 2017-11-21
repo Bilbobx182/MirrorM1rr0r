@@ -12,7 +12,7 @@ from kivy.uix.label import Label
 def populateGrid():
     print("populating....")
 
-
+# I did this so the rows would be done correctly. Meaning if there's a message there we can make sure it's not occupied already that loop.
 isOccupied = [[False, False, False], [False, False, False], [False, False, False]]
 widgetsToRender = [
     [" ", " ", " "],
@@ -29,14 +29,15 @@ count = "&count=1"
 result = requests.get(base + queue + count).json()
 
 contents = json.loads(result['Message 0']['Contents'])
-location = contents['location']
+if('location' in contents):
+    location = contents['location']
+    yLocation = int(contents['location'].split(",")[0])
+    xLocation = int(contents['location'].split(",")[1])
+    isOccupied[yLocation][xLocation] = True
+    widgetsToRender[yLocation][xLocation] = contents['messagePayload']
 
-yLocation = int(contents['location'].split(",")[0])
-xLocation = int(contents['location'].split(",")[1])
-
-isOccupied[yLocation][xLocation] = True
-
-widgetsToRender[yLocation][xLocation] = contents['messagePayload']
+elif(isOccupied[1][1] == False):
+    widgetsToRender[1][1] = contents['messagePayload']
 
 print(isOccupied)
 
