@@ -3,52 +3,52 @@ import json
 
 
 def sendMessage(queueURL, message):
-    sqs = boto3.client('sqs', region_name='eu-west-1',
-                       aws_access_key_id='AKIAIDMELKX2YW6VOJ7Q',
-                       aws_secret_access_key='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')
+    sqs = boto3.client('sqs', region_name='eu-west-1')
 
-    # Have a method to clean the variables ie recursive try and catch
     response = sqs.send_message(QueueUrl=queueURL,
                                 MessageBody=json.dumps(message),
                                 MessageGroupId="ID1182")
 
 
 def lambda_handler(event):
-    if 'messagePayload' in event['body']:
-        messagePayload = (event['body']['messagePayload'])
-        if 'queueURL' in event['body']:
-            queueURL = (event['body']['queueURL'])
+    out = {}
+    if 'message' in event['queryStringParameters']:
+        messagePayload = (event['queryStringParameters']['message'])
+        if 'queueurl' in event['queryStringParameters']:
+            queueURL = (event['queryStringParameters']['queueurl'])
 
         message = {'messagePayload': messagePayload}
 
-        if ('fontSize' in event['body']):
-            fontSize = (event['body']['fontSize'])
+        if ('fontsize' in event['queryStringParameters']):
+            fontSize = (event['queryStringParameters']['fontsize'])
             message['fontSize'] = fontSize
 
-        if 'fontColour' in event['body']:
-            fontColour = (event['body']['fontColour'])
+        if 'fontcolour' in event['queryStringParameters']:
+            fontColour = (event['queryStringParameters']['fontcolour'])
             message['fontColour'] = fontColour
 
         sendMessage(queueURL, message)
 
-        # Optional parameters
-
-
+        out['statusCode'] = 201
+        out['body'] = json.dumps("Success, message sent :)")
 
     else:
-        # status 404
-        # body
-        body = "Queue or message payload were not passed :("
+        out['statusCode'] = 400
+        out['body'] = json.dumps("Queue or message payload were not passed :(")
 
-    return (json.dumps(message))
+    out['headers'] = {
+        "content-type": "application-json"
+    }
+
+    return (out)
 
 
 sample = {
-    "body": {
-        "queueURL": "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo",
-        "messagePayload": "blink182",
-        "fontSize": " ",
-        "fontColour": " "
+    "queryStringParameters": {
+        "queueurl": "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo",
+        "message": "Ciaran Is Cool",
+        "fontcolour": "#008080",
+        "fontsize": "12"
     }
 }
 
