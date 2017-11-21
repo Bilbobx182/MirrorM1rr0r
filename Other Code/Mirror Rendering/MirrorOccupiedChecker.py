@@ -50,7 +50,10 @@ class MyApp(App):
         x = 0
         y = 0
         while (loop < 9):
-            layout.add_widget(Label(text=widgetsToRender[y][x]))
+            if 'http' in widgetsToRender[y][x]:
+                layout.add_widget(AsyncImage(source=widgetsToRender[y][x]))
+            else:
+                layout.add_widget(Label(text=widgetsToRender[y][x]))
 
             if (x == 2):
                 x = 0
