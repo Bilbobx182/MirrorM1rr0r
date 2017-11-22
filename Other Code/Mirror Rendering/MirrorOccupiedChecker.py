@@ -9,9 +9,6 @@ from kivy.uix.image import AsyncImage
 from kivy.uix.label import Label
 
 
-def populateGrid():
-    print("populating....")
-
 # I did this so the rows would be done correctly. Meaning if there's a message there we can make sure it's not occupied already that loop.
 isOccupied = [[False, False, False], [False, False, False], [False, False, False]]
 widgetsToRender = [
