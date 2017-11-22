@@ -1,7 +1,8 @@
 import requests
 import time
+import os
 
-contents = "https://i.imgur.com/9JffNm7.jpg"
+contents = str(os.urandom(5))
 base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendfifomessage"
 queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
 message = "&message=" + contents

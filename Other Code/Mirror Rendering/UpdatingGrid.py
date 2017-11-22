@@ -42,6 +42,12 @@ def performRequest():
     print(isOccupied)
 
 
+def falsifyOccupied():
+    for y in (0, 1, 2):
+        for x in (0, 1, 2):
+            isOccupied[y][x] = False
+
+
 class MirrorApplication(App):
     def build(self):
         gridLayout = GridLayout(cols=3, rows=3)
@@ -59,6 +65,11 @@ class MirrorApplication(App):
         for y in (0, 1, 2):
             for x in (0, 1, 2):
                 self.create_button(gridLayout, widgetsToRender[y][x])
+
+        # Need to mark the area as empty so any new item that comes in can over-ride what was previosuly there
+        # This is done so that items within the same loop can't mess each other up but new requests are fine to over-write
+
+        falsifyOccupied()
 
     def create_button(self, obj, widgetToRender):
         if 'http' in widgetToRender:
