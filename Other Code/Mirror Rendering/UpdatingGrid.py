@@ -1,13 +1,11 @@
 from kivy.app import App
 from kivy.uix.gridlayout import GridLayout
 from kivy.clock import Clock
+from kivy.uix.image import AsyncImage
 from kivy.uix.label import Label
 import os
 import requests
 import json
-
-# In seconds. NOTE later this will be read from a file
-updateInterval = 2
 
 # I did this so the rows would be done correctly. Meaning if there's a message there we can make sure it's not occupied already that loop.
 isOccupied = [[False, False, False], [False, False, False], [False, False, False]]
@@ -26,17 +24,20 @@ count = "&count=1"
 
 def performRequest():
     result = requests.get(base + queue + count).json()
+    if ('Message 0' in result):
+        contents = json.loads(result['Message 0']['Contents'])
 
-    contents = json.loads(result['Message 0']['Contents'])
-    if ('location' in contents):
-        location = contents['location']
-        yLocation = int(contents['location'].split(",")[0])
-        xLocation = int(contents['location'].split(",")[1])
-        isOccupied[yLocation][xLocation] = True
-        widgetsToRender[yLocation][xLocation] = contents['messagePayload']
+        if ('location' in contents):
+            location = contents['location']
+            yLocation = int(contents['location'].split(",")[0])
+            xLocation = int(contents['location'].split(",")[1])
 
-    elif (isOccupied[1][1] == False):
-        widgetsToRender[1][1] = contents['messagePayload']
+            isOccupied[yLocation][xLocation] = True
+            widgetsToRender[yLocation][xLocation] = contents['messagePayload']
+
+        # If no location is specified default it to the center.
+        elif (isOccupied[1][1] == False):
+            widgetsToRender[1][1] = contents['messagePayload']
 
     print(isOccupied)
 
@@ -44,18 +45,26 @@ def performRequest():
 class MirrorApplication(App):
     def build(self):
         gridLayout = GridLayout(cols=3, rows=3)
+        # In seconds. NOTE later this will be read from a file
+        updateInterval = 5
+
         self.create_button(gridLayout, "MIRRROR IS LOADING")
         Clock.schedule_interval(lambda a: self.update(gridLayout), updateInterval)
         return gridLayout
 
     def update(self, gridLayout):
         gridLayout.clear_widgets()
-        for y in (1, 2, 3):
-            for x in (1, 2, 3):
-                self.create_button(gridLayout, str(os.urandom(5)))
+        performRequest()
 
-    def create_button(self, obj, input):
-        obj.add_widget(Label(text=input))
+        for y in (0, 1, 2):
+            for x in (0, 1, 2):
+                self.create_button(gridLayout, widgetsToRender[y][x])
+
+    def create_button(self, obj, widgetToRender):
+        if 'http' in widgetToRender:
+            obj.add_widget(AsyncImage(source=widgetToRender))
+        else:
+            obj.add_widget(Label(text=widgetToRender))
 
 
 MirrorApplication().run()

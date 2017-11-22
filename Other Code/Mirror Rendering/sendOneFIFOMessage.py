@@ -1,7 +1,7 @@
 import requests
 import time
 
-contents = "https://i.imgur.com/f7wDYxs.jpg"
+contents = "https://i.imgur.com/9JffNm7.jpg"
 base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendfifomessage"
 queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
 message = "&message=" + contents
