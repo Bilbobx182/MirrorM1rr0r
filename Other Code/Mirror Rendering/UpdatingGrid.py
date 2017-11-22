@@ -6,7 +6,7 @@ import os
 from kivy.uix.label import Label
 
 # In seconds. NOTE later this will be read from a file
-updateInterval = 5
+updateInterval = 2
 
 
 class MirrorApplication(App):
