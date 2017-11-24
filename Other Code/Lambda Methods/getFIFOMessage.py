@@ -20,8 +20,7 @@ def getMessageFromQueue(queue, currentItem):
     )
 
     outputJSON = {
-        "Contents": response['Messages'][0]['Body'],
-        "SentTimestamp": response['Messages'][0]['Attributes']['SentTimestamp']
+        "Contents": response['Messages'][0]['Body']
     }
 
     message = response['Messages'][0]
@@ -44,7 +43,7 @@ def lambda_handler(event, context):
     loopCount = 0
 
     messageCountRequested = int(event['queryStringParameters']['count'])
-    queue = event['queryStringParameters']['queue']
+    queue = event['queryStringParameters']['queueurl']
 
     while (loopCount < messageCountRequested):
         result["Message " + str(loopCount)] = getMessageFromQueue(queue, messageCountRequested)

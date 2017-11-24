@@ -14,9 +14,10 @@ widgetsToRender = [
     [" ", " ", " "],
     [" ", " ", " "]]
 
+messageCount = 3
 base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getfifomessage"
 queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
-count = "&count=1"
+count = "&count=" + messageCount
 
 
 # result = requests.get(base + queue + count).json()
@@ -24,20 +25,24 @@ count = "&count=1"
 
 def performRequest():
     result = requests.get(base + queue + count).json()
-    if ('Message 0' in result):
-        contents = json.loads(result['Message 0']['Contents'])
+    messageCountLoop = 0
+    while(messageCountLoop < messageCount):
+        messageKey = 'Message ' + messageCountLoop
+        if (messageKey in result):
 
-        if ('location' in contents):
-            location = contents['location']
-            yLocation = int(contents['location'].split(",")[0])
-            xLocation = int(contents['location'].split(",")[1])
+            contents = json.loads(result[messageKey]['Contents'])
 
-            isOccupied[yLocation][xLocation] = True
-            widgetsToRender[yLocation][xLocation] = contents['messagePayload']
+            if ('location' in contents):
+                location = contents['location']
+                yLocation = int(contents['location'].split(",")[0])
+                xLocation = int(contents['location'].split(",")[1])
 
-        # If no location is specified default it to the center.
-        elif (isOccupied[1][1] == False):
-            widgetsToRender[1][1] = contents['messagePayload']
+                isOccupied[yLocation][xLocation] = True
+                widgetsToRender[yLocation][xLocation] = contents['messagePayload']
+
+            # If no location is specified default it to the center.
+            elif (isOccupied[1][1] == False):
+                widgetsToRender[1][1] = contents['messagePayload']
 
     print(isOccupied)
 
