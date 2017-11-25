@@ -1,3 +1,4 @@
+import datetime
 '''
 
 Problem: I want to have a decay timer on items. This check shouldn't be done on the UI thread.
@@ -17,6 +18,8 @@ valueDecayTime = -1
 def setValue():
     global value
     value = "Ciaran"
+    print(datetime.datetime.now().time())
+    print(str(datetime.datetime.now() + datetime.timedelta(minutes=15)).split(" ")[::-1][0])
 
 print(value)
 setValue()
