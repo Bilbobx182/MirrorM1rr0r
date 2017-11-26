@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MirrorM1rr0r</string>
+    <string-array name="yPos">
+        <item>Top</item>
+        <item>Center</item>
+        <item>Bottom</item>
+    </string-array>
+
+    <string-array name="xPos">
+        <item>Left</item>
+        <item>Center</item>
+        <item>Right</item>
+    </string-array>
+
 </resources>

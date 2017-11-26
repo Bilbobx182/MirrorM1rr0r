@@ -4,8 +4,10 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.InputStream;
@@ -15,8 +17,6 @@ import java.net.URL;
 
 
 public class MainActivity extends AppCompatActivity {
-
-    String requestResponse;
     TextView queryResult;
     EditText queryInputEditText;
 
@@ -26,15 +26,59 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button doneButton = (Button) findViewById(R.id.commitButton);
         queryResult = (TextView) findViewById(R.id.queryResponseTextView);
+
+
+        // Drop Downs
+        Spinner ySpinner = (Spinner) findViewById(R.id.ySpinner);
+        ArrayAdapter<CharSequence> yAdapter = ArrayAdapter.createFromResource(this,
+                R.array.yPos, android.R.layout.simple_spinner_item);
+
+        yAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ySpinner.setAdapter(yAdapter);
+
+        Spinner xSpinner = (Spinner) findViewById(R.id.xSpinner);
+        ArrayAdapter<CharSequence> xAdapter = ArrayAdapter.createFromResource(this,
+                R.array.xPos, android.R.layout.simple_spinner_item);
+
+        xAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        xSpinner.setAdapter(xAdapter);
+
+
         doneButton.setOnClickListener(v -> {
             queryInputEditText = (EditText) findViewById(R.id.queryEditText);
             String input = queryInputEditText.getText().toString();
 
-            Log.v("EditText", input);
 
-            String urlToPass = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendmessagetoqueue?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/normalQueue&message=" + input;
+            String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
+                    "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
+                    "&message=" + input;
+
+            int yNum = 1;
+            int xNum = 1;
+
+            String xSpinnerValue = xSpinner.getSelectedItem().toString();
+            String ySpinnerValue = ySpinner.getSelectedItem().toString();
+
+            if (ySpinnerValue != null && xSpinnerValue != null) {
+                String[] yArray = {"Top", "Center", "Bottom"};
+                String[] xArray = {"Left", "Center", "Right"};
+
+                for (int yLocation = 0; yLocation < yArray.length; yLocation++) {
+                    if (yArray[yLocation].contains(ySpinnerValue)) {
+                        yNum = yLocation;
+                    }
+                }
+                for (int xLocation = 0; xLocation < yArray.length; xLocation++) {
+                    if (xArray[xLocation].contains(xSpinnerValue)) {
+                        xNum = xLocation;
+                    }
+                }
+            }
+
+            baseURL = baseURL + "&location=" + String.valueOf(yNum) + "," + String.valueOf(xNum);
+
             BackgroundThread thread = new BackgroundThread();
-            thread.execute(urlToPass);
+            thread.execute(baseURL);
         });
     }
 
@@ -78,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
             super.onProgressUpdate(values);
         }
 
-        // This runs in UI when background thread finishes
         @Override
         protected void onPostExecute(String result) {
             queryResult.append(result);
@@ -86,19 +129,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-
-//    private String validateInput() {
-//        EditText username = (EditText) findViewById(R.id.nameEditText);
-//        EditText rawPassword = (EditText) findViewById(R.id.passwordEditText);
-//
-//        //// TODO: 27/09/2017 Add a check to see if the username is already there. But I suppose this is the login Screen.
-//        if (username.getText() != null && rawPassword.getText() != null) {
-//            String toHash = username.getText() + "" + rawPassword.getText();
-//            Encryptor encryptor = new Encryptor();
-//            return encryptor.hashCode(toHash);
-//
-//        } else {
-//            return "Woops empty fields";
-//        }
-//    }

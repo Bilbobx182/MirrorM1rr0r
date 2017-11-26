@@ -35,4 +35,19 @@ public class Encryptor {
 
         return String.valueOf(hashedPassword);
     }
+
+    //    private String validateInput() {
+//        EditText username = (EditText) findViewById(R.id.nameEditText);
+//        EditText rawPassword = (EditText) findViewById(R.id.passwordEditText);
+//
+//        //// TODO: 27/09/2017 Add a check to see if the username is already there. But I suppose this is the login Screen.
+//        if (username.getText() != null && rawPassword.getText() != null) {
+//            String toHash = username.getText() + "" + rawPassword.getText();
+//            Encryptor encryptor = new Encryptor();
+//            return encryptor.hashCode(toHash);
+//
+//        } else {
+//            return "Woops empty fields";
+//        }
+//    }
 }

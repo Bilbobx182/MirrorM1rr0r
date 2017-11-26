@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.bilbobx182.mirrorm1rr0r.MainActivity">
+    tools:context="com.github.bilbobx182.mirrorm1rr0r.MainActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/queryHelpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
         android:text="Enter what you want to send to the mirror here . Links and text supported"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/queryEditText"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintBottom_creator="1"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
@@ -26,8 +28,9 @@
         android:layout_marginBottom="16dp"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/queryResponseTextView"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
@@ -35,13 +38,13 @@
         android:id="@+id/queryEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="179dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="6dp"
         android:ems="10"
         android:inputType="text"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/posHeler"
+        app:layout_constraintEnd_toEndOf="@+id/posHeler"
+        app:layout_constraintTop_toBottomOf="@+id/queryHelpTextView"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
         tools:layout_constraintTop_creator="1" />
@@ -50,10 +53,44 @@
         android:id="@+id/queryResponseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="71dp"
+        android:layout_marginBottom="90dp"
         android:text=" "
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/commitButton"
+        app:layout_constraintEnd_toStartOf="@+id/xSpinner"
+        app:layout_constraintStart_toStartOf="@+id/xSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/ySpinner" />
+
+    <Spinner
+        android:id="@+id/ySpinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginStart="85dp"
+        app:layout_constraintBottom_toTopOf="@+id/queryResponseTextView"
+        app:layout_constraintEnd_toStartOf="@+id/xSpinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/posHeler" />
+
+    <Spinner
+        android:id="@+id/xSpinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="84dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ySpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ySpinner"
+        app:layout_constraintTop_toTopOf="@+id/ySpinner" />
+
+    <TextView
+        android:id="@+id/posHeler"
+        android:layout_width="220dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="11dp"
+        android:text="Y and X position on grid"
+        app:layout_constraintBottom_toTopOf="@+id/ySpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
 
 </android.support.constraint.ConstraintLayout>

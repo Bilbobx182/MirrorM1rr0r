@@ -44,7 +44,7 @@ public class BluetoothLEActivity extends AppCompatActivity {
         Last Accessed: 9/November/2017
          */
         rxBleClient = RxBleClient.create(this);
-       // TextView bluetooth = (TextView) findViewById(R.id.bluetooth);
+        // TextView bluetooth = (TextView) findViewById(R.id.bluetooth);
         scanSubscription = rxBleClient.scanBleDevices(new ScanSettings.Builder().build()).subscribe(
                 scanResult -> {
                     // End Reference
@@ -61,7 +61,7 @@ public class BluetoothLEActivity extends AppCompatActivity {
     }
 
     private void doWrite(ScanResult scanResult) {
-        String messageString = "testing2";
+        String messageString = "SAMPLEMESSAGE";
         byte[] message = messageString.getBytes();
         final UUID writeID = UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffffff4");
         RxBleDevice device = scanResult.getBleDevice();
@@ -90,18 +90,16 @@ public class BluetoothLEActivity extends AppCompatActivity {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
         } else {
             // Handle the case where we cant access location
-            Log.d("Ciaran", "SHITT");
+            Log.d("Ciaran", "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
         }
     }
 
     private void createRequestDialogue() {
         AlertDialog.Builder permissionPopup = new AlertDialog.Builder(BluetoothLEActivity.this);
-        permissionPopup.setMessage("We need them perms");
+        permissionPopup.setMessage("Permissions are needed for the application");
 
         permissionPopup.setPositiveButton("Yes",
-                (dialog, id) -> {
-                    requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-                });
+                (dialog, id) -> requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1));
 
         permissionPopup.setNegativeButton("No",
                 (dialog, id) -> dialog.cancel());
@@ -111,7 +109,6 @@ public class BluetoothLEActivity extends AppCompatActivity {
 
     }
 
-    // "Sand is Coarse, Not like your skin Padame"
     private boolean isCoarse() {
         return getApplicationContext().checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION, android.os.Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED;
     }
