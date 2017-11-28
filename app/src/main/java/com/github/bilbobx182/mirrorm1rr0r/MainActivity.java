@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             queryInputEditText = (EditText) findViewById(R.id.queryEditText);
             String input = queryInputEditText.getText().toString();
 
+            queryResult.setText("Working on sending your contents !");
+
 
             String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
                     "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            queryResult.append(result);
+            queryResult.setText(result);
             super.onPostExecute(result);
         }
     }
