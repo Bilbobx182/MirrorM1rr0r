@@ -82,5 +82,5 @@ class MirrorApplication(App):
         else:
             obj.add_widget(Label(text=widgetToRender))
 
-
+Window.fullscreen = 'auto'
 MirrorApplication().run()
