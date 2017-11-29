@@ -1,6 +1,0 @@
-{
-  "queryStringParameters": {
-    "count": 3
-	// NOTE THIS WILL CHANGE AS I HAVE BEEN TESTING WITH A HARDCODED QUEUE IN THE LAMBDA TO RETURN FROM
-  }
-}
