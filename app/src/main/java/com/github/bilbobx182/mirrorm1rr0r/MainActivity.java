@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -81,6 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
             BackgroundThread thread = new BackgroundThread();
             thread.execute(baseURL);
+            try {
+                String result = "";
+                result = thread.get().toString();
+                queryResult.setText(result);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+
+            }
         });
     }
 
@@ -126,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            queryResult.setText(result);
             super.onPostExecute(result);
         }
     }
