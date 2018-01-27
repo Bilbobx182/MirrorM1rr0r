@@ -1,7 +1,9 @@
 package com.github.bilbobx182.mirrorm1rr0r;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initiateDatabase();
+
+
         Button doneButton = (Button) findViewById(R.id.commitButton);
         queryResult = (TextView) findViewById(R.id.queryResponseTextView);
 
@@ -28,6 +34,29 @@ public class MainActivity extends AppCompatActivity {
         doneButton.setOnClickListener(v -> {
           processDoneButtonActions();
         });
+    }
+
+    private void initiateDatabase() {
+        DBManager db=new DBManager(getApplicationContext());
+        try
+        {
+            db.open();
+         //   db.insertMessageToDatabase("TEST VALUE2");
+            Cursor getStuff = db.getAll();
+            if (getStuff.moveToFirst()){
+                do{
+                    String data = getStuff.getString(getStuff.getColumnIndex("data"));
+                    // do what ever you want here
+                    Log.d("HELLO0",data);
+                }while(getStuff.moveToNext());
+            }
+            getStuff.close();
+            System.out.println("HELLO");
+        }
+        catch (Exception ex)
+        {
+            Log.d("MAINACTIVITY.JAVA","Something wrong happened trying to open the DB");
+        }
     }
 
     private void processDoneButtonActions() {
