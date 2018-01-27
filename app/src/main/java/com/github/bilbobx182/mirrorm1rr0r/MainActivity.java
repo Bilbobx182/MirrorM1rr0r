@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import java.util.concurrent.ExecutionException;
 
-
 public class MainActivity extends AppCompatActivity {
     TextView queryResult;
     Spinner ySpinner;
@@ -27,16 +26,20 @@ public class MainActivity extends AppCompatActivity {
         setupSpinners();
 
         doneButton.setOnClickListener(v -> {
-            queryInputEditText = (EditText) findViewById(R.id.queryEditText);
-            String input = queryInputEditText.getText().toString();
-
-            queryResult.setText("Working on sending your contents !");
-
-            String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
-                    "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
-                    "&message=" + input;
-            sendMessage(baseURL);
+          processDoneButtonActions();
         });
+    }
+
+    private void processDoneButtonActions() {
+        queryInputEditText = (EditText) findViewById(R.id.queryEditText);
+        String input = queryInputEditText.getText().toString();
+
+        queryResult.setText("Working on sending your contents !");
+
+        String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
+                "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
+                "&message=" + input;
+        sendMessage(baseURL);
     }
 
     private void setupSpinners() {

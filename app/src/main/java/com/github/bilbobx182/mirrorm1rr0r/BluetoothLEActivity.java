@@ -23,7 +23,6 @@ public class BluetoothLEActivity extends AppCompatActivity {
     Subscription scanSubscription;
     RxBleClient rxBleClient;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,6 @@ public class BluetoothLEActivity extends AppCompatActivity {
                 },
                 throwable -> {
                     Log.d("CIARANTEST", "BLEBROKE");
-                    // Handle an error here.
                 }
         );
     }
@@ -90,7 +88,7 @@ public class BluetoothLEActivity extends AppCompatActivity {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
         } else {
             // Handle the case where we cant access location
-            Log.d("Ciaran", "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            Log.d("Ciaran", "Oh God, something went wrong");
         }
     }
 
