@@ -32,41 +32,38 @@ public class MainActivity extends AppCompatActivity {
             processDoneButtonActions();
         });
     }
-
-
+    
     private void processDoneButtonActions() {
+        beginMessageTransformation();
+    }
+
+    private void beginMessageTransformation() {
+     populateDatabaseWithMessage();
+     parseBeforeSendMessage();
+    }
+
+    private void populateDatabaseWithMessage() {
         DBManager db = new DBManager(getApplicationContext());
         try {
             db.open();
             boolean result = db.insertValue(UUID.randomUUID().toString());
             db.close();
-            Log.d("hi", String.valueOf(result));
+            Log.d("SendMessageActivity", String.valueOf(result));
         } catch (Exception ex) {
-            Log.d("MAINACTIVITY.JAVA", "Insert failed");
+            Log.d("SendMessageActivity","Failure");
         }
-//        queryInputEditText = (EditText) findViewById(R.id.queryEditText);
-//        String input = queryInputEditText.getText().toString();
-//
-//        queryResult.setText("Working on sending your contents !");
-//
-//        String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
-//                "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
-//                "&message=" + input;
-//        sendMessage(baseURL);
     }
 
-    private void setupSpinners() {
-        ySpinner = (Spinner) findViewById(R.id.ySpinner);
-        ArrayAdapter<CharSequence> yAdapter = ArrayAdapter.createFromResource(this,
-                R.array.yPos, android.R.layout.simple_spinner_item);
-        yAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ySpinner.setAdapter(yAdapter);
+    private void parseBeforeSendMessage() {
+        queryInputEditText = (EditText) findViewById(R.id.queryEditText);
+        String input = queryInputEditText.getText().toString();
 
-        xSpinner = (Spinner) findViewById(R.id.xSpinner);
-        ArrayAdapter<CharSequence> xAdapter = ArrayAdapter.createFromResource(this,
-                R.array.xPos, android.R.layout.simple_spinner_item);
-        xAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        xSpinner.setAdapter(xAdapter);
+        queryResult.setText("Working on sending your contents !");
+
+        String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
+                "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
+                "&message=" + input;
+        sendMessage(baseURL);
     }
 
     private void sendMessage(String baseURL) {
@@ -106,5 +103,19 @@ public class MainActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setupSpinners() {
+        ySpinner = (Spinner) findViewById(R.id.ySpinner);
+        ArrayAdapter<CharSequence> yAdapter = ArrayAdapter.createFromResource(this,
+                R.array.yPos, android.R.layout.simple_spinner_item);
+        yAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ySpinner.setAdapter(yAdapter);
+
+        xSpinner = (Spinner) findViewById(R.id.xSpinner);
+        ArrayAdapter<CharSequence> xAdapter = ArrayAdapter.createFromResource(this,
+                R.array.xPos, android.R.layout.simple_spinner_item);
+        xAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        xSpinner.setAdapter(xAdapter);
     }
 }
