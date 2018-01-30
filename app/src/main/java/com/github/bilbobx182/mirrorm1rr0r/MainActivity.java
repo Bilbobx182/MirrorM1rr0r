@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             processDoneButtonActions();
         });
     }
-    
+
     private void processDoneButtonActions() {
         beginMessageTransformation();
     }
