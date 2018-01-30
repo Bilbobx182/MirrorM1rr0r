@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,53 +23,36 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        initiateDatabase();
-
-
         Button doneButton = (Button) findViewById(R.id.commitButton);
         queryResult = (TextView) findViewById(R.id.queryResponseTextView);
 
         setupSpinners();
 
         doneButton.setOnClickListener(v -> {
-          processDoneButtonActions();
+            processDoneButtonActions();
         });
     }
 
-    private void initiateDatabase() {
-        DBManager db=new DBManager(getApplicationContext());
-        try
-        {
-            db.open();
-         //   db.insertMessageToDatabase("TEST VALUE2");
-            Cursor getStuff = db.getAll();
-            if (getStuff.moveToFirst()){
-                do{
-                    String data = getStuff.getString(getStuff.getColumnIndex("data"));
-                    // do what ever you want here
-                    Log.d("HELLO0",data);
-                }while(getStuff.moveToNext());
-            }
-            getStuff.close();
-            System.out.println("HELLO");
-        }
-        catch (Exception ex)
-        {
-            Log.d("MAINACTIVITY.JAVA","Something wrong happened trying to open the DB");
-        }
-    }
 
     private void processDoneButtonActions() {
-        queryInputEditText = (EditText) findViewById(R.id.queryEditText);
-        String input = queryInputEditText.getText().toString();
-
-        queryResult.setText("Working on sending your contents !");
-
-        String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
-                "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
-                "&message=" + input;
-        sendMessage(baseURL);
+        DBManager db = new DBManager(getApplicationContext());
+        try {
+            db.open();
+            boolean result = db.insertValue(UUID.randomUUID().toString());
+            db.close();
+            Log.d("hi", String.valueOf(result));
+        } catch (Exception ex) {
+            Log.d("MAINACTIVITY.JAVA", "Insert failed");
+        }
+//        queryInputEditText = (EditText) findViewById(R.id.queryEditText);
+//        String input = queryInputEditText.getText().toString();
+//
+//        queryResult.setText("Working on sending your contents !");
+//
+//        String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
+//                "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
+//                "&message=" + input;
+//        sendMessage(baseURL);
     }
 
     private void setupSpinners() {
