@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void beginMessageTransformation() {
-     populateDatabaseWithMessage();
-     parseBeforeSendMessage();
+        populateDatabaseWithMessage();
+        parseBeforeSendMessage();
     }
 
     private void populateDatabaseWithMessage() {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             db.close();
             Log.d("SendMessageActivity", String.valueOf(result));
         } catch (Exception ex) {
-            Log.d("SendMessageActivity","Failure");
+            Log.d("SendMessageActivity", "Failure");
         }
     }
 
@@ -68,29 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendMessage(String baseURL) {
 
-        int yNum = 1;
-        int xNum = 1;
-
-        String xSpinnerValue = xSpinner.getSelectedItem().toString();
-        String ySpinnerValue = ySpinner.getSelectedItem().toString();
-
-        if (ySpinnerValue != null && xSpinnerValue != null) {
-            String[] yArray = {"Top", "Center", "Bottom"};
-            String[] xArray = {"Left", "Center", "Right"};
-
-            for (int yLocation = 0; yLocation < yArray.length; yLocation++) {
-                if (yArray[yLocation].contains(ySpinnerValue)) {
-                    yNum = yLocation;
-                }
-            }
-            for (int xLocation = 0; xLocation < yArray.length; xLocation++) {
-                if (xArray[xLocation].contains(xSpinnerValue)) {
-                    xNum = xLocation;
-                }
-            }
-        }
-
-        baseURL = baseURL + "&location=" + String.valueOf(yNum) + "," + String.valueOf(xNum);
+        String[] spinnerValues = getSpinnerValue();
+        baseURL = baseURL + "&location=" + String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]);
         HTTPAsyncRequest thread = new HTTPAsyncRequest();
         thread.execute(baseURL);
         try {
@@ -118,4 +97,38 @@ public class MainActivity extends AppCompatActivity {
         xAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         xSpinner.setAdapter(xAdapter);
     }
+
+
+    private String[] getSpinnerValue() {
+        String xSpinnerValue = xSpinner.getSelectedItem().toString();
+        String ySpinnerValue = ySpinner.getSelectedItem().toString();
+        if (ySpinnerValue != null && xSpinnerValue != null) {
+            return computeSpinners(xSpinnerValue, ySpinnerValue);
+        } else {
+            String[] results = new String[2];
+            results[0] = "1";
+            results[1] = "1";
+            return results;
+        }
+    }
+
+    private String[] computeSpinners(String xSpinnerValue, String ySpinnerValue) {
+
+        String[] yArray = {"Top", "Center", "Bottom"};
+        String[] xArray = {"Left", "Center", "Right"};
+        String[] results = new String[2];
+
+        for (int yLocation = 0; yLocation < yArray.length; yLocation++) {
+            if (yArray[yLocation].contains(ySpinnerValue)) {
+                results[0] = String.valueOf(yLocation);
+            }
+        }
+        for (int xLocation = 0; xLocation < yArray.length; xLocation++) {
+            if (xArray[xLocation].contains(xSpinnerValue)) {
+                results[1] = String.valueOf(xLocation);
+            }
+        }
+        return results;
+    }
+
 }
