@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
     android:padding="@dimen/box_inset_layout_padding"
-    tools:context="com.github.bilbobx182.smwswatch.StartSpeechActivity"
+    tools:context="com.github.bilbobx182.watchtest.SendVoiceMessageWear"
     tools:deviceIds="wear">
 
     <FrameLayout
