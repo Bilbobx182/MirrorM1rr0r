@@ -1,5 +1,6 @@
 package com.github.bilbobx182.mirrorm1rr0r;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button doneButton = (Button) findViewById(R.id.commitButton);
         queryResult = (TextView) findViewById(R.id.queryResponseTextView);
-
+        Intent ad = new Intent(this, SMWSMenu.class);
+        startActivity(ad);
         setupSpinners();
 
         doneButton.setOnClickListener(v -> {

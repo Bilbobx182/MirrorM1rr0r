@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".BluetoothLEActivity" />
+        <activity
+            android:name=".SMWSMenu"
+            android:label="@string/title_activity_smwsmenu"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
