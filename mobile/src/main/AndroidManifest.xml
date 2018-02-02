@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".BluetoothLEActivity" />
+        <activity
+            android:name=".NavDrawerSMWS"
+            android:label="@string/title_activity_nav_drawer_smws"
+            android:theme="@style/NoActionBar"></activity>
     </application>
 
 </manifest>
