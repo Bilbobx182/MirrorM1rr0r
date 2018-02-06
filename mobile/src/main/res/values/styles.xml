@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ciaranTheme" parent="Theme.AppCompat.NoActionBar" >
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorAccentLight</item>
+        <item name="android:textColorPrimary">@color/common_google_signin_btn_text_dark_pressed
+        </item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorForeground">@color/colorAccentDark</item>
+        <item name="android:windowBackground">@color/colorAccent</item>
+    </style>
+
 </resources>

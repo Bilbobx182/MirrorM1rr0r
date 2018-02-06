@@ -21,7 +21,7 @@
         <activity
             android:name=".NavDrawerSMWS"
             android:label="@string/title_activity_nav_drawer_smws"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/ciaranTheme"></activity>
     </application>
 
 </manifest>

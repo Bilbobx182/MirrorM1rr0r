@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<style name="CiaranTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <!--<item name="colorAccentDark">#1c313a</item>-->
+
+    <item name="android:buttonStyle">@color/colorPrimaryDark</item>
+</style>
+</resources>
