@@ -51,29 +51,35 @@
         android:id="@+id/queryResponseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" " />
+        android:text=" "
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/ySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="476dp" />
+        android:layout_marginBottom="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/commitButton"
+        app:layout_constraintEnd_toStartOf="@+id/commitButton" />
 
     <Spinner
         android:id="@+id/xSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="250dp"
-        tools:layout_editor_absoluteY="476dp" />
+        android:layout_marginTop="31dp"
+        app:layout_constraintStart_toEndOf="@+id/commitButton"
+        app:layout_constraintTop_toBottomOf="@+id/posHeler" />
 
     <TextView
         android:id="@+id/posHeler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="31dp"
         android:text="Y and X position on grid"
+        app:layout_constraintBottom_toTopOf="@+id/ySpinner"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="426dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
