@@ -5,33 +5,29 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/navSendMessage"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Send Message" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/navPreviousSent"
+            android:icon="@drawable/ic_question_answer_black_24dp"
+            android:title="Sent Messages" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/navWatchView"
+            android:icon="@drawable/ic_watch_black_24dp"
+            android:title="Wear" />
+        <item
+            android:id="@+id/navSetupMirror"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Set Mirror Details" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Other Options">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/navSettings"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Other Settings" />
         </menu>
     </item>
 
