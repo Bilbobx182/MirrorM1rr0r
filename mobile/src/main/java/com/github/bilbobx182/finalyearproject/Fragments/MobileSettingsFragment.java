@@ -1,4 +1,4 @@
-package com.github.bilbobx182.finalyearproject;
+package com.github.bilbobx182.finalyearproject.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+
+import com.github.bilbobx182.finalyearproject.R;
 
 /**
  * A simple {@link Fragment} subclass.

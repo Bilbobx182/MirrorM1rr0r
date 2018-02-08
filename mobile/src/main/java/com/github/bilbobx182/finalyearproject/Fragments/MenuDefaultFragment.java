@@ -1,23 +1,26 @@
-package com.github.bilbobx182.finalyearproject;
+package com.github.bilbobx182.finalyearproject.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.support.v4.app.Fragment;
+
+import com.github.bilbobx182.finalyearproject.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MobileWatchSettingsFragment.OnFragmentInteractionListener} interface
+ * {@link MenuDefaultFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MobileWatchSettingsFragment#newInstance} factory method to
+ * Use the {@link MenuDefaultFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MobileWatchSettingsFragment extends Fragment implements View.OnClickListener {
+public class MenuDefaultFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +32,7 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
 
     private OnFragmentInteractionListener mListener;
 
-    public MobileWatchSettingsFragment() {
+    public MenuDefaultFragment() {
         // Required empty public constructor
     }
 
@@ -39,11 +42,11 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MobileWatchSettingsFragment.
+     * @return A new instance of fragment MenuDefaultFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MobileWatchSettingsFragment newInstance(String param1, String param2) {
-        MobileWatchSettingsFragment fragment = new MobileWatchSettingsFragment();
+    public static MenuDefaultFragment newInstance(String param1, String param2) {
+        MenuDefaultFragment fragment = new MenuDefaultFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +67,7 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mobile_watch_settings, container, false);
+        return inflater.inflate(R.layout.fragment_menu_default, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -89,11 +92,6 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onClick(View view) {
-
     }
 
     /**
