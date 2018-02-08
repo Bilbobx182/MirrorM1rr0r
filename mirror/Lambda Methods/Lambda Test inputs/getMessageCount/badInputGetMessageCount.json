@@ -1,0 +1,5 @@
+{
+  "queryStringParameters": {
+    "queueName": "THIS ISNT A REAL QUEUE@.fifo"
+  }
+}
