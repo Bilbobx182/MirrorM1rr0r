@@ -92,7 +92,7 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        
+
     }
 
     /**

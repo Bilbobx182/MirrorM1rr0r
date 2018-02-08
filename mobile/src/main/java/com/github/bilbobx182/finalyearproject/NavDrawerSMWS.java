@@ -13,9 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.github.bilbobx182.finalyearproject.dummy.DummyContent;
+
 
 public class NavDrawerSMWS extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,MenuDefaultFragment.OnFragmentInteractionListener,SendMessage.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        MenuDefaultFragment.OnFragmentInteractionListener,
+        SendMessage.OnFragmentInteractionListener,
+        MobileSettingsFragment.OnFragmentInteractionListener,
+        SetupMirrorFragment.OnFragmentInteractionListener,
+        MobileWatchSettingsFragment.OnFragmentInteractionListener,
+        PreviousSentMessagesFragment.OnListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,30 +83,35 @@ public class NavDrawerSMWS extends AppCompatActivity
 
 
         if (id == R.id.navSendMessage) {
-           fragment = new SendMessage();
+            fragment = new SendMessage();
         } else if (id == R.id.navPreviousSent) {
-
+            fragment = new PreviousSentMessagesFragment();
         } else if (id == R.id.navWatchView) {
             fragment = new MobileWatchSettingsFragment();
         } else if (id == R.id.navSetupMirror) {
-
+            fragment = new SetupMirrorFragment();
         } else if (id == R.id.navSettings) {
-
+            fragment = new MobileWatchSettingsFragment();
         }
 
-       if(fragment != null) {
-           FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-           transaction.replace(R.id.fragment_container,fragment);
-           transaction.commit();
-       }
+        if (fragment != null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, fragment);
+            transaction.commit();
+        }
 
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri){
+    public void onFragmentInteraction(Uri uri) {
         //you can leave it empty
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 }
