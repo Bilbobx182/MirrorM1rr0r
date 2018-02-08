@@ -79,7 +79,7 @@ public class NavDrawerSMWS extends AppCompatActivity
         } else if (id == R.id.navPreviousSent) {
 
         } else if (id == R.id.navWatchView) {
-
+            fragment = new MobileWatchSettingsFragment();
         } else if (id == R.id.navSetupMirror) {
 
         } else if (id == R.id.navSettings) {
