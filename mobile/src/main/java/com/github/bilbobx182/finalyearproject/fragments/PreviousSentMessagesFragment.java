@@ -1,6 +1,7 @@
 package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.MyMessageRecyclerViewAdapter;
 import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.finalyearproject.dummy.DummyContent;
@@ -61,6 +63,18 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+
+            try {
+                DBManager db = new DBManager(getContext());
+                db.open();
+                Cursor messageCursor = db.getMessages();
+                System.out.println("lol");
+                recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            } catch (Exception e) {
+
+            }
+
+
             recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;

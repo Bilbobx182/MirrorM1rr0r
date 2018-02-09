@@ -6,10 +6,13 @@ package com.github.bilbobx182.finalyearproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class DBManager {
     private static final int DATABASE_VERSION = 1;
@@ -69,6 +72,21 @@ public class DBManager {
 
     public void close() {
         DBHelper.close();
+    }
+
+    public Cursor getMessages() {
+        Cursor result = db.rawQuery("Select * from Message; ", null);
+        try {
+            while (result.moveToNext()) {
+                String combined = "Hello " + result.getString(0);
+                Log.d("Hello", combined);
+            }
+
+        } finally {
+            result.close();
+        }
+
+        return result;
     }
 }
 
