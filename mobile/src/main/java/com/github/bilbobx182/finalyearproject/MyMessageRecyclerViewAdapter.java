@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.github.bilbobx182.finalyearproject.Fragments.PreviousSentMessagesFragment.OnListFragmentInteractionListener;
+import com.github.bilbobx182.finalyearproject.fragments.PreviousSentMessagesFragment.OnListFragmentInteractionListener;
 import com.github.bilbobx182.finalyearproject.dummy.DummyContent.DummyItem;
 
 import java.util.List;

@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.github.bilbobx182.finalyearproject.Fragments.PreviousSentMessagesFragment"
+    tools:context="com.github.bilbobx182.finalyearproject.fragments.PreviousSentMessagesFragment"
     tools:listitem="@layout/fragment_message" />

@@ -1,4 +1,4 @@
-package com.github.bilbobx182.finalyearproject;
+package com.github.bilbobx182.finalyearproject.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -10,21 +10,11 @@ import android.util.Log;
 
 import java.util.UUID;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Process;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
+import com.github.bilbobx182.finalyearproject.R;
 import com.polidea.rxandroidble.RxBleClient;
 import com.polidea.rxandroidble.RxBleDevice;
 import com.polidea.rxandroidble.scan.ScanResult;
 import com.polidea.rxandroidble.scan.ScanSettings;
-
-import java.util.UUID;
 
 import rx.Subscription;
 
@@ -32,6 +22,9 @@ public class BluetoothLEActivity extends AppCompatActivity {
 
     Subscription scanSubscription;
     RxBleClient rxBleClient;
+
+
+    //Todo Refactor this so that it becomes part of a fragment.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

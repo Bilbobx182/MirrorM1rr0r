@@ -1,4 +1,4 @@
-package com.github.bilbobx182.finalyearproject;
+package com.github.bilbobx182.finalyearproject.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,12 +13,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.github.bilbobx182.finalyearproject.Fragments.MenuDefaultFragment;
-import com.github.bilbobx182.finalyearproject.Fragments.MobileSettingsFragment;
-import com.github.bilbobx182.finalyearproject.Fragments.MobileWatchSettingsFragment;
-import com.github.bilbobx182.finalyearproject.Fragments.PreviousSentMessagesFragment;
-import com.github.bilbobx182.finalyearproject.Fragments.SendMessage;
-import com.github.bilbobx182.finalyearproject.Fragments.SetupMirrorFragment;
+import com.github.bilbobx182.finalyearproject.R;
+import com.github.bilbobx182.finalyearproject.fragments.MenuDefaultFragment;
+import com.github.bilbobx182.finalyearproject.fragments.MobileSettingsFragment;
+import com.github.bilbobx182.finalyearproject.fragments.MobileWatchSettingsFragment;
+import com.github.bilbobx182.finalyearproject.fragments.PreviousSentMessagesFragment;
+import com.github.bilbobx182.finalyearproject.fragments.SendMessage;
+import com.github.bilbobx182.finalyearproject.fragments.SetupMirrorFragment;
 import com.github.bilbobx182.finalyearproject.dummy.DummyContent;
 
 

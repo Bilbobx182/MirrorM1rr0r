@@ -1,16 +1,16 @@
-package com.github.bilbobx182.finalyearproject.Fragments;
+package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
 
 import com.github.bilbobx182.finalyearproject.R;
 
-public class SetupMirrorFragment extends Fragment implements View.OnClickListener {
+public class MenuDefaultFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -22,13 +22,13 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
     private OnFragmentInteractionListener mListener;
 
-    public SetupMirrorFragment() {
+    public MenuDefaultFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static SetupMirrorFragment newInstance(String param1, String param2) {
-        SetupMirrorFragment fragment = new SetupMirrorFragment();
+    public static MenuDefaultFragment newInstance(String param1, String param2) {
+        MenuDefaultFragment fragment = new MenuDefaultFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,7 +49,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_setup_mirror, container, false);
+        return inflater.inflate(R.layout.fragment_menu_default, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -76,11 +76,6 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         mListener = null;
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
-    
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

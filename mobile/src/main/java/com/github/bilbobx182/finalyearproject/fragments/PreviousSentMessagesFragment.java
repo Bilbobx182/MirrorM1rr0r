@@ -1,4 +1,4 @@
-package com.github.bilbobx182.finalyearproject.Fragments;
+package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
