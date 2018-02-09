@@ -88,6 +88,25 @@ public class DBManager {
 
         return result;
     }
+
+    public HashMap<Integer, String> getMessagesHashMap() {
+        Cursor result = db.rawQuery("Select * from Message; ", null);
+
+        HashMap<Integer, String> values = new HashMap<>();
+
+        try {
+            int hashIndex = 0;
+            while (result.moveToNext()) {
+                values.put(hashIndex, result.getString(1));
+                hashIndex++;
+            }
+
+        } finally {
+            result.close();
+        }
+
+        return values;
+    }
 }
 
     /*

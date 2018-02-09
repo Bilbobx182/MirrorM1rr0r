@@ -17,6 +17,8 @@ import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.finalyearproject.dummy.DummyContent;
 import com.github.bilbobx182.finalyearproject.dummy.DummyContent.DummyItem;
 
+import java.util.HashMap;
+
 
 public class PreviousSentMessagesFragment extends Fragment implements View.OnClickListener {
 
@@ -67,15 +69,12 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
             try {
                 DBManager db = new DBManager(getContext());
                 db.open();
-                Cursor messageCursor = db.getMessages();
+                HashMap<Integer,String> values = db.getMessagesHashMap();
                 System.out.println("lol");
-                recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+                recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(values, mListener));
             } catch (Exception e) {
 
             }
-
-
-            recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
