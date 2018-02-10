@@ -118,7 +118,7 @@ public class NavDrawerSMWS extends AppCompatActivity
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(int position) {
 
     }
 }

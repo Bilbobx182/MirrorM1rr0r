@@ -1,7 +1,6 @@
 package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -14,11 +13,8 @@ import android.view.ViewGroup;
 import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.MyMessageRecyclerViewAdapter;
 import com.github.bilbobx182.finalyearproject.R;
-import com.github.bilbobx182.finalyearproject.dummy.DummyContent;
-import com.github.bilbobx182.finalyearproject.dummy.DummyContent.DummyItem;
 
 import java.util.HashMap;
-
 
 public class PreviousSentMessagesFragment extends Fragment implements View.OnClickListener {
 
@@ -69,8 +65,7 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
             try {
                 DBManager db = new DBManager(getContext());
                 db.open();
-                HashMap<Integer,String> values = db.getMessagesHashMap();
-                System.out.println("lol");
+                HashMap<Integer, String> values = db.getMessagesHashMap();
                 recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(values, mListener));
             } catch (Exception e) {
 
@@ -103,7 +98,7 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
     }
 
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+
+        void onListFragmentInteraction(int position);
     }
 }
