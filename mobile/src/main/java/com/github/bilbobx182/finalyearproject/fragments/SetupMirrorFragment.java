@@ -1,20 +1,29 @@
 package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.Fragment;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.github.bilbobx182.finalyearproject.R;
 
 public class SetupMirrorFragment extends Fragment implements View.OnClickListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private static Button detectButton;
+    private static TextView setupFirstInstruction;
+    private static TextView setupSecondInstruction;
+    private int setupCount = 0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -48,8 +57,24 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_setup_mirror, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setWidgets();
+    }
+
+
+
+
+    private void setWidgets() {
+        detectButton = getActivity().findViewById(R.id.setupInstructionDetect);
+        detectButton.setOnClickListener(this);
+
+        setupFirstInstruction = getActivity().findViewById(R.id.setupInstruction1);
+        setupSecondInstruction = getActivity().findViewById(R.id.setupInstruction2);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -78,8 +103,37 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()) {
+            case (R.id.setupInstructionDetect): {
+                NetworkInfo wifiConnection = getWifiInformation();
+
+                if (wifiConnection.isConnected()) {
+                    // wifiConnection.getExtraInfo();
+                    Log.d("WifiTrue", wifiConnection.getExtraInfo());
+                   updateWidgets(wifiConnection.getExtraInfo());
+                } else {
+                    // ToDo Reprimand the bad user, with a friendly message of course.
+
+                }
+
+            }
+        }
+    }
+
+    private NetworkInfo getWifiInformation() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo connectionInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        return connectionInfo;
 
     }
+
+    private void updateWidgets(String SSID) {
+        setupFirstInstruction.setText("Network : " +SSID);
+        setupSecondInstruction.setText("Please enter network password for mirror");
+        detectButton.setText("Submit!");
+    }
+
+
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
