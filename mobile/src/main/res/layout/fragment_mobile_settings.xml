@@ -1,13 +1,68 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.bilbobx182.finalyearproject.fragments.MobileSettingsFragment">
+    tools:context="com.github.bilbobx182.finalyearproject.fragments.MobileSettingsFragment"
+    tools:layout_editor_absoluteY="25dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ImageView
+        android:id="@+id/profileImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_above="@+id/setProfileButton"
+        android:layout_alignEnd="@+id/submitDetailsButton"
+        android:src="@drawable/ic_menu_gallery"
+        tools:layout_editor_absoluteY="280dp" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/setProfileButton"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_above="@+id/firstnameEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="17dp"
+        android:text="Set profile image"
+        tools:layout_editor_absoluteY="371dp" />
+
+    <EditText
+        android:id="@+id/firstnameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/surnameEditText"
+        android:layout_alignStart="@+id/submitDetailsButton"
+        android:layout_marginBottom="61dp"
+        android:layout_marginStart="84dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Enter firstname here"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteY="470dp" />
+
+    <EditText
+        android:id="@+id/surnameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/submitDetailsButton"
+        android:layout_alignStart="@+id/firstnameEditText"
+        android:layout_marginBottom="19dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Enter surname here"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteY="558dp" />
+
+    <Button
+        android:id="@+id/submitDetailsButton"
+        android:layout_width="405dp"
+        android:layout_height="46dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp"
+        android:text="Done!"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="610dp" />
+
+
+</RelativeLayout>
+

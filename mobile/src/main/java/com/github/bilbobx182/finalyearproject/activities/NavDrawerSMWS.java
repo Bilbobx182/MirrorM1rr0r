@@ -1,5 +1,6 @@
 package com.github.bilbobx182.finalyearproject.activities;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,8 +11,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.finalyearproject.fragments.MenuDefaultFragment;
@@ -30,7 +35,7 @@ public class NavDrawerSMWS extends AppCompatActivity
         MobileSettingsFragment.OnFragmentInteractionListener,
         SetupMirrorFragment.OnFragmentInteractionListener,
         MobileWatchSettingsFragment.OnFragmentInteractionListener,
-        PreviousSentMessagesFragment.OnListFragmentInteractionListener{
+        PreviousSentMessagesFragment.OnListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,21 @@ public class NavDrawerSMWS extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        headerButtonPressed();
+    }
+
+    private void headerButtonPressed() {
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerview = navigationView.getHeaderView(0);
+
+        Button setDetails = headerview.findViewById(R.id.setClientInformation);
+
+        setDetails.setOnClickListener(v -> {
+            Fragment fragment = new MobileSettingsFragment();
+            switchToFragment(fragment);
+        });
     }
 
     @Override
@@ -88,7 +108,7 @@ public class NavDrawerSMWS extends AppCompatActivity
 
         Fragment fragment = null;
 
-
+        // Menu Items
         if (id == R.id.navSendMessage) {
             fragment = new SendMessage();
         } else if (id == R.id.navPreviousSent) {
@@ -102,9 +122,7 @@ public class NavDrawerSMWS extends AppCompatActivity
         }
 
         if (fragment != null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment);
-            transaction.commit();
+            switchToFragment(fragment);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -117,8 +135,19 @@ public class NavDrawerSMWS extends AppCompatActivity
         //you can leave it empty
     }
 
+    private void switchToFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
+    }
+
     @Override
     public void onListFragmentInteraction(int position) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
