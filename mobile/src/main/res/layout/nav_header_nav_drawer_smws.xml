@@ -11,7 +11,8 @@
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/navProfileImage"
+        android:adjustViewBounds="true"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="115dp"
@@ -32,8 +33,8 @@
         android:text="Please set your FirstName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/navProfileImage"
+        app:layout_constraintTop_toBottomOf="@+id/navProfileImage" />
 
     <Button
         android:id="@+id/setClientInformation"
@@ -45,7 +46,7 @@
         android:text="Set Details"
         app:layout_constraintBottom_toTopOf="@+id/navFirstName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/navProfileImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

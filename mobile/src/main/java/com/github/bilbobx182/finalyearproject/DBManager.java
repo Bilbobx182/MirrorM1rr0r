@@ -15,15 +15,36 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "SMWS.db";
 
-    private static final String TABLE_MESSAGE = "Message";
-
+    private static final String TABLE_MESSAGE_NAME = "Message";
     private static final String MESSAGE_ID = "_id";
     private static final String SENT_MESSAGE = "messageID";
-    private static final String CREATE_MESSAGES_TABLE = "CREATE TABLE " + TABLE_MESSAGE + " ( " + MESSAGE_ID + " INTEGER PRIMARY KEY autoincrement, " + SENT_MESSAGE + " TEXT);";
-    private static final String DROP_MESSAGES_TABLE = "DROP TABLE " + TABLE_MESSAGE + " ;";
+
+    private static final String CREATE_MESSAGES_TABLE = "CREATE TABLE " + TABLE_MESSAGE_NAME + " ( " + MESSAGE_ID + " INTEGER PRIMARY KEY autoincrement, " + SENT_MESSAGE + " TEXT);";
+    private static final String DROP_MESSAGES_TABLE = "DROP TABLE " + TABLE_MESSAGE_NAME + " ;";
+
+
+    // Only Updates will ever be made to the user table. Intial empty data set.
+
+    private static final String TABLE_USER_NAME = "User";
+    public static final String USER_ID = "_id";
+    public static final String USER_FIRSTNAME = "firstname";
+    public static final String USER_SURNAME = "surname";
+    public static final String USER_IMEI = "imei";
+    public static final String USER_QUEUE = "queue";
+    public static final String USER_PROFILE_PATH = "profilePath";
+
+    private static final String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER_NAME + " ( " + USER_ID
+            + " INTEGER PRIMARY KEY autoincrement, "
+            + USER_FIRSTNAME + " TEXT,"
+            + USER_SURNAME + " TEXT,"
+            + USER_IMEI + " TEXT,"
+            + USER_QUEUE + " TEXT,"
+            + USER_PROFILE_PATH + " TEXT" + ");";
+
+    private static final String DROP_MESSAGES_USERS = "DROP TABLE " + TABLE_USER_NAME + " ;";
 
     private final Context context;
     private MyDatabaseHelper DBHelper;
@@ -43,11 +64,30 @@ public class DBManager {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(CREATE_MESSAGES_TABLE);
+            db.execSQL(CREATE_USER_TABLE);
+
+            ContentValues values = new ContentValues();
+            values.put(USER_FIRSTNAME, "Ciaran");
+            values.put(USER_SURNAME, "Nolan");
+            values.put(USER_IMEI, "358098076343286");
+            values.put(USER_QUEUE, "");
+            values.put(USER_PROFILE_PATH, "");
+
+
+            long newRowId = db.insert(TABLE_USER_NAME, null, values);
+            if (newRowId >= 1) {
+                Log.d("DB", "Created Sucessfully");
+            } else {
+                Log.d("DB,", "WOMP WOMP");
+            }
+
+
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGE);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_MESSAGE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_NAME);
             onCreate(db);
         }
     }
@@ -62,7 +102,20 @@ public class DBManager {
         ContentValues values = new ContentValues();
         values.put(SENT_MESSAGE, messageInput);
 
-        long newRowId = db.insert(TABLE_MESSAGE, null, values);
+        long newRowId = db.insert(TABLE_MESSAGE_NAME, null, values);
+        if (newRowId >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean updateUserInformation(String column, String message) {
+
+        ContentValues values = new ContentValues();
+        values.put(column, message);
+
+        long newRowId = db.update(TABLE_USER_NAME, values, "_id=1", null);
         if (newRowId >= 1) {
             return true;
         } else {
@@ -106,6 +159,17 @@ public class DBManager {
         }
 
         return values;
+    }
+
+
+    public String getUserInformationByColumn(String column) {
+        Cursor result = db.rawQuery("Select " + column + " from user; ", null);
+        String columnData = null;
+        while (result.moveToNext()) {
+            columnData = result.getString(0);
+            result.close();
+        }
+        return columnData;
     }
 }
 

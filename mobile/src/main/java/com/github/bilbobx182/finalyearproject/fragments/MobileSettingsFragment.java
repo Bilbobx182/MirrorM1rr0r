@@ -16,9 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
+
+import java.sql.SQLException;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -30,6 +34,7 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
     private Button setProfileButton;
     private Button submitDetailsButton;
     private ImageView profileImageView;
+    private String picturePath = " ";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -125,6 +130,24 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
             Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(i, 1);
         } else if (view.getId() == R.id.submitDetailsButton) {
+
+            EditText firstnameEditText = getView().findViewById(R.id.firstnameEditText);
+            EditText surnameEditText = getView().findViewById(R.id.surnameEditText);
+
+
+            DBManager db = new DBManager(getContext());
+            try {
+                db.open();
+                db.updateUserInformation("firstname", firstnameEditText.getText().toString());
+                db.updateUserInformation("surname", surnameEditText.getText().toString());
+                if (picturePath != " ") {
+                    db.updateUserInformation("profilePath", picturePath);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
     }
@@ -147,7 +170,7 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(pathToFile[0]);
-            String picturePath = cursor.getString(columnIndex);
+            picturePath = cursor.getString(columnIndex);
             cursor.close();
 
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath, options));

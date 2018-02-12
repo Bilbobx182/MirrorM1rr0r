@@ -1,23 +1,25 @@
 package com.github.bilbobx182.finalyearproject.activities;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.finalyearproject.fragments.MenuDefaultFragment;
 import com.github.bilbobx182.finalyearproject.fragments.MobileSettingsFragment;
@@ -25,7 +27,8 @@ import com.github.bilbobx182.finalyearproject.fragments.MobileWatchSettingsFragm
 import com.github.bilbobx182.finalyearproject.fragments.PreviousSentMessagesFragment;
 import com.github.bilbobx182.finalyearproject.fragments.SendMessage;
 import com.github.bilbobx182.finalyearproject.fragments.SetupMirrorFragment;
-import com.github.bilbobx182.finalyearproject.dummy.DummyContent;
+
+import org.w3c.dom.Text;
 
 
 public class NavDrawerSMWS extends AppCompatActivity
@@ -53,7 +56,43 @@ public class NavDrawerSMWS extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        setHeaderText(navigationView);
         headerButtonPressed();
+    }
+
+    private void setHeaderText(NavigationView navigationView) {
+
+
+        View headerView = navigationView.getHeaderView(0);
+
+
+        TextView navFirstNameTextView = headerView.findViewById(R.id.navFirstName);
+        TextView navSurnameTextView = headerView.findViewById(R.id.navSurname);
+        ImageView navProfileImageView = headerView.findViewById(R.id.navProfileImage);
+        Button setClientInformationButton = headerView.findViewById(R.id.setClientInformation);
+
+
+        try {
+            DBManager db = new DBManager(getBaseContext());
+            db.open();
+            navFirstNameTextView.setText(db.getUserInformationByColumn("firstname"));
+            navSurnameTextView.setText(db.getUserInformationByColumn("surname"));
+            String imagePath = db.getUserInformationByColumn("profilePath");
+
+            if (imagePath != " ") {
+                setClientInformationButton.setVisibility(View.GONE);
+                navProfileImageView.setMaxWidth( DrawerLayout.LayoutParams.MATCH_PARENT / 2);
+                navProfileImageView.setMaxHeight( DrawerLayout.LayoutParams.MATCH_PARENT / 2);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 5;
+                navProfileImageView.setImageBitmap(BitmapFactory.decodeFile(imagePath, options));
+            }
+            else {
+
+            }
+        } catch (Exception e) {
+
+        }
     }
 
     private void headerButtonPressed() {
