@@ -35,7 +35,7 @@
         android:layout_marginStart="84dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter firstname here"
+        android:hint="Enter firstname here"
         android:textAlignment="center"
         tools:layout_editor_absoluteY="470dp" />
 
@@ -48,7 +48,7 @@
         android:layout_marginBottom="19dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Enter surname here"
+        android:hint="Enter surname here"
         android:textAlignment="center"
         tools:layout_editor_absoluteY="558dp" />
 

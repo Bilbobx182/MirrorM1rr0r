@@ -67,9 +67,9 @@ public class DBManager {
             db.execSQL(CREATE_USER_TABLE);
 
             ContentValues values = new ContentValues();
-            values.put(USER_FIRSTNAME, "Ciaran");
-            values.put(USER_SURNAME, "Nolan");
-            values.put(USER_IMEI, "358098076343286");
+            values.put(USER_FIRSTNAME, "Enter name");
+            values.put(USER_SURNAME, "Enter surname");
+            values.put(USER_IMEI, "358098070043286");
             values.put(USER_QUEUE, "");
             values.put(USER_PROFILE_PATH, "");
 
@@ -94,8 +94,20 @@ public class DBManager {
 
     public DBManager open() throws SQLException {
         db = DBHelper.getWritableDatabase();
+        ciaranTest();
         return this;
     }
+
+    private void ciaranTest() {
+        Cursor result = db.rawQuery("Select * from user; ", null);
+        String columnData = null;
+        while (result.moveToNext()) {
+            columnData = result.getString(0);
+            Log.d("DB",columnData);
+        }
+
+    }
+
 
     public boolean insertValue(String messageInput) {
 
@@ -112,15 +124,19 @@ public class DBManager {
 
     public boolean updateUserInformation(String column, String message) {
 
+        String where = "_id == 1" ;
         ContentValues values = new ContentValues();
         values.put(column, message);
+        db.update(TABLE_USER_NAME,values, where, null);
 
-        long newRowId = db.update(TABLE_USER_NAME, values, "_id=1", null);
-        if (newRowId >= 1) {
-            return true;
-        } else {
-            return false;
+        Cursor result = db.rawQuery("select * from "+TABLE_USER_NAME, null);
+        int counter = 0;
+        while (result.moveToNext()) {
+            String combined = "Hello " + result.getString(counter);
+            counter++;
+            Log.d("Hello", combined);
         }
+       return true;
     }
 
     public void close() {

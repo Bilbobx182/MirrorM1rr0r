@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,6 +41,11 @@ public class NavDrawerSMWS extends AppCompatActivity
         MobileWatchSettingsFragment.OnFragmentInteractionListener,
         PreviousSentMessagesFragment.OnListFragmentInteractionListener {
 
+    TextView navFirstNameTextView;
+    TextView navSurnameTextView;
+    ImageView navProfileImageView;
+    Button setClientInformationButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,14 +70,17 @@ public class NavDrawerSMWS extends AppCompatActivity
 
 
         View headerView = navigationView.getHeaderView(0);
+        navFirstNameTextView = headerView.findViewById(R.id.navFirstName);
+        navSurnameTextView = headerView.findViewById(R.id.navSurname);
+        navProfileImageView = headerView.findViewById(R.id.navProfileImage);
+        setClientInformationButton = headerView.findViewById(R.id.setClientInformation);
 
+        if (!isFirstTime()) {
+            populateHeaderFromDatabase();
+        }
+    }
 
-        TextView navFirstNameTextView = headerView.findViewById(R.id.navFirstName);
-        TextView navSurnameTextView = headerView.findViewById(R.id.navSurname);
-        ImageView navProfileImageView = headerView.findViewById(R.id.navProfileImage);
-        Button setClientInformationButton = headerView.findViewById(R.id.setClientInformation);
-
-
+    private void populateHeaderFromDatabase() {
         try {
             DBManager db = new DBManager(getBaseContext());
             db.open();
@@ -79,20 +88,32 @@ public class NavDrawerSMWS extends AppCompatActivity
             navSurnameTextView.setText(db.getUserInformationByColumn("surname"));
             String imagePath = db.getUserInformationByColumn("profilePath");
 
-            if (imagePath != " ") {
-                setClientInformationButton.setVisibility(View.GONE);
-                navProfileImageView.setMaxWidth( DrawerLayout.LayoutParams.MATCH_PARENT / 2);
-                navProfileImageView.setMaxHeight( DrawerLayout.LayoutParams.MATCH_PARENT / 2);
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inSampleSize = 5;
-                navProfileImageView.setImageBitmap(BitmapFactory.decodeFile(imagePath, options));
-            }
-            else {
 
+            setClientInformationButton.setVisibility(View.GONE);
+            navProfileImageView.setMaxWidth(DrawerLayout.LayoutParams.MATCH_PARENT / 2);
+            navProfileImageView.setMaxHeight(DrawerLayout.LayoutParams.MATCH_PARENT / 2);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 5;
+            navProfileImageView.setImageBitmap(BitmapFactory.decodeFile(imagePath, options));
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    private boolean isFirstTime() {
+        DBManager db = new DBManager(getBaseContext());
+        boolean result = false;
+        try {
+            db.open();
+            String firstNameValue = db.getUserInformationByColumn("firstname");
+            if (firstNameValue.contains("Enter")) {
+                result = true;
             }
         } catch (Exception e) {
 
         }
+        return result;
     }
 
     private void headerButtonPressed() {
@@ -127,13 +148,11 @@ public class NavDrawerSMWS extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Fragment fragment = new MobileSettingsFragment();
+            switchToFragment(fragment);
             return true;
         }
 
