@@ -31,6 +31,8 @@ import com.github.bilbobx182.finalyearproject.fragments.SetupMirrorFragment;
 
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+
 
 public class NavDrawerSMWS extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,

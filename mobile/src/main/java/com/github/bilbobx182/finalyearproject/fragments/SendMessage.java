@@ -13,18 +13,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.HTTPAsyncRequest;
 import com.github.bilbobx182.finalyearproject.R;
+import com.github.bilbobx182.finalyearproject.RequestPerformer;
 
+import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 public class SendMessage extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    private TextView queryResult;
     private Spinner ySpinner;
     private Spinner xSpinner;
     private EditText queryInputEditText;
@@ -37,7 +39,6 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     private OnFragmentInteractionListener mListener;
 
     public SendMessage() {
-        // Required empty public constructor
     }
 
     public static SendMessage newInstance(String param1, String param2) {
@@ -61,13 +62,11 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View inflated = inflater.inflate(R.layout.fragment_send_message, container, false);
 
+        View inflated = inflater.inflate(R.layout.fragment_send_message, container, false);
 
         ySpinner = inflated.findViewById(R.id.ySpinner);
         xSpinner = inflated.findViewById(R.id.xSpinner);
-
 
         setupSpinners();
         return inflated;
@@ -102,16 +101,15 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         doneButton = view.findViewById(R.id.commitButton);
         switch (view.getId()) {
             case (R.id.commitButton): {
-                //ToDo unComment This for when I am actually good to send data
-                // processDoneButtonActions();
-                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+
                 processDoneButtonActions();
+                Toast.makeText(getContext(), "Message Sent!", Toast.LENGTH_SHORT).show();
+                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
             }
         }
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
@@ -122,13 +120,13 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        doneButton = (Button) getActivity().findViewById(R.id.commitButton);
+        doneButton = getActivity().findViewById(R.id.commitButton);
         doneButton.setOnClickListener(this);
     }
 
     private void beginMessageTransformation() {
         populateDatabaseWithMessage();
-        //   parseBeforeSendMessage();
+        groupValuesBeforeSending();
     }
 
     private void populateDatabaseWithMessage() {
@@ -143,34 +141,29 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void parseBeforeSendMessage() {
-        queryInputEditText = (EditText) getView().findViewById(R.id.queryEditText);
+    private void groupValuesBeforeSending() {
+        HashMap<String, String> messageValues = new HashMap<>();
+
+        queryInputEditText = getView().findViewById(R.id.queryEditText);
         String input = queryInputEditText.getText().toString();
+        String[] spinnerValues = getSpinnerValue();
 
-        queryResult.setText("Working on sending your contents !");
+        messageValues.put("message", input);
+        messageValues.put("location", String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]));
+        messageValues.put("queueurl", "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo");
 
-        String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/" +
-                "sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo" +
-                "&message=" + input;
-        sendMessage(baseURL);
+        /*
+        ToDo:  Support the following in app once everything else is done
+        location
+        fontcolour
+         */
+
+        sendMessage(messageValues);
     }
 
-    private void sendMessage(String baseURL) {
-
-        String[] spinnerValues = getSpinnerValue();
-        baseURL = baseURL + "&location=" + String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]);
-        HTTPAsyncRequest thread = new HTTPAsyncRequest();
-        thread.execute(baseURL);
-        try {
-            String result = "";
-            result = thread.get().toString();
-            queryResult.setText(result);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+    private void sendMessage(HashMap values) {
+        RequestPerformer requestPerformer = new RequestPerformer();
+        requestPerformer.performSendMessage(values);
     }
 
     private void setupSpinners() {
@@ -186,7 +179,6 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         xAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         xSpinner.setAdapter(xAdapter);
     }
-
 
     private String[] getSpinnerValue() {
         String xSpinnerValue = xSpinner.getSelectedItem().toString();

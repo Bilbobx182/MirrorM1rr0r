@@ -1,10 +1,4 @@
 package com.github.bilbobx182.finalyearproject;
-
-/**
- * Created by CiaranLaptop on 02/02/2018.
- */
-
-
 import android.os.AsyncTask;
 
 import java.io.InputStream;
