@@ -133,7 +133,10 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         DBManager db = new DBManager(getContext());
         try {
             db.open();
-            boolean result = db.insertValue(UUID.randomUUID().toString());
+            queryInputEditText = getView().findViewById(R.id.queryEditText);
+            String input = queryInputEditText.getText().toString();
+            boolean result = db.insertValue(input);
+
             db.close();
             Log.d("SendMessageActivity", String.valueOf(result));
         } catch (Exception ex) {
