@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "SMWS.db";
 
     private static final String TABLE_MESSAGE_NAME = "Message";

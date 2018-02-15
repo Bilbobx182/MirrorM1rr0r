@@ -1,0 +1,10 @@
+{
+  "queueurl": "https://sqs.eu-west-1.amazonaws.com/186314837751/QUEUENAMEHERE.fifo",
+
+  "data": {
+    "message": "YOUR MESSAGE HERE",
+    "x": 1,
+    "y" :1,
+    "fontcolour":"red"
+  }
+}
