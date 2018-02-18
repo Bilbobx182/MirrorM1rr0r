@@ -3,8 +3,11 @@ package com.github.bilbobx182.finalyearproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
+import java.sql.SQLException;
 
 public class MainActivity extends WearableActivity {
 
@@ -18,6 +21,20 @@ public class MainActivity extends WearableActivity {
         setAmbientEnabled();
 
         setupButtons();
+
+        WatchDBManager watchDBManager = new WatchDBManager(this);
+        try {
+            watchDBManager.open();
+            watchDBManager.updateQueueURL("https://sqs.eu-west-1.amazonaws.com/186314837751/queuename.fifo");
+            Log.d("BEFORE", watchDBManager.getQueueURL());
+
+            watchDBManager.updateQueueURL("https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo");
+            Log.d("AFTER", watchDBManager.getQueueURL());
+
+            watchDBManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
