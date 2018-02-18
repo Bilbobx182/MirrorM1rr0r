@@ -65,9 +65,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         super.onActivityCreated(savedInstanceState);
         setWidgets();
     }
-
-
-
+    
 
     private void setWidgets() {
         detectButton = getActivity().findViewById(R.id.setupInstructionDetect);

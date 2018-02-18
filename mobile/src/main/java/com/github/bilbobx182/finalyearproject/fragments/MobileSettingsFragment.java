@@ -140,7 +140,6 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
             EditText firstnameEditText = getView().findViewById(R.id.firstnameEditText);
             EditText surnameEditText = getView().findViewById(R.id.surnameEditText);
 
-
             updateSideBarWithUserInformation(firstnameEditText, surnameEditText);
 
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
