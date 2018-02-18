@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.support.wearable.activity.WearableActivity;
 import android.widget.TextView;
 
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 public class SendVoiceMessageWear extends WearableActivity {
@@ -29,7 +31,6 @@ public class SendVoiceMessageWear extends WearableActivity {
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         startActivityForResult(intent, speechRequestCode);
-        //ToDo Link with main code for AsyncSend and send the Message
     }
 
     @Override
@@ -39,10 +40,29 @@ public class SendVoiceMessageWear extends WearableActivity {
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
-            //ToDo Display Spoken Text to them to inform them of it.
             sendMessageTextView.setText(spokenText);
+            sendMessage(spokenText);
         }
         super.onActivityResult(requestCode, resultCode, data);
         finish();
+    }
+
+    private void sendMessage(String spokenText) {
+        WatchDBManager watchDBManager = new WatchDBManager(getApplicationContext());
+        String queue = "";
+
+        try {
+            watchDBManager.open();
+            queue = watchDBManager.getQueueURL();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<String, String> messageValues = new HashMap<>();
+        messageValues.put("message", spokenText);
+        messageValues.put("queueurl", queue);
+
+        RequestPerformer requestPerformer = new RequestPerformer();
+        requestPerformer.performSendMessage(messageValues);
     }
 }
