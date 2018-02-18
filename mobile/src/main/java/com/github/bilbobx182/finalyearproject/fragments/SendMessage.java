@@ -12,17 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
-import com.github.bilbobx182.finalyearproject.HTTPAsyncRequest;
 import com.github.bilbobx182.finalyearproject.R;
-import com.github.bilbobx182.finalyearproject.RequestPerformer;
+import com.github.bilbobx182.sharedcode.RequestPerformer;
 
 import java.util.HashMap;
-import java.util.UUID;
-import java.util.concurrent.ExecutionException;
 
 public class SendMessage extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";

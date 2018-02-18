@@ -1,10 +1,15 @@
-package com.github.bilbobx182.finalyearproject;
+package com.github.bilbobx182.sharedcode;
+
 import android.os.AsyncTask;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+/**
+ * MIGRATED by CiaranLaptop on 25/01/2018.
+ */
 
 public class HTTPAsyncRequest extends AsyncTask<String, String, String> {
 

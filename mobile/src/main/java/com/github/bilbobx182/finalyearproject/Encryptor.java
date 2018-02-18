@@ -6,8 +6,6 @@ package com.github.bilbobx182.finalyearproject;
 
 import android.util.Log;
 
-
-import java.security.DigestException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 

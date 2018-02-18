@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.wearable.activity.WearableActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -24,7 +25,6 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setAmbientEnabled();
-
 
         Wearable.getMessageClient(this).addListener(this);
         setupButtons();
@@ -75,7 +75,6 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

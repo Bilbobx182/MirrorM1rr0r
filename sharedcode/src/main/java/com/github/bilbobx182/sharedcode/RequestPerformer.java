@@ -1,12 +1,11 @@
-package com.github.bilbobx182.finalyearproject;
+package com.github.bilbobx182.sharedcode;
 
-import com.github.bilbobx182.finalyearproject.HTTPAsyncRequest;
 
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Created by CiaranLaptop on 14/02/2018.
+ * MIGRATED by CiaranLaptop on 18/02/2018.
  */
 
 public class RequestPerformer {
@@ -24,7 +23,7 @@ public class RequestPerformer {
         messageValues = messageValues.replaceAll("[{}]", "");
 
         String fullQuery = baseURL + sendMessage+messageValues;
-       performOperation(fullQuery);
+        performOperation(fullQuery);
         return  fullQuery;
     }
 

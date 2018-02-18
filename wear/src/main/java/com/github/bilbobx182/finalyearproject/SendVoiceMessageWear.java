@@ -6,6 +6,8 @@ import android.speech.RecognizerIntent;
 import android.support.wearable.activity.WearableActivity;
 import android.widget.TextView;
 
+import com.github.bilbobx182.sharedcode.RequestPerformer;
+
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;

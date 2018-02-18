@@ -97,7 +97,9 @@ public class WatchDBManager {
         boolean isQueueURLSet = false;
 
         while (result.moveToNext()) {
-            isQueueURLSet = true;
+            if(result.getString(0).contains("http")) {
+                isQueueURLSet = true;
+            }
             result.close();
         }
 

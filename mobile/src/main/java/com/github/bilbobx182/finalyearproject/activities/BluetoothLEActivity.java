@@ -8,13 +8,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import java.util.UUID;
-
 import com.github.bilbobx182.finalyearproject.R;
 import com.polidea.rxandroidble.RxBleClient;
 import com.polidea.rxandroidble.RxBleDevice;
 import com.polidea.rxandroidble.scan.ScanResult;
 import com.polidea.rxandroidble.scan.ScanSettings;
+
+import java.util.UUID;
 
 import rx.Subscription;
 
