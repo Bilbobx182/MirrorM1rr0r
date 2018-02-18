@@ -2,13 +2,24 @@ package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.bilbobx182.finalyearproject.R;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.wearable.CapabilityClient;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
+
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 
 public class MobileWatchSettingsFragment extends Fragment implements View.OnClickListener {
@@ -50,6 +61,7 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        beginSendMessageToWear();
         return inflater.inflate(R.layout.fragment_mobile_watch_settings, container, false);
     }
 
@@ -85,5 +97,75 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private static final String SET_MESSAGE_CAPABILITY = "setqueue";
+    public static final String SET_MESSAGE_PATH = "/setqueue";
+    private static final String MESSAGE_TO_SEND = "Hello Bilbobx182 Made this";
+
+    private static String transcriptionNodeId;
+
+    private void beginSendMessageToWear() {
+
+        AsyncTask.execute(() -> {
+
+                /*
+                    REFERENCE: Android Doccumentation
+                    URL: https://developer.android.com/training/wearables/data-layer/events.html#Listen
+                    LAST ACCESSED: 18/02/2018
+                */
+            CapabilityInfo capabilityInfo;
+            try {
+
+                capabilityInfo = Tasks.await(
+                        Wearable.getCapabilityClient(getContext()).getCapability(SET_MESSAGE_CAPABILITY, CapabilityClient.FILTER_REACHABLE));
+                updateTranscriptionCapability(capabilityInfo);
+              //  requestTranscription(MESSAGE_TO_SEND.getBytes());
+
+                // END REFERENCE
+
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+
+    }
+
+    /*
+    REFERENCE: Android Doccumentation
+    URL: https://developer.android.com/training/wearables/data-layer/messages.html
+    LAST ACCESSED: 18/02/2018
+     */
+
+    private void updateTranscriptionCapability(CapabilityInfo capabilityInfo) {
+        Set<Node> connectedNodes = capabilityInfo.getNodes();
+        transcriptionNodeId = pickBestNodeId(connectedNodes);
+    }
+
+    private String pickBestNodeId(Set<Node> nodes) {
+        String bestNodeId = null;
+        for (Node node : nodes) {
+            if (node.isNearby()) {
+                return node.getId();
+            }
+            bestNodeId = node.getId();
+        }
+        return bestNodeId;
+    }
+    // End reference.
+
+    private void requestTranscription(final byte[] message) {
+
+//        AsyncTask.execute(() -> {
+//            if (transcriptionNodeId != null) {
+//                final Task<Integer> sendTask = Wearable.getMessageClient(getContext()).sendMessage(transcriptionNodeId, SET_MESSAGE_PATH, message);
+//
+//                sendTask.addOnSuccessListener(dataItem -> Log.d("MESSAGESTATE", "SUCCESS"));
+//                sendTask.addOnFailureListener(dataItem -> Log.d("MESSAGESTATE", "FAILURE"));
+//                sendTask.addOnCompleteListener(task -> Log.d("MESSAGESTATE", "COMPLETE"));
+//            }
+//        });
     }
 }

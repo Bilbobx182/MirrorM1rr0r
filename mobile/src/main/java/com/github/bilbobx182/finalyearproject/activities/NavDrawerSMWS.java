@@ -3,6 +3,7 @@ package com.github.bilbobx182.finalyearproject.activities;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +29,12 @@ import com.github.bilbobx182.finalyearproject.fragments.MobileWatchSettingsFragm
 import com.github.bilbobx182.finalyearproject.fragments.PreviousSentMessagesFragment;
 import com.github.bilbobx182.finalyearproject.fragments.SendMessage;
 import com.github.bilbobx182.finalyearproject.fragments.SetupMirrorFragment;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.wearable.CapabilityClient;
+import com.google.android.gms.wearable.CapabilityInfo;
+import com.google.android.gms.wearable.Wearable;
+
+import java.util.concurrent.ExecutionException;
 
 
 public class NavDrawerSMWS extends AppCompatActivity
@@ -145,15 +153,36 @@ public class NavDrawerSMWS extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Fragment fragment = new MobileSettingsFragment();
-            switchToFragment(fragment);
-            return true;
-        }
+//        int id = item.getItemId();
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            Fragment fragment = new MobileSettingsFragment();
+//            switchToFragment(fragment);
+//            return true;
+//        }
+
+        ciaranTest();
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void ciaranTest() {
+        AsyncTask.execute(() -> {
+            CapabilityInfo capabilityInfo = null;
+            try {
+                CapabilityClient client = Wearable.getCapabilityClient(this);
+                capabilityInfo = Tasks.await(
+                        client.getCapability("setString", CapabilityClient.FILTER_REACHABLE));
+                Log.d("hello", "test");
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        // capabilityInfo has the reachable nodes with the transcription capability
+//        updateTranscriptionCapability(capabilityInfo);
+        Log.d("hello", "test");
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
