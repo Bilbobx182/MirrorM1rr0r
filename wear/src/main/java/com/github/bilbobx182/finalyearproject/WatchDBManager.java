@@ -92,6 +92,18 @@ public class WatchDBManager {
         return columnData;
     }
 
+    public boolean isQueueURLSet() {
+        Cursor result = db.rawQuery("Select " + QUEUE_URL + " from " + TABLE_QUEUE + " ;", null);
+        boolean isQueueURLSet = false;
+
+        while (result.moveToNext()) {
+            isQueueURLSet = true;
+            result.close();
+        }
+
+        return isQueueURLSet;
+    }
+
     public void close() {
         DBHelper.close();
     }
