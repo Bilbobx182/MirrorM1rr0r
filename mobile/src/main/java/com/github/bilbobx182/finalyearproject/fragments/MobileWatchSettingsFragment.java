@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
@@ -18,6 +21,7 @@ import com.google.android.gms.wearable.CapabilityInfo;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 
+import java.sql.SQLException;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
@@ -27,6 +31,13 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String SET_MESSAGE_CAPABILITY = "setqueue";
+    private static final String SET_MESSAGE_PATH = "/setqueue";
+    private static String MESSAGE_TO_SEND = "Hello Bilbobx182 Made this";
+    private static Button setupWatchContentButton;
+    private static Context thisContext;
+
+    private static String transcriptionNodeId;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,9 +71,17 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        beginSendMessageToWear();
+        // Inflate the layout for this fragment;
+
+        thisContext = getContext();
         return inflater.inflate(R.layout.fragment_mobile_watch_settings, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setupWatchContentButton = getActivity().findViewById(R.id.setupWatchConnect);
+        setupWatchContentButton.setOnClickListener(this);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -92,6 +111,13 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     @Override
     public void onClick(View view) {
 
+        switch (view.getId()) {
+            case (R.id.setupWatchConnect): {
+                beginSendMessageToWear();
+                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+            }
+        }
+
     }
 
     public interface OnFragmentInteractionListener {
@@ -99,13 +125,9 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
         void onFragmentInteraction(Uri uri);
     }
 
-    private static final String SET_MESSAGE_CAPABILITY = "setqueue";
-    public static final String SET_MESSAGE_PATH = "/setqueue";
-    private static final String MESSAGE_TO_SEND = "Hello Bilbobx182 Made this";
-
-    private static String transcriptionNodeId;
-
     private void beginSendMessageToWear() {
+
+        setQueueToSend();
 
         AsyncTask.execute(() -> {
 
@@ -118,9 +140,9 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
             try {
 
                 capabilityInfo = Tasks.await(
-                        Wearable.getCapabilityClient(getContext()).getCapability(SET_MESSAGE_CAPABILITY, CapabilityClient.FILTER_REACHABLE));
+                        Wearable.getCapabilityClient(thisContext).getCapability(SET_MESSAGE_CAPABILITY, CapabilityClient.FILTER_REACHABLE));
                 updateTranscriptionCapability(capabilityInfo);
-              //  requestTranscription(MESSAGE_TO_SEND.getBytes());
+                requestTranscription(MESSAGE_TO_SEND.getBytes());
 
                 // END REFERENCE
 
@@ -133,6 +155,18 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
 
     }
 
+
+    private void setQueueToSend() {
+        DBManager dbManager = new DBManager(getContext());
+        try {
+            dbManager.open();
+            MESSAGE_TO_SEND = dbManager.getUserInformationByColumn("queue");
+            dbManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
     /*
     REFERENCE: Android Doccumentation
     URL: https://developer.android.com/training/wearables/data-layer/messages.html
@@ -158,14 +192,14 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
 
     private void requestTranscription(final byte[] message) {
 
-//        AsyncTask.execute(() -> {
-//            if (transcriptionNodeId != null) {
-//                final Task<Integer> sendTask = Wearable.getMessageClient(getContext()).sendMessage(transcriptionNodeId, SET_MESSAGE_PATH, message);
-//
-//                sendTask.addOnSuccessListener(dataItem -> Log.d("MESSAGESTATE", "SUCCESS"));
-//                sendTask.addOnFailureListener(dataItem -> Log.d("MESSAGESTATE", "FAILURE"));
-//                sendTask.addOnCompleteListener(task -> Log.d("MESSAGESTATE", "COMPLETE"));
-//            }
-//        });
+        AsyncTask.execute(() -> {
+            if (transcriptionNodeId != null) {
+                final Task<Integer> sendTask = Wearable.getMessageClient(thisContext).sendMessage(transcriptionNodeId, SET_MESSAGE_PATH, message);
+
+                sendTask.addOnSuccessListener(dataItem -> Log.d("MESSAGESTATE", "SUCCESS"));
+                sendTask.addOnFailureListener(dataItem -> Log.d("MESSAGESTATE", "FAILURE"));
+                sendTask.addOnCompleteListener(task -> Log.d("MESSAGESTATE", "COMPLETE"));
+            }
+        });
     }
 }
