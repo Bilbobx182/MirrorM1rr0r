@@ -29,14 +29,15 @@ public class RequestPerformer {
 
     public String performOperation(String fullQuery) {
         String result = "";
-        httpAsyncRequest.execute(fullQuery);
-        try {
-            result = httpAsyncRequest.get().toString();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        //TODo Remove when I want to send requests again. Don't want to spam the API with requests.
+//        httpAsyncRequest.execute(fullQuery);
+//        try {
+//            result = httpAsyncRequest.get().toString();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
         return  result;
     }
 

@@ -3,6 +3,7 @@ package com.github.bilbobx182.finalyearproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.wearable.activity.ConfirmationActivity;
 import android.support.wearable.activity.WearableActivity;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ public class SendVoiceMessageWear extends WearableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_voice_message_wear);
 
-        sendMessageTextView = findViewById(R.id.text);
+        sendMessageTextView = findViewById(R.id.confirmSendingMainText);
 
         setAmbientEnabled();
         displaySpeechRecognizer();
@@ -50,21 +51,9 @@ public class SendVoiceMessageWear extends WearableActivity {
     }
 
     private void sendMessage(String spokenText) {
-        WatchDBManager watchDBManager = new WatchDBManager(getApplicationContext());
-        String queue = "";
 
-        try {
-            watchDBManager.open();
-            queue = watchDBManager.getQueueURL();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        HashMap<String, String> messageValues = new HashMap<>();
-        messageValues.put("message", spokenText);
-        messageValues.put("queueurl", queue);
-
-        RequestPerformer requestPerformer = new RequestPerformer();
-        requestPerformer.performSendMessage(messageValues);
+        Intent intent = new Intent(this, ActionConfirmationActivity.class);
+        intent.putExtra("message",spokenText);
+        startActivity(intent);
     }
 }

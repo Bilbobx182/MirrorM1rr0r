@@ -14,7 +14,7 @@ public class WatchMainActivity extends WearableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_main);
 
-        mTextView = (TextView) findViewById(R.id.text);
+        mTextView = (TextView) findViewById(R.id.confirmSendingMainText);
 
         // This is the launch Activity for the watch so I can add icons etc if I want to.
         // ToDo Add animations

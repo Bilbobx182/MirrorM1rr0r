@@ -3,6 +3,7 @@
     package="com.github.bilbobx182.finalyearproject">
 
     <uses-feature android:name="android.hardware.type.watch" />
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -32,8 +33,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SendVoiceMessageWear"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SendVoiceMessageWear" />
+        <activity
+            android:name=".ActionConfirmationActivity"
+            android:label="@string/title_activity_action_confirmation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="android.support.wearable.activity.ConfirmationActivity"></activity>
     </application>
 
 </manifest>

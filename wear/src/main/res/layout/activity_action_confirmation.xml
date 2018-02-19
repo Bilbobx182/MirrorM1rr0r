@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/boxInsetLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:padding="@dimen/box_inset_layout_padding"
+    tools:context="com.github.bilbobx182.finalyearproject.ActionConfirmationActivity"
+    tools:deviceIds="wear">
+
+
+    <TextView
+        android:id="@+id/confirmSendingMainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="Sending message"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/confirmSubText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <android.support.wear.widget.CircularProgressLayout
+        android:id="@+id/circular_progress"
+        android:layout_width="67dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="43dp"
+        android:padding="4dp"
+        app:backgroundColor="@color/accent_material_dark"
+        app:colorSchemeColors="@color/accent_material_light"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmSubText"
+        app:strokeWidth="4dp">
+
+        <ImageView
+            android:id="@+id/cancelSendingImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="Cancel"
+            android:src="@drawable/ic_full_cancel"
+            app:layout_constraintHorizontal_bias="0.107"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="109dp" />
+    </android.support.wear.widget.CircularProgressLayout>
+
+    <TextView
+        android:id="@+id/confirmSubText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="22dp"
+        android:layout_marginEnd="14dp"
+        android:text="working on it now!"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/circular_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirmSendingMainText" />
+
+</android.support.constraint.ConstraintLayout>
+
