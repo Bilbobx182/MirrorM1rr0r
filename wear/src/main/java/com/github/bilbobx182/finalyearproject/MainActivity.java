@@ -57,9 +57,7 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
 
         clearMirrorButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //ToDo Create a Response to when they click the clear. Like a tick or something
-//                Intent clearMirrorIntent = new Intent(getApplicationContext(), clearMirrorActivity.class);
-//                startActivity(clearMirrorIntent);
+                sendMessage("clear", "/clear");
             }
         });
     }
@@ -92,15 +90,15 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
-            sendMessage(spokenText);
+            sendMessage("spokenText", spokenText);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void sendMessage(String spokenText) {
+    private void sendMessage(String key, String messageToSend) {
 
         Intent intent = new Intent(this, ActionConfirmationActivity.class);
-        intent.putExtra("message", spokenText);
+        intent.putExtra(key, messageToSend);
         startActivity(intent);
     }
 

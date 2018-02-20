@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.wear.widget.CircularProgressLayout;
 import android.support.wearable.activity.ConfirmationActivity;
-import android.support.wearable.activity.WearableActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,23 +18,40 @@ public class ActionConfirmationActivity extends Activity implements
         CircularProgressLayout.OnTimerFinishedListener, View.OnClickListener {
 
 
-    private CircularProgressLayout mCircularProgress;
-    private String spokenText ="";
+    private CircularProgressLayout circularProgressLayout;
+    private String spokenText = "";
+    String clearCommand = "";
+
+    private TextView headerText;
+    private TextView subText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        spokenText = getIntent().getExtras().getString("spokenText");
-
         setContentView(R.layout.activity_action_confirmation);
 
-        mCircularProgress = findViewById(R.id.circular_progress);
-        mCircularProgress.setOnTimerFinishedListener(this);
-        mCircularProgress.setOnClickListener(this);
+        headerText = findViewById(R.id.confirmSendingMainText);
+        subText = findViewById(R.id.confirmSubText);
 
-        mCircularProgress.setTotalTime(2500);
-        mCircularProgress.startTimer();
+        if (getIntent().getExtras().getString("spokenText") != null) {
+            spokenText = getIntent().getExtras().getString("spokenText");
+            setWarningText("Sending message", "working on it now!");
+        }
+
+        if (getIntent().getExtras().getString("clear") != null) {
+            clearCommand = getIntent().getExtras().getString("clear");
+            spokenText = "/clear";
+
+            setWarningText("Clearing now", "scrubbing without the soap!");
+        }
+
+
+        circularProgressLayout = findViewById(R.id.circular_progress);
+        circularProgressLayout.setOnTimerFinishedListener(this);
+        circularProgressLayout.setOnClickListener(this);
+
+        circularProgressLayout.setTotalTime(2500);
+        circularProgressLayout.startTimer();
 
     }
 
@@ -45,25 +61,24 @@ public class ActionConfirmationActivity extends Activity implements
         Intent intent = new Intent(this, ConfirmationActivity.class);
         intent.putExtra(ConfirmationActivity.EXTRA_ANIMATION_TYPE,
                 ConfirmationActivity.SUCCESS_ANIMATION);
-        intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE,"Sent!");
+        intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE, "Sent!");
         startActivity(intent);
         finish();
     }
 
     @Override
     public void onClick(View view) {
-        if (view.equals(mCircularProgress)) {
-            // User canceled, abort the action
-            mCircularProgress.stopTimer();
-            Toast.makeText(this, "Sending canceled!", Toast.LENGTH_SHORT).show();
+        if (view.equals(circularProgressLayout)) {
+            circularProgressLayout.stopTimer();
+            displayToast();
             finish();
         }
     }
 
     private void sendMessage() {
         HashMap<String, String> messageValues = new HashMap<>();
-        messageValues.put("message", spokenText);
         messageValues.put("queueurl", getQueue());
+        messageValues.put("message", spokenText);
 
         RequestPerformer requestPerformer = new RequestPerformer();
         requestPerformer.performSendMessage(messageValues);
@@ -77,7 +92,20 @@ public class ActionConfirmationActivity extends Activity implements
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //ToDo This homie, change this.
-        return("CHANGE ME LATER I NEED REAL ERROR VALIDATION!");
+        return ("CHANGE ME LATER I NEED REAL ERROR VALIDATION!");
+    }
+
+    private void setWarningText(String header, String sub) {
+        headerText.setText(header);
+        subText.setText(sub);
+    }
+
+    private void displayToast() {
+        if(spokenText.equals("clear")) {
+            Toast.makeText(this, "Didn't clear!", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(this, "Sending canceled!", Toast.LENGTH_SHORT).show();
+        }
     }
 }
