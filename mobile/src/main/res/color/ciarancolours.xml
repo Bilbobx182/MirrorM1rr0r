@@ -5,6 +5,6 @@
     <color android:name="colorPrimaryDark">#000000</color>
 
     <color android:name="colorAccent">#263238</color>
-    <color android:name="colorAccentLight">#4f5b62</color>
+    <color android:name="colorAccentLight">##fdd835</color>
     <color android:name="colorAccentDark">#000a12</color>
 </selector>

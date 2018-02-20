@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#000000</color>
 
     <color name="colorAccent">#263238</color>
-    <color name="colorAccentLight">#1577b1</color>
+    <color name="colorAccentLight">#4f5b62</color>
     <color name="colorAccentDark">#000a12</color>
+    <color name ="colorAccentAltLight">#fdd835</color>
 </resources>

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
@@ -36,6 +37,7 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     private static String MESSAGE_TO_SEND = "Hello Bilbobx182 Made this";
     private static Button setupWatchContentButton;
     private static Context thisContext;
+    private ProgressBar progressBar;
 
     private static String transcriptionNodeId;
 
@@ -82,6 +84,9 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
         super.onActivityCreated(savedInstanceState);
         setupWatchContentButton = getActivity().findViewById(R.id.setupWatchConnect);
         setupWatchContentButton.setOnClickListener(this);
+
+        progressBar = getView().findViewById(R.id.circularLoadingProgress);
+        progressBar.setVisibility(View.GONE);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -113,8 +118,9 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
 
         switch (view.getId()) {
             case (R.id.setupWatchConnect): {
-                beginSendMessageToWear();
-                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+                progressBar.setVisibility(View.VISIBLE);
+//                beginSendMessageToWear();
+//                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
             }
         }
 
