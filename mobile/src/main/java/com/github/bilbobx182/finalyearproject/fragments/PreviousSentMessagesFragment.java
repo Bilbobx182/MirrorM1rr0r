@@ -18,9 +18,7 @@ import java.util.HashMap;
 
 public class PreviousSentMessagesFragment extends Fragment implements View.OnClickListener {
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
@@ -28,7 +26,6 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
     public PreviousSentMessagesFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static PreviousSentMessagesFragment newInstance(int columnCount) {
         PreviousSentMessagesFragment fragment = new PreviousSentMessagesFragment();
@@ -65,7 +62,7 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
             try {
                 DBManager db = new DBManager(getContext());
                 db.open();
-                HashMap<Integer, String> values = db.getMessagesHashMap();
+                HashMap<Integer, String> values = db.getMessagesHashMap("messageID");
                 recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(values, mListener));
             } catch (Exception e) {
 

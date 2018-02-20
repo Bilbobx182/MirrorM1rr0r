@@ -142,6 +142,8 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
 
             updateSideBarWithUserInformation(firstnameEditText, surnameEditText);
 
+            getActivity().finish();
+            startActivity(getActivity().getIntent());
             getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
     }
