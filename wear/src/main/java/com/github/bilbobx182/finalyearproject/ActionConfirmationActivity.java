@@ -8,6 +8,7 @@ import android.support.wearable.activity.ConfirmationActivity;
 import android.support.wearable.activity.WearableActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.bilbobx182.sharedcode.RequestPerformer;
 
@@ -46,7 +47,7 @@ public class ActionConfirmationActivity extends Activity implements
                 ConfirmationActivity.SUCCESS_ANIMATION);
         intent.putExtra(ConfirmationActivity.EXTRA_MESSAGE,"Sent!");
         startActivity(intent);
-        //ToDo Quit and bring it back way way back to the first screen.
+        finish();
     }
 
     @Override
@@ -54,6 +55,8 @@ public class ActionConfirmationActivity extends Activity implements
         if (view.equals(mCircularProgress)) {
             // User canceled, abort the action
             mCircularProgress.stopTimer();
+            Toast.makeText(this, "Sending canceled!", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 
