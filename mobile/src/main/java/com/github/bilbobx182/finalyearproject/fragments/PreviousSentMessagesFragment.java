@@ -62,7 +62,7 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
             try {
                 DBManager db = new DBManager(getContext());
                 db.open();
-                HashMap<Integer, String> values = db.getMessagesHashMap("messageID");
+                HashMap<Integer, String> values = db.getMessagesHashMap(db.SENT_MESSAGE);
                 recyclerView.setAdapter(new MyMessageRecyclerViewAdapter(values, mListener));
             } catch (Exception e) {
 

@@ -3,7 +3,6 @@ package com.github.bilbobx182.finalyearproject.activities;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -30,13 +29,10 @@ import com.github.bilbobx182.finalyearproject.fragments.PreviousSentMessagesFrag
 import com.github.bilbobx182.finalyearproject.fragments.SendMessage;
 import com.github.bilbobx182.finalyearproject.fragments.SetupMirrorFragment;
 import com.github.bilbobx182.sharedcode.RequestPerformer;
-import com.google.android.gms.tasks.Tasks;
-import com.google.android.gms.wearable.CapabilityClient;
-import com.google.android.gms.wearable.CapabilityInfo;
-import com.google.android.gms.wearable.Wearable;
 
 import java.sql.SQLException;
-import java.util.concurrent.ExecutionException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class NavDrawerSMWS extends AppCompatActivity
@@ -219,8 +215,21 @@ public class NavDrawerSMWS extends AppCompatActivity
          Index 2 = 2nd last send message = 10 - (2-1) = 9
          ...... etc
          */
-//        GetAllMessageInfo(position);
-        RequestPerformer requestPerformer = new RequestPerformer();
+        int maxMessageCount = 0;
+        try {
+            dbManager.open();
+            maxMessageCount = dbManager.getMessageCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        HashMap<String,String> test = dbManager.getMessageByIndex((maxMessageCount - position));
+        for (Map.Entry<String, String> entry : test.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            Log.d("Ciaran", value + " KEY : " + String.valueOf(key));
+        }
+
+    //    RequestPerformer requestPerformer = new RequestPerformer();
     }
 
     @Override

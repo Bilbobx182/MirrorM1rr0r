@@ -127,11 +127,9 @@ public class DBManager {
 
         long newRowId = db.insert(TABLE_MESSAGE_NAME, null, values);
         if (newRowId >= 1) {
-//            getAllMessageInfo(3);
             return true;
 
         } else {
-//            getAllMessageInfo(3);
             return false;
         }
 
@@ -174,6 +172,21 @@ public class DBManager {
         return result;
     }
 
+    public int getMessageCount() {
+        int maxMessageCountError = -1;
+
+        Cursor result = db.rawQuery("Select count(_id) from Message; ", null);
+        try {
+            while (result.moveToNext()) {
+                return Integer.parseInt(result.getString(0));
+            }
+        } finally {
+            result.close();
+        }
+
+        return maxMessageCountError;
+    }
+
     public HashMap<Integer, String> getMessagesHashMap(String column) {
         Cursor result = db.rawQuery("Select " + column + " from Message; ", null);
 
@@ -196,18 +209,17 @@ public class DBManager {
         return values;
     }
 
-    public HashMap<Integer, String> getAllMessageInfo(int indexFromRecyclerView) {
+    public HashMap<String, String> getMessageByIndex(int indexFromRecyclerView) {
         Cursor result = db.rawQuery("Select * from Message where ( _id == " + String.valueOf(indexFromRecyclerView) + ");", null);
-
-        HashMap<Integer, String> values = new HashMap<>();
-
+        HashMap<String, String> values = new HashMap<>();
         try {
-            int hashIndex = 0;
-
             result.moveToLast();
+
             do {
-                values.put(hashIndex, result.getString(0));
-                hashIndex++;
+                //ToDo Refactor this, make it better. It's not the best right now
+                values.put(SENT_MESSAGE,result.getString(1));
+                values.put(SENT_COLOR,result.getString(2));
+                values.put(SENT_COORDS,result.getString(3));
             }
             while (result.moveToPrevious());
 
