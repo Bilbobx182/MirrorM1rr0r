@@ -19,6 +19,7 @@ import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.sharedcode.RequestPerformer;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SendMessage extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
@@ -121,24 +122,9 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     }
 
     private void beginMessageTransformation() {
-        populateDatabaseWithMessage();
         groupValuesBeforeSending();
     }
 
-    private void populateDatabaseWithMessage() {
-        DBManager db = new DBManager(getContext());
-        try {
-            db.open();
-            queryInputEditText = getView().findViewById(R.id.queryEditText);
-            String input = queryInputEditText.getText().toString();
-            boolean result = db.insertValue(input);
-
-            db.close();
-            Log.d("SendMessageActivity", String.valueOf(result));
-        } catch (Exception ex) {
-            Log.d("SendMessageActivity", "Failure");
-        }
-    }
 
     private void groupValuesBeforeSending() {
         HashMap<String, String> messageValues = new HashMap<>();
@@ -147,17 +133,43 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         String input = queryInputEditText.getText().toString();
         String[] spinnerValues = getSpinnerValue();
 
+        DBManager dbManager = new DBManager(getActivity());
+
         messageValues.put("message", input);
         messageValues.put("location", String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]));
+        messageValues.put("fontColour","#ffffff");
+        //messageValues.put("message", input);
+        populateDatabaseWithMessage(messageValues);
+
         messageValues.put("queueurl", "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo");
+        sendMessage(messageValues);
+    }
+
+    private void populateDatabaseWithMessage(HashMap<String, String> messageValues) {
+        DBManager db = new DBManager(getContext());
 
         /*
-        ToDo:  Support the following in app once everything else is done
-        location
-        fontcolour
+        APIkey --- DBKey
+        _________________________
+        message     -> messageID
+        location    -> messageCoords
+        fontColour  -> messageColor
+        fontSize    -> XXXXXXXXX
          */
 
-        sendMessage(messageValues);
+        messageValues.put(db.SENT_MESSAGE, messageValues.remove( "message" ) );
+        messageValues.put(db.SENT_COORDS, messageValues.remove( "location" ) );
+        messageValues.put(db.SENT_COLOR, messageValues.remove( "fontColour" ) );
+
+
+        try {
+            db.open();
+            db.insertValue(messageValues);
+            db.close();
+
+        } catch (Exception ex) {
+            Log.d("SendMessageActivity", "Failure");
+        }
     }
 
     private void sendMessage(HashMap values) {

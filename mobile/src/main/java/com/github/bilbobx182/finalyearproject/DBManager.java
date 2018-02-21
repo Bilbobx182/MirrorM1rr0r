@@ -13,18 +13,19 @@ import android.util.Log;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "SMWS.db";
 
     private static final String TABLE_MESSAGE_NAME = "Message";
     private static final String TABLE_USER_NAME = "User";
 
     private static final String MESSAGE_ID = "_id";
-    private static final String SENT_MESSAGE = "messageID";
-    private static final String SENT_COLOR = "messageColor";
-    private static final String SENT_COORDS = "messageCoords";
+    public static final String SENT_MESSAGE = "messageID";
+    public static final String SENT_COLOR = "messageColor";
+    public static final String SENT_COORDS = "messageCoords";
 
     public static final String USER_ID = "_id";
     public static final String USER_FIRSTNAME = "firstname";
@@ -89,8 +90,6 @@ public class DBManager {
             } else {
                 Log.d("DB,", "WOMP WOMP");
             }
-
-
         }
 
         @Override
@@ -117,18 +116,25 @@ public class DBManager {
 
     }
 
-
-    public boolean insertValue(String messageInput) {
+    public boolean insertValue(HashMap<String, String> messageValues) {
 
         ContentValues values = new ContentValues();
-        values.put(SENT_MESSAGE, messageInput);
+
+        for (Map.Entry<String, String> entry : messageValues.entrySet()) {
+            values.put(entry.getKey(), entry.getValue());
+        }
 
         long newRowId = db.insert(TABLE_MESSAGE_NAME, null, values);
         if (newRowId >= 1) {
+//            getAllMessageInfo(3);
             return true;
+
         } else {
+//            getAllMessageInfo(3);
             return false;
         }
+
+
     }
 
     public boolean updateUserInformation(String column, String message) {
@@ -168,16 +174,41 @@ public class DBManager {
     }
 
     public HashMap<Integer, String> getMessagesHashMap(String column) {
-        Cursor result = db.rawQuery("Select "+ column +" from Message; ", null);
+        Cursor result = db.rawQuery("Select " + column + " from Message; ", null);
 
         HashMap<Integer, String> values = new HashMap<>();
 
         try {
             int hashIndex = 0;
-            while (result.moveToNext()) {
+
+            result.moveToLast();
+            do {
                 values.put(hashIndex, result.getString(0));
                 hashIndex++;
             }
+            while (result.moveToPrevious());
+
+        } finally {
+            result.close();
+        }
+
+        return values;
+    }
+
+    public HashMap<Integer, String> getAllMessageInfo(int indexFromRecyclerView) {
+        Cursor result = db.rawQuery("Select * from Message where ( _id == " + String.valueOf(indexFromRecyclerView) + ");", null);
+
+        HashMap<Integer, String> values = new HashMap<>();
+
+        try {
+            int hashIndex = 0;
+
+            result.moveToLast();
+            do {
+                values.put(hashIndex, result.getString(0));
+                hashIndex++;
+            }
+            while (result.moveToPrevious());
 
         } finally {
             result.close();

@@ -41,4 +41,16 @@ public class RequestPerformer {
         return  result;
     }
 
+    public void sendMessageFromListIndex(int indexFromRecyclerView) {
+        /*
+         Recycler View shows them in reverse order of insert
+         10 messages sent. That means latest = 1 in recyclerView but 10 in list.
+         0 based index so 0-9 Then we can determine where it's placed by doing Max - (index - 1[because 0 based])
+         Index 1 = Latest item = 10 - (1-1) = 10
+         Index 2 = 2nd last send message = 10 - (2-1) = 9
+         ...... etc
+//         */
+//        GetAllMessageInfo(indexFromRecyclerView);
+    }
+
 }

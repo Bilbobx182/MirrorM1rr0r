@@ -71,7 +71,6 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
         return view;
     }
 
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -95,7 +94,6 @@ public class PreviousSentMessagesFragment extends Fragment implements View.OnCli
     }
 
     public interface OnListFragmentInteractionListener {
-
         void onListFragmentInteraction(int position);
     }
 }
