@@ -148,20 +148,6 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     private void populateDatabaseWithMessage(HashMap<String, String> messageValues) {
         DBManager db = new DBManager(getContext());
 
-        /*
-        APIkey --- DBKey
-        _________________________
-        message     -> messageID
-        location    -> messageCoords
-        fontColour  -> messageColor
-        fontSize    -> XXXXXXXXX
-         */
-
-        messageValues.put(db.SENT_MESSAGE, messageValues.remove( "message" ) );
-        messageValues.put(db.SENT_COORDS, messageValues.remove( "location" ) );
-        messageValues.put(db.SENT_COLOR, messageValues.remove( "fontColour" ) );
-
-
         try {
             db.open();
             db.insertValue(messageValues);

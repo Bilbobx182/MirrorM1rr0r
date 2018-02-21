@@ -75,7 +75,7 @@ public class NavDrawerSMWS extends AppCompatActivity
         DBManager db = new DBManager(this);
         try {
             db.open();
-            db.getAllMessageInfo(4);
+            db.getAllMessageInfo(1);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -16,16 +16,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "SMWS.db";
 
     private static final String TABLE_MESSAGE_NAME = "Message";
     private static final String TABLE_USER_NAME = "User";
 
     private static final String MESSAGE_ID = "_id";
-    public static final String SENT_MESSAGE = "messageID";
-    public static final String SENT_COLOR = "messageColor";
-    public static final String SENT_COORDS = "messageCoords";
+    public static final String SENT_MESSAGE = "message";
+    public static final String SENT_COORDS = "location";
+    public static final String SENT_COLOR = "fontColour";
+    public static final String SENT_SIZE = "fontSize";
 
     public static final String USER_ID = "_id";
     public static final String USER_FIRSTNAME = "firstname";
