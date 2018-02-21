@@ -52,13 +52,17 @@ public class NavDrawerSMWS extends AppCompatActivity
     TextView navSurnameTextView;
     ImageView navProfileImageView;
     Button setClientInformationButton;
+    DBManager dbManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.dbManager = new DBManager(this);
+
         setContentView(R.layout.activity_nav_drawer_smws);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,13 +76,6 @@ public class NavDrawerSMWS extends AppCompatActivity
         setHeaderText(navigationView);
         headerButtonPressed();
 
-        DBManager db = new DBManager(this);
-        try {
-            db.open();
-            db.getAllMessageInfo(1);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void setHeaderText(NavigationView navigationView) {
@@ -97,11 +94,10 @@ public class NavDrawerSMWS extends AppCompatActivity
 
     private void populateHeaderFromDatabase() {
         try {
-            DBManager db = new DBManager(getBaseContext());
-            db.open();
-            navFirstNameTextView.setText(db.getUserInformationByColumn("firstname"));
-            navSurnameTextView.setText(db.getUserInformationByColumn("surname"));
-            String imagePath = db.getUserInformationByColumn("profilePath");
+            dbManager.open();
+            navFirstNameTextView.setText(dbManager.getUserInformationByColumn("firstname"));
+            navSurnameTextView.setText(dbManager.getUserInformationByColumn("surname"));
+            String imagePath = dbManager.getUserInformationByColumn("profilePath");
 
 
             setClientInformationButton.setVisibility(View.GONE);
@@ -117,11 +113,10 @@ public class NavDrawerSMWS extends AppCompatActivity
     }
 
     private boolean isFirstTime() {
-        DBManager db = new DBManager(getBaseContext());
         boolean result = false;
         try {
-            db.open();
-            String firstNameValue = db.getUserInformationByColumn("firstname");
+            dbManager.open();
+            String firstNameValue = dbManager.getUserInformationByColumn("firstname");
             if (firstNameValue.contains("Enter")) {
                 result = true;
             }
@@ -163,37 +158,16 @@ public class NavDrawerSMWS extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            Fragment fragment = new MobileSettingsFragment();
-//            switchToFragment(fragment);
-//            return true;
-//        }
-
-        ciaranTest();
-
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            Fragment fragment = new MobileSettingsFragment();
+            switchToFragment(fragment);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
-    private void ciaranTest() {
-        AsyncTask.execute(() -> {
-            CapabilityInfo capabilityInfo = null;
-            try {
-                CapabilityClient client = Wearable.getCapabilityClient(this);
-                capabilityInfo = Tasks.await(
-                        client.getCapability("setString", CapabilityClient.FILTER_REACHABLE));
-                Log.d("hello", "test");
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        // capabilityInfo has the reachable nodes with the transcription capability
-//        updateTranscriptionCapability(capabilityInfo);
-        Log.d("hello", "test");
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
