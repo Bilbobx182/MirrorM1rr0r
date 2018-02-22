@@ -54,12 +54,6 @@ public class NavDrawerSMWS extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.dbManager = new DBManager(this);
-        try {
-            dbManager.open();
-            dbManager.updateUserInformation("queue","https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         setContentView(R.layout.activity_nav_drawer_smws);
         Toolbar toolbar = findViewById(R.id.toolbar);
