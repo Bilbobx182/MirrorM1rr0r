@@ -18,6 +18,7 @@ import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.sharedcode.RequestPerformer;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -137,11 +138,18 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
         messageValues.put("message", input);
         messageValues.put("location", String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]));
-        messageValues.put("fontColour","#ffffff");
+        messageValues.put("fontColour","ffffff");
         //messageValues.put("message", input);
         populateDatabaseWithMessage(messageValues);
 
-        messageValues.put("queueurl", "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo");
+        try {
+            dbManager.open();
+            messageValues.put("queueurl", dbManager.getUserInformationByColumn("queue"));
+            dbManager.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         sendMessage(messageValues);
     }
 

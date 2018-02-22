@@ -132,8 +132,6 @@ public class DBManager {
         } else {
             return false;
         }
-
-
     }
 
     public boolean updateUserInformation(String column, String message) {
