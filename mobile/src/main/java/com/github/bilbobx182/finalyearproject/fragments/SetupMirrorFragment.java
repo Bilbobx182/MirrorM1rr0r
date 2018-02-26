@@ -106,9 +106,12 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
                 NetworkInfo wifiConnection = getWifiInformation();
 
                 if (wifiConnection.isConnected()) {
-                    // wifiConnection.getExtraInfo();
-                    Log.d("WifiTrue", wifiConnection.getExtraInfo());
                    updateWidgets(wifiConnection.getExtraInfo());
+                   if(setupCount>0) {
+                       getActivity().finish();
+                       startActivity(getActivity().getIntent());
+                       getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+                   }
                 } else {
                     // ToDo Reprimand the bad user, with a friendly message of course.
 
@@ -129,6 +132,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         setupFirstInstruction.setText("Network : " +SSID);
         setupSecondInstruction.setText("Please enter network password for mirror");
         detectButton.setText("Submit!");
+        setupCount ++;
     }
 
 

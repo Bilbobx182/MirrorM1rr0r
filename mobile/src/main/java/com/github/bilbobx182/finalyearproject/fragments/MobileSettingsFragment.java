@@ -84,7 +84,7 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
         super.onActivityCreated(savedInstanceState);
         bindWidgets();
 
-        if(! isFirstTime()) {
+        if (!isFirstTime()) {
             firstNameEditText.setVisibility(View.GONE);
             surnameEditText.setVisibility(View.GONE);
         }
@@ -141,10 +141,6 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
             EditText surnameEditText = getView().findViewById(R.id.surnameEditText);
 
             updateSideBarWithUserInformation(firstnameEditText, surnameEditText);
-
-            getActivity().finish();
-            startActivity(getActivity().getIntent());
-            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
     }
 
@@ -188,12 +184,19 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
         DBManager db = new DBManager(getContext());
         try {
             db.open();
-            if(isFirstTime()) {
+            if (isFirstTime()) {
                 db.updateUserInformation("firstname", firstnameEditText.getText().toString());
                 db.updateUserInformation("surname", surnameEditText.getText().toString());
+
+                SetupMirrorFragment nextFrag = new SetupMirrorFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, nextFrag, "findThisFragment").addToBackStack(null).commit();
+
             }
             if (picturePath != " ") {
                 db.updateUserInformation("profilePath", picturePath);
+                getActivity().finish();
+                startActivity(getActivity().getIntent());
+                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
             }
 
         } catch (SQLException e) {
@@ -205,11 +208,10 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
         DBManager db = new DBManager(getContext());
         try {
             db.open();
-            if(db.getUserInformationByColumn("firstname").contains("Enter")) {
+            if (db.getUserInformationByColumn("firstname").contains("Enter")) {
                 return true;
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
 
         }
         return false;

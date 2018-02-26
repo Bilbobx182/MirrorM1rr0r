@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -12,13 +13,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
@@ -32,7 +33,6 @@ import com.github.bilbobx182.sharedcode.RequestPerformer;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class NavDrawerSMWS extends AppCompatActivity
@@ -54,6 +54,15 @@ public class NavDrawerSMWS extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.dbManager = new DBManager(this);
+
+        boolean isFirstTime = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .getBoolean("isFirstTime", true);
+
+        if (isFirstTime) {
+            switchToFragment(new MobileSettingsFragment());
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                    .putBoolean("isFirstTime", false).apply();
+        }
 
         setContentView(R.layout.activity_nav_drawer_smws);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -83,7 +92,7 @@ public class NavDrawerSMWS extends AppCompatActivity
         navProfileImageView = headerView.findViewById(R.id.navProfileImage);
         setClientInformationButton = headerView.findViewById(R.id.setClientInformation);
 
-        if (!isFirstTime()) {
+        if (getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstTime", true)){
             populateHeaderFromDatabase();
         }
     }
@@ -104,22 +113,8 @@ public class NavDrawerSMWS extends AppCompatActivity
             navProfileImageView.setImageBitmap(BitmapFactory.decodeFile(imagePath, options));
 
         } catch (Exception e) {
-
+            Toast.makeText(this, "Oh snap! You broke me! POPULATE HEADERS", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private boolean isFirstTime() {
-        boolean result = false;
-        try {
-            dbManager.open();
-            String firstNameValue = dbManager.getUserInformationByColumn("firstname");
-            if (firstNameValue.contains("Enter")) {
-                result = true;
-            }
-        } catch (Exception e) {
-
-        }
-        return result;
     }
 
     private void headerButtonPressed() {
@@ -167,7 +162,7 @@ public class NavDrawerSMWS extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         Fragment fragment = null;

@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "SMWS.db";
 
     private static final String TABLE_MESSAGE_NAME = "Message";
