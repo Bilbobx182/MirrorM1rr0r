@@ -37,6 +37,7 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
     private EditText firstNameEditText;
     private EditText surnameEditText;
     private String picturePath = " ";
+    private DBManager db;
 
 
     private String mParam1;
@@ -82,9 +83,11 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        db = new DBManager(getContext());
         bindWidgets();
 
-        if (!isFirstTime()) {
+//        if (!db.isFirstTime()) {
+        if(!true) {
             firstNameEditText.setVisibility(View.GONE);
             surnameEditText.setVisibility(View.GONE);
         }
@@ -181,10 +184,10 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
     }
 
     private void updateSideBarWithUserInformation(EditText firstnameEditText, EditText surnameEditText) {
-        DBManager db = new DBManager(getContext());
         try {
             db.open();
-            if (isFirstTime()) {
+           // if (db.isFirstBoot()) {
+            if(true) {
                 db.updateUserInformation("firstname", firstnameEditText.getText().toString());
                 db.updateUserInformation("surname", surnameEditText.getText().toString());
 
@@ -202,18 +205,5 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    private boolean isFirstTime() {
-        DBManager db = new DBManager(getContext());
-        try {
-            db.open();
-            if (db.getUserInformationByColumn("firstname").contains("Enter")) {
-                return true;
-            }
-        } catch (Exception e) {
-
-        }
-        return false;
     }
 }

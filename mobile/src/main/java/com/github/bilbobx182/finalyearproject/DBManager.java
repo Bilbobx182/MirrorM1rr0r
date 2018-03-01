@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class DBManager {
     private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "SMWS.db";
@@ -215,9 +217,9 @@ public class DBManager {
 
             do {
                 //ToDo Refactor this, make it better. It's not the best right now
-                values.put(SENT_MESSAGE,result.getString(1));
-                values.put(SENT_COLOR,result.getString(2));
-                values.put(SENT_COORDS,result.getString(3));
+                values.put(SENT_MESSAGE, result.getString(1));
+                values.put(SENT_COLOR, result.getString(2));
+                values.put(SENT_COORDS, result.getString(3));
             }
             while (result.moveToPrevious());
 
@@ -237,5 +239,10 @@ public class DBManager {
             result.close();
         }
         return columnData;
+    }
+
+    public boolean isFirstBoot() {
+        return context.getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .getBoolean("initialBoot", true);
     }
 }

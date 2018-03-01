@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
+import com.github.bilbobx182.finalyearproject.fragments.BluetoothSenderFragment;
 import com.github.bilbobx182.finalyearproject.fragments.MenuDefaultFragment;
 import com.github.bilbobx182.finalyearproject.fragments.MobileSettingsFragment;
 import com.github.bilbobx182.finalyearproject.fragments.MobileWatchSettingsFragment;
@@ -42,7 +44,8 @@ public class NavDrawerSMWS extends AppCompatActivity
         MobileSettingsFragment.OnFragmentInteractionListener,
         SetupMirrorFragment.OnFragmentInteractionListener,
         MobileWatchSettingsFragment.OnFragmentInteractionListener,
-        PreviousSentMessagesFragment.OnListFragmentInteractionListener {
+        PreviousSentMessagesFragment.OnListFragmentInteractionListener,
+        BluetoothSenderFragment.OnFragmentInteractionListener{
 
     TextView navFirstNameTextView;
     TextView navSurnameTextView;
@@ -55,13 +58,12 @@ public class NavDrawerSMWS extends AppCompatActivity
         super.onCreate(savedInstanceState);
         this.dbManager = new DBManager(this);
 
-        boolean isFirstTime = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
-                .getBoolean("isFirstTime", true);
+        // if (dbManager.isFirstTime()) {
+        if (true) {
 
-        if (isFirstTime) {
             switchToFragment(new MobileSettingsFragment());
             getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                    .putBoolean("isFirstTime", false).apply();
+                    .putBoolean("initialBoot", false).apply();
         }
 
         setContentView(R.layout.activity_nav_drawer_smws);
@@ -80,7 +82,6 @@ public class NavDrawerSMWS extends AppCompatActivity
 
         setHeaderText(navigationView);
         headerButtonPressed();
-
     }
 
     private void setHeaderText(NavigationView navigationView) {

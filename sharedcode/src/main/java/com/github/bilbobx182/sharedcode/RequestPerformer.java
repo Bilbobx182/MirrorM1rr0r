@@ -1,6 +1,12 @@
 package com.github.bilbobx182.sharedcode;
 
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
+
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
@@ -11,6 +17,7 @@ import java.util.concurrent.ExecutionException;
 public class RequestPerformer {
     private static final String baseURL = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/";
     private static final String sendMessage = "sendfifomessage?";
+    private static final String createQueue = "createfifoqueue?";
     private static HTTPAsyncRequest httpAsyncRequest;
 
     public RequestPerformer() {
@@ -22,23 +29,27 @@ public class RequestPerformer {
         String messageValues = queryValues.toString().replaceAll(", ", "&");
         messageValues = messageValues.replaceAll("[{}]", "");
 
-        String fullQuery = baseURL + sendMessage+messageValues;
+        String fullQuery = baseURL + sendMessage + messageValues;
         performOperation(fullQuery);
-        return  fullQuery;
+        return fullQuery;
+    }
+
+    public String createQueue(String hashedContents) {
+        return (performOperation(baseURL + createQueue + "queueName=" + hashedContents));
     }
 
     public String performOperation(String fullQuery) {
         String result = "";
         //TODo Remove when I want to send requests again. Don't want to spam the API with requests.
-//        httpAsyncRequest.execute(fullQuery);
-//        try {
-//            result = httpAsyncRequest.get().toString();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-        return  result;
+        httpAsyncRequest.execute(fullQuery);
+        try {
+            result = httpAsyncRequest.get().toString();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

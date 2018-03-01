@@ -14,24 +14,23 @@ public class Encryptor {
     public  Encryptor() {
     }
 
-    public String hashCode(String password) {
-        StringBuffer hashedPassword = new StringBuffer();
+    public String hashCode(String input) {
+        StringBuffer hashedInput = new StringBuffer();
         MessageDigest messageDigest;
         try {
             messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest.update(password.getBytes());
+            messageDigest.update(input.getBytes());
 
             byte[] messageDigestMD5 = messageDigest.digest();
             for (byte bytes : messageDigestMD5) {
-                hashedPassword.append(String.format("%02x", bytes & 0xff));
+                hashedInput.append(String.format("%02x", bytes & 0xff));
 
             }
-            Log.d("TAG","digestedMD5(hex):" + hashedPassword.toString());
         } catch (NoSuchAlgorithmException exception) {
             exception.printStackTrace();
         }
 
-        return String.valueOf(hashedPassword);
+        return String.valueOf(hashedInput);
     }
 
     //    private String validateInput() {
