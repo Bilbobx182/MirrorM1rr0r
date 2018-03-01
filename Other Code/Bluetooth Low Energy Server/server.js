@@ -18,9 +18,8 @@ var WriteOnlyCharacteristic = function() {
 util.inherits(WriteOnlyCharacteristic, BlenoCharacteristic);
 
 WriteOnlyCharacteristic.prototype.onWriteRequest = function(data, offset, withoutResponse, callback) {
-  console.log('WriteOnlyCharacteristic write request: ' + data.toString() + ' ' + offset + ' ' + withoutResponse);
+  console.log('WriteOnlyCharacteristic write request: ' + data.toString());
 	chunkedJSON = chunkedJSON + data.toString();
-
   callback(this.RESULT_SUCCESS);
 };
 
@@ -44,9 +43,16 @@ function SampleService() {
   });
 }
 
+bleno.on('disconnect', function(clientAddress) {
+  console.log('on -> disconnect, client: ' + clientAddress);
+	writeInputToFile(chunkedJSON);
+});
 
+/*  Reference BLENO Test code.
+	Last Visited 1/March/2018
+	Source : https://github.com/noble/bleno/blob/master/test.js
+	*/
 
-//ToDo Reference sample from here down later
 util.inherits(SampleService, BlenoPrimaryService);
 
 bleno.on('stateChange', function(state) {
@@ -64,11 +70,6 @@ bleno.on('accept', function(clientAddress) {
   console.log('on -> accept, client: ' + clientAddress);
 
   bleno.updateRssi();
-});
-
-bleno.on('disconnect', function(clientAddress) {
-  console.log('on -> disconnect, client: ' + clientAddress);
-	writeInputToFile(chunkedJSON);
 });
 
 bleno.on('rssiUpdate', function(rssi) {
@@ -97,3 +98,5 @@ bleno.on('advertisingStop', function() {
 bleno.on('servicesSet', function(error) {
   console.log('on -> servicesSet: ' + (error ? 'error ' + error : 'success'));
 });
+
+//END reference
