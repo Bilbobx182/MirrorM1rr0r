@@ -1,8 +1,0 @@
-{
-  "queryStringParameters": {
-    "queueurl": "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo",
-    "message": "No Location Test Event",
-    "fontcolour": "#008080",
-    "fontsize": "12"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "queryStringParameters": {
-    "queueurl": "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo",
-    "message": "Ciaran Is Cool",
-    "location": "0,0",
-    "fontcolour": "#008080",
-    "fontsize": "12"
-  }
-}
