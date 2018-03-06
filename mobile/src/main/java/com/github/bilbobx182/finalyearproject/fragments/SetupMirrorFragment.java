@@ -138,15 +138,17 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
                 if (wifiConnection.isConnected()) {
                     updateWidgets(wifiConnection.getExtraInfo());
-                    if(setupCount >= 1){
+                    if (setupCount >= 1) {
                         wifiPass = wifiPassEditText.getText().toString();
                         createQueueSetup();
                         testPiMethod();
+
+                        //TODO IF THE BLE STUFF DOESN'T SEND WITH THIS ENABLED IT COULD BE BECAUSE I AM EXITING TOO QUICKLY
+                        getActivity().finish();
+                        startActivity(getActivity().getIntent());
+                        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
                     }
-                    setupCount ++;
-//                       getActivity().finish();
-//                       startActivity(getActivity().getIntent());
-//                       getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+                    setupCount++;
 
                 } else {
                     // ToDo Reprimand the bad user, with a friendly message of course.
@@ -204,9 +206,9 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
     private void doWrite(ScanResult scanResult) {
         String messageString = "{\n" +
-                "\"queue\" : \"" + dbManager.getUserInformationByColumn("queue")+"\",\n" +
-                "\"WiFi\" : \""+wifiSSID+"\",\n" +
-                "\"Pass\" : \""+wifiPass+"\"\n" +
+                "\"queue\" : \"" + dbManager.getUserInformationByColumn("queue") + "\",\n" +
+                "\"WiFi\" : \"" + wifiSSID + "\",\n" +
+                "\"Pass\" : \"" + wifiPass + "\"\n" +
                 "}";
         byte[] message = messageString.getBytes();
         final UUID writeID = UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffffff4");
@@ -291,7 +293,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
             e.printStackTrace();
         }
         String queue = requestPerformer.createQueue(encryptor.hashCode(IMEI + firstname + surname));
-        dbManager.updateUserInformation("queue",queue);
+        dbManager.updateUserInformation("queue", queue);
     }
 
     private boolean isCoarse() {
