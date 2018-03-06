@@ -25,6 +25,7 @@ import com.github.bilbobx182.finalyearproject.R;
 import java.sql.SQLException;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 public class MobileSettingsFragment extends Fragment implements View.OnClickListener {
 
@@ -87,7 +88,7 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
         bindWidgets();
 
 //        if (!db.isFirstTime()) {
-        if(!true) {
+        if (!true) {
             firstNameEditText.setVisibility(View.GONE);
             surnameEditText.setVisibility(View.GONE);
         }
@@ -186,17 +187,21 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
     private void updateSideBarWithUserInformation(EditText firstnameEditText, EditText surnameEditText) {
         try {
             db.open();
-           // if (db.isFirstBoot()) {
-            if(true) {
+
+            if (picturePath != " ") {
+                db.updateUserInformation("profilePath", picturePath);
+            }
+
+            if (db.isFirstBoot()) {
                 db.updateUserInformation("firstname", firstnameEditText.getText().toString());
                 db.updateUserInformation("surname", surnameEditText.getText().toString());
+
+                getActivity().getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("initialBoot", false).apply();
 
                 SetupMirrorFragment nextFrag = new SetupMirrorFragment();
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, nextFrag, "findThisFragment").addToBackStack(null).commit();
 
-            }
-            if (picturePath != " ") {
-                db.updateUserInformation("profilePath", picturePath);
+            } else {
                 getActivity().finish();
                 startActivity(getActivity().getIntent());
                 getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();

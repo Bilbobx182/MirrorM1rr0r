@@ -58,18 +58,9 @@ public class NavDrawerSMWS extends AppCompatActivity
         super.onCreate(savedInstanceState);
         this.dbManager = new DBManager(this);
 
-        // if (dbManager.isFirstTime()) {
-        if (true) {
-
-            switchToFragment(new MobileSettingsFragment());
-            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
-                    .putBoolean("initialBoot", false).apply();
-        }
-
         setContentView(R.layout.activity_nav_drawer_smws);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -82,6 +73,10 @@ public class NavDrawerSMWS extends AppCompatActivity
 
         setHeaderText(navigationView);
         headerButtonPressed();
+
+        if (dbManager.isFirstBoot()) {
+            switchToFragment(new MobileSettingsFragment());
+        }
     }
 
     private void setHeaderText(NavigationView navigationView) {
