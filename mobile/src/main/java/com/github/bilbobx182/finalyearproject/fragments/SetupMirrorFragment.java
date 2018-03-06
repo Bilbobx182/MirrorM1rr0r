@@ -177,18 +177,6 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         void onFragmentInteraction(Uri uri);
     }
 
-    private String getQueue() {
-        DBManager dbManager = new DBManager(getActivity());
-        try {
-            dbManager.open();
-            dbManager.getUserInformationByColumn("queue");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
-
     Subscription scanSubscription;
     RxBleClient rxBleClient;
 
@@ -216,9 +204,9 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
     private void doWrite(ScanResult scanResult) {
         String messageString = "{\n" +
-                "\"queue\" : \"https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo\",\n" +
-                "\"WiFi\" : \"IsThisTheKrustyKrab\",\n" +
-                "\"Pass\" : \"N0thisispatrick\"\n" +
+                "\"queue\" : \"" + dbManager.getUserInformationByColumn("queue")+"\",\n" +
+                "\"WiFi\" : \""+wifiSSID+"\",\n" +
+                "\"Pass\" : \""+wifiPass+"\"\n" +
                 "}";
         byte[] message = messageString.getBytes();
         final UUID writeID = UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffffff4");
@@ -309,6 +297,4 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
     private boolean isCoarse() {
         return getContext().checkPermission(Manifest.permission.ACCESS_COARSE_LOCATION, android.os.Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED;
     }
-
-
 }
