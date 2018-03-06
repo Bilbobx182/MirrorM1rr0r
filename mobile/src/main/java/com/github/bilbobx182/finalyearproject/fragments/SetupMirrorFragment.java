@@ -315,7 +315,6 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
             e.printStackTrace();
         }
         encryptor.hashCode(IMEI + firstname + surname);
-
     }
 
     private void createQueue(String hashedContents) {

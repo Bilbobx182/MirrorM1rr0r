@@ -87,8 +87,7 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
         db = new DBManager(getContext());
         bindWidgets();
 
-//        if (!db.isFirstTime()) {
-        if (!true) {
+        if (!db.isFirstBoot()) {
             firstNameEditText.setVisibility(View.GONE);
             surnameEditText.setVisibility(View.GONE);
         }
@@ -198,8 +197,8 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
 
                 getActivity().getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("initialBoot", false).apply();
 
-                SetupMirrorFragment nextFrag = new SetupMirrorFragment();
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, nextFrag, "findThisFragment").addToBackStack(null).commit();
+                SetupMirrorFragment moveToSetupMirrorFragment = new SetupMirrorFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, moveToSetupMirrorFragment).addToBackStack(null).commit();
 
             } else {
                 getActivity().finish();
