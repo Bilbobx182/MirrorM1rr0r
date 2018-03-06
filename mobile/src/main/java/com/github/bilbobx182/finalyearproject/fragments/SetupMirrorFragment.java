@@ -138,13 +138,12 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
                 if (wifiConnection.isConnected()) {
                     updateWidgets(wifiConnection.getExtraInfo());
-                    if (setupCount > 0 && setupCount < 2) {
-                        setupCount++;
-                    } else if (setupCount >= 2) {
+                    if(setupCount >= 1){
                         wifiPass = wifiPassEditText.getText().toString();
                         createQueueSetup();
                         testPiMethod();
                     }
+                    setupCount ++;
 //                       getActivity().finish();
 //                       startActivity(getActivity().getIntent());
 //                       getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
@@ -201,7 +200,6 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         Last Accessed: 9/November/2017
          */
         rxBleClient = RxBleClient.create(getContext());
-        // TextView bluetooth = (TextView) findViewById(R.id.bluetooth);
         scanSubscription = rxBleClient.scanBleDevices(new ScanSettings.Builder().build()).subscribe(
                 scanResult -> {
                     // End Reference
@@ -232,16 +230,6 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         https://www.polidea.com/blog/RxAndroidBLE_the_most_Simple_way_to_code_Bluetooth_Low_Energy_devices/
         Last Accessed: 9/November/2017
          */
-//        device.establishConnection(true)
-//                .flatMap(rxBleConnection -> rxBleConnection.writeCharacteristic(writeID, message))
-//                .subscribe(
-//                        characteristicValue -> {
-//                            Log.d("HELLO", characteristicValue.toString());
-//                            device.observeConnectionStateChanges();
-//                        },
-//                        throwable -> {
-//                            Log.d("HELLO","shit");
-//                        });
 
         device.establishConnection(true)
                 .flatMap(rxBleConnection -> rxBleConnection.createNewLongWriteBuilder()
@@ -314,11 +302,8 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        encryptor.hashCode(IMEI + firstname + surname);
-    }
-
-    private void createQueue(String hashedContents) {
-        dbManager.updateUserInformation("queue", requestPerformer.createQueue(hashedContents));
+        String queue = requestPerformer.createQueue(encryptor.hashCode(IMEI + firstname + surname));
+        dbManager.updateUserInformation("queue",queue);
     }
 
     private boolean isCoarse() {
