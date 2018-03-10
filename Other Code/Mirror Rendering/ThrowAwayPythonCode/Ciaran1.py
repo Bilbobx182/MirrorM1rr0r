@@ -2,6 +2,7 @@ import json
 
 import requests
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/"
 queue = "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
@@ -77,5 +78,8 @@ for a in (0, 1, 2):
 cursor = collection.find({})
 for document in cursor:
     print(document['messagePayload'])
+
+thing = collection.find_one( ObjectId("5aa3bcad872e1a2ec48e6f24"))
+print(thing['messagePayload'])
 
 # TODO Take the above. Implement it to what is already had with widgets.
