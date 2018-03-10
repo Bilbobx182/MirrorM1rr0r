@@ -1,12 +1,12 @@
+import json
+
+import requests
 from kivy.app import App
+from kivy.clock import Clock
 from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
-from kivy.clock import Clock
 from kivy.uix.image import AsyncImage
 from kivy.uix.label import Label
-import os
-import requests
-import json
 
 # I did this so the rows would be done correctly. Meaning if there's a message there we can make sure it's not occupied already that loop.
 isOccupied = [[False, False, False], [False, False, False], [False, False, False]]
@@ -31,6 +31,9 @@ def performRequest():
 
         contents = json.loads(result[messageKey]['Contents'])
 
+        if (contents['messagePayload'].startswith("/")):
+            performCommand(contents['messagePayload'])
+
         if ('location' in contents):
             location = contents['location']
             yLocation = int(contents['location'].split(",")[0])
@@ -47,11 +50,27 @@ def performRequest():
 print(isOccupied)
 
 
+def clearMirror():
+    global widgetsToRender  # Needed to modify global copy of globvar
+
+
+widgetsToRender = [
+    [" ", " ", " "],
+    [" ", " ", " "],
+    [" ", " ", " "]]
+
+
+def performCommand(payload):
+    if ("clear" in payload):
+        clearMirror()
+
+
 def falsifyOccupied():
     for y in (0, 1, 2):
         for x in (0, 1, 2):
             isOccupied[y][x] = False
 
+clearCount = 0
 
 class MirrorApplication(App):
     def build(self):
@@ -64,9 +83,14 @@ class MirrorApplication(App):
         return gridLayout
 
     def update(self, gridLayout):
+        global clearCount
         gridLayout.clear_widgets()
-        performRequest()
-
+        if(clearCount < 2):
+            performRequest(self)
+            clearCount+=1
+        else:
+            clearCount = 0
+            clearMirror()
         for y in (0, 1, 2):
             for x in (0, 1, 2):
                 self.create_button(gridLayout, widgetsToRender[y][x])
@@ -82,5 +106,6 @@ class MirrorApplication(App):
         else:
             obj.add_widget(Label(text=widgetToRender))
 
-Window.fullscreen = 'auto'
+
+# Window.fullscreen = 'auto'
 MirrorApplication().run()
