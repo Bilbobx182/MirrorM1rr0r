@@ -1,7 +1,6 @@
-import requests
-import time
-from random import randint
 import os
+import random
+import requests
 
 rehydrateCount = 0
 x = 0
@@ -17,10 +16,17 @@ while rehydrateCount < 100:
     # if (rehydrateCount % 3 == 0):
     #     message = "&message=" + dogImages[randint(0, 3)]
     # else:
-    message = "&message=" + str(os.urandom(5)) +"test"
+
+
+
+
+    message = "&message=" + str(os.urandom(5)) + "test"
+    fontColour = "&fontcolour=" + '%02X%02X%02X' % (
+        random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
     location = "&location=" + str(x) + "," + str(y)
 
-    result = requests.get(base + queue + message + location)
+    result = requests.get(base + queue + message + fontColour + location)
+    print(base + queue + message + fontColour + location)
     print("Y " + str(y) + " : X " + str(x))
 
     x += 1

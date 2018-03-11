@@ -7,13 +7,12 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage
 from kivy.uix.label import Label
 from pymongo import MongoClient
-from bson.objectid import ObjectId
+import matplotlib.colors as colors
 
 client = MongoClient()
 
 db = client.SMWS
 collection = db.SMWSCollection
-
 
 widgetsMongoObjectIdentifiers = [
     [" ", " ", " "],
@@ -31,19 +30,56 @@ def getWidgetPayloadFrom(y, x):
     return (widgetText['messagePayload'])
 
 
+def doesWidgetHaveColourAttribute(y, x):
+    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
+    if ('fontColour' in widgetJSON):
+        return True
+    return False
+
+
+def doesWidgetHaveSizeAttribute(y, x):
+    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
+    if ('fontSize' in widgetJSON):
+        return True
+    return False
+
+
+def getWidgetColourAttribute(y, x):
+    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
+    return widgetJSON['fontColour']
+
+
+def getWidgetSizeAttribute(y, x):
+    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
+    return widgetJSON['fontSize']
+
+
 def updateWidget(jsonContents):
     yLocation = 1
     xLocation = 1
+
+    fontSize = ""
+    fontColour = "ffffff"
 
     if ('location' in jsonContents):
         yLocation = int(jsonContents['location'].split(",")[0])
         xLocation = int(jsonContents['location'].split(",")[1])
 
+    if ('fontColour' in jsonContents):
+        fontColour = jsonContents['fontColour']
+
+    if ('fontSize' in jsonContents):
+        fontSize = jsonContents['fontSize']
+    else:
+        fontSize = 25
+
     collection.update_one({
         '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
     }, {
         '$set': {
-            'messagePayload': jsonContents['messagePayload']
+            'messagePayload': jsonContents['messagePayload'],
+            'fontColour': fontColour,
+            'fontSize': fontSize
         }
     }, upsert=False)
 
@@ -73,6 +109,7 @@ def performRequest():
     if (messageKey in result):
         updateWidget(json.loads(result[messageKey]['Contents']))
 
+
 def setup():
     getAndSetMongoWidgetObjectIdentifiers()
 
@@ -82,9 +119,9 @@ class MirrorApplication(App):
         setup()
 
         gridLayout = GridLayout(cols=3, rows=3)
-        updateInterval = 5
+        gridLayout.add_widget(Label(text="Loading now!"))
 
-        self.create_button(gridLayout, "MIRRROR IS LOADING")
+        updateInterval = 5
         Clock.schedule_interval(lambda a: self.update(gridLayout), updateInterval)
         return gridLayout
 
@@ -95,18 +132,27 @@ class MirrorApplication(App):
 
         for y in (0, 1, 2):
             for x in (0, 1, 2):
-                self.create_button(gridLayout, getWidgetPayloadFrom(y, x))
+                self.createWidget(gridLayout, y, x)
 
-    # Need to mark the area as empty so any new item that comes in can over-ride what was previosuly there
-    # This is done so that items within the same loop can't mess each other up but new requests are fine to over-write
+    def createWidget(self, obj, y, x):
+        widget = getWidgetPayloadFrom(y, x)
 
-
-    def create_button(self, obj, widgetToRender):
-        if 'http' in widgetToRender:
-            obj.add_widget(AsyncImage(source=widgetToRender))
+        if 'http' in widget:
+            obj.add_widget(AsyncImage(source=widget))
         else:
-            label = Label(text=widgetToRender)
-            label.font_size = '25dp'
+            label = Label(text=widget)
+            if (doesWidgetHaveSizeAttribute(y, x)):
+                label.font_size = (str(getWidgetSizeAttribute(y, x)) + 'dp')
+            else:
+                label.font_size = '25dp'
+
+            if (doesWidgetHaveColourAttribute(y, x)):
+                
+                # Python is a silly goose, hex2Colour returns a tuple but they're immutable.
+                #  so we make a new one with the (1,) then add that as the colour RGBA value
+                rgba = colors.hex2color(('#' + str((getWidgetColourAttribute(y, x))))) + (1,)
+                label.color = rgba
+
             obj.add_widget(label)
 
 
