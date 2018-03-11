@@ -17,7 +17,7 @@ while rehydrateCount < 100:
     # if (rehydrateCount % 3 == 0):
     #     message = "&message=" + dogImages[randint(0, 3)]
     # else:
-    message = "&message=" + str(os.urandom(5))
+    message = "&message=" + str(os.urandom(5)) +"test"
     location = "&location=" + str(x) + "," + str(y)
 
     result = requests.get(base + queue + message + location)

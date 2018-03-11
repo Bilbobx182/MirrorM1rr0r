@@ -14,14 +14,6 @@ client = MongoClient()
 db = client.SMWS
 collection = db.SMWSCollection
 
-widgetsToRender = [
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "]]
-isOccupied = [
-    [" ", " ", " "],
-    [" ", " ", " "],
-    [" ", " ", " "]]
 
 widgetsMongoObjectIdentifiers = [
     [" ", " ", " "],
@@ -81,25 +73,6 @@ def performRequest():
     if (messageKey in result):
         updateWidget(json.loads(result[messageKey]['Contents']))
 
-
-def clearMirror():
-    global widgetsToRender  # Needed to modify global copy of globvar
-
-
-def performCommand(payload):
-    if ("clear" in payload):
-        clearMirror()
-
-
-def falsifyOccupied():
-    for y in (0, 1, 2):
-        for x in (0, 1, 2):
-            isOccupied[y][x] = False
-
-
-clearCount = 0
-
-
 def setup():
     getAndSetMongoWidgetObjectIdentifiers()
 
@@ -116,7 +89,6 @@ class MirrorApplication(App):
         return gridLayout
 
     def update(self, gridLayout):
-        global clearCount
         gridLayout.clear_widgets()
 
         performRequest()
@@ -128,23 +100,15 @@ class MirrorApplication(App):
     # Need to mark the area as empty so any new item that comes in can over-ride what was previosuly there
     # This is done so that items within the same loop can't mess each other up but new requests are fine to over-write
 
-    falsifyOccupied()
 
     def create_button(self, obj, widgetToRender):
         if 'http' in widgetToRender:
             obj.add_widget(AsyncImage(source=widgetToRender))
         else:
-            obj.add_widget(Label(text=widgetToRender))
+            label = Label(text=widgetToRender)
+            label.font_size = '25dp'
+            obj.add_widget(label)
 
 
 # Window.fullscreen = 'auto'
 MirrorApplication().run()
-
-# ReImplement when above working
-# TODO COmmands implement
-#        if (contents['messagePayload'].startswith("/")):
-#    performCommand(contents['messagePayload'])
-
-
-# NiceToHaves
-# ToDo  Read updateInterval from file

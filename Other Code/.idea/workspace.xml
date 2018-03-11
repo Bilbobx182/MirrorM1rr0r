@@ -14,13 +14,13 @@
     <SUITE FILE_PATH="coverage/Other_Code$sendMessageToQueue.coverage" NAME="sendMessageToQueue Coverage Results" MODIFIED="1510671658818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$getFIFOMessage.coverage" NAME="getFIFOMessage Coverage Results" MODIFIED="1511178961015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$grid2.coverage" NAME="grid2 Coverage Results" MODIFIED="1511295570290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
-    <SUITE FILE_PATH="coverage/Other_Code$rehydrateFIFO.coverage" NAME="rehydrateFIFO Coverage Results" MODIFIED="1520614598209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
+    <SUITE FILE_PATH="coverage/Other_Code$rehydrateFIFO.coverage" NAME="rehydrateFIFO Coverage Results" MODIFIED="1520786045353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
     <SUITE FILE_PATH="coverage/Other_Code$WiiShopMusicIntensifies.coverage" NAME="WiiShopMusicIntensifies Coverage Results" MODIFIED="1510692856361" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$QueueListening.coverage" NAME="QueueListening Coverage Results" MODIFIED="1518718523855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
     <SUITE FILE_PATH="coverage/Other_Code$fixMessages.coverage" NAME="fixMessages Coverage Results" MODIFIED="1520614728192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$Grid.coverage" NAME="Grid Coverage Results" MODIFIED="1511601797964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$Ciaran1.coverage" NAME="Ciaran1 Coverage Results" MODIFIED="1520683767772" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
-    <SUITE FILE_PATH="coverage/Other_Code$MirrorGridRendering.coverage" NAME="MirrorGridRendering Coverage Results" MODIFIED="1520684339477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
+    <SUITE FILE_PATH="coverage/Other_Code$MirrorGridRendering.coverage" NAME="MirrorGridRendering Coverage Results" MODIFIED="1520788578675" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$rehydrateFIFO__1_.coverage" NAME="rehydrateFIFO (1) Coverage Results" MODIFIED="1511601130380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
     <SUITE FILE_PATH="coverage/Other_Code$SingeRender.coverage" NAME="SingeRender Coverage Results" MODIFIED="1518718546842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
     <SUITE FILE_PATH="coverage/Other_Code$NestedGridWidget.coverage" NAME="NestedGridWidget Coverage Results" MODIFIED="1512662319058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
@@ -65,11 +65,21 @@
       <file leaf-file-name="MirrorGridRendering.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="76" column="4" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
+            <state relative-caret-position="333">
+              <caret line="108" column="33" lean-forward="false" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rehydrateFIFO.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,7 +136,6 @@
         <option value="$PROJECT_DIR$/Lambda Methods/createFIFOQueue.py" />
         <option value="$PROJECT_DIR$/Lambda Methods/getFIFOMessage.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/reHydrateQueue.py" />
-        <option value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/Grid.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/test.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/UpdatingGrid.py" />
@@ -144,6 +153,7 @@
         <option value="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed/Grid.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/populateInitialDB.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/Ciaran1.py" />
+        <option value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py" />
       </list>
     </option>
@@ -365,10 +375,10 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.MirrorGridRendering" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Ciaran1" />
-        <item index="2" class="java.lang.String" itemvalue="Python.populateInitialDB" />
-        <item index="3" class="java.lang.String" itemvalue="Python.fixMessages" />
-        <item index="4" class="java.lang.String" itemvalue="Python.rehydrateFIFO" />
+        <item index="1" class="java.lang.String" itemvalue="Python.rehydrateFIFO" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Ciaran1" />
+        <item index="3" class="java.lang.String" itemvalue="Python.populateInitialDB" />
+        <item index="4" class="java.lang.String" itemvalue="Python.fixMessages" />
       </list>
     </recent_temporary>
   </component>
@@ -387,7 +397,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23229167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -399,7 +408,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.386149" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.386149" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -476,6 +485,12 @@
           </properties>
           <option name="timeStamp" value="165" />
         </breakpoint>
+        <breakpoint enabled="true" type="python-exception">
+          <properties notifyOnTerminate="true" exception="builtins.IndexError">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+          <option name="timeStamp" value="168" />
+        </breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -487,17 +502,20 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="166" />
+      <option name="time" value="171" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="document['_id']" />
         <watch expression="widgetsMongoObjectIdentifiers" language="Python" />
+        <watch expression="MirrorApplication.run()" language="Python" />
+        <watch expression="(base + queue + count" language="Python" />
+        <watch expression="base + queue" language="Python" />
+        <watch expression="base +queue +count" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lambda Methods/Lambda Test inputs/getMessageFromQueueTestInput.json" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
@@ -667,14 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/RequestAPI.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -719,10 +729,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/kivy/uix/gridlayout.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="356" column="0" lean-forward="false" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="76" column="4" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
+        <state relative-caret-position="333">
+          <caret line="108" column="33" lean-forward="false" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
