@@ -1,5 +1,6 @@
 import json
 
+import matplotlib.colors as colors
 import requests
 from kivy.app import App
 from kivy.clock import Clock
@@ -7,7 +8,6 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage
 from kivy.uix.label import Label
 from pymongo import MongoClient
-import matplotlib.colors as colors
 
 client = MongoClient()
 
@@ -21,7 +21,7 @@ widgetsMongoObjectIdentifiers = [
 
 messageCount = 1
 base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getfifomessage"
-queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
+queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranIsReallyCool.fifo"
 count = "&count=" + str(messageCount)
 
 
@@ -108,16 +108,58 @@ def performRequest(gridLayout):
     messageKey = 'Message 0'
 
     if (messageKey in result):
-        if "^/^" in json.loads(result[messageKey]['Contents']['messagePayload']):
-            parseCommand(json.loads(result[messageKey]['Contents']), gridLayout)
-        else:
-            updateWidget(json.loads(result[messageKey]['Contents']))
+        if "messagePayload" in json.loads(result[messageKey]['Contents']):
+            payload = json.loads(result[messageKey]['Contents'])
+            if("^/^" in payload['messagePayload']):
+                parseCommand(json.loads(result[messageKey]['Contents']), gridLayout)
+            else:
+                updateWidget(json.loads(result[messageKey]['Contents']))
 
 
 def parseCommand(jsonCommand, gridLayout):
     if "^/^clear" in jsonCommand['messagePayload']:
         print("clearing Mirror")
         gridLayout.clear_widgets()
+
+    if "^/^weather" in jsonCommand['messagePayload']:
+        print("Getting weather")
+        getWeather(jsonCommand)
+
+
+def getWeather(json):
+    weatherAPI = list()
+    # Sunny, Cloudy, Overcast, Rain
+    weatherImages = ["https://i.imgur.com/OGPHWZZ.png", "https://i.imgur.com/NbnlGbw.png",
+                     "https://i.imgur.com/uIC2Io8.png", "https://i.imgur.com/GWJ85t3.png"]
+
+    weatherAPI.append("http://api.openweathermap.org/data/2.5/weather?")
+    # Default location of Dublin
+    weatherAPI.append("lat=53.35&lon=-6.26")
+    weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
+
+    #update the default to the lat and long the user supplies
+    weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
+    JSONresult = requests.get(''.join(weatherAPI)).json()
+
+    #ToDo Implement the double widget logic so we can have icon and text for weather
+
+    result = {}
+    result['max'] = JSONresult['main']['temp_max']
+    result['type'] = JSONresult['weather'][0]['main']
+
+    outJSON = {}
+    if "Clear" in result['type']:
+        outJSON['messagePayload'] = weatherImages[0]
+    if "Cloud" in result['type']:
+        outJSON['messagePayload'] = weatherImages[1]
+    if "Rain" in result['type']:
+        outJSON['messagePayload'] = weatherImages[3]
+
+    if ('location' in json):
+        outJSON['location'] = json['location']
+
+    updateWidget(outJSON)
+
 
 
 def setup():
