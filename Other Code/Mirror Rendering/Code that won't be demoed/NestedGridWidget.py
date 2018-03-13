@@ -19,7 +19,7 @@ class MyApp(App):
         while (i < 9):
 
             if (i == 0):
-                nestedLayout = GridLayout(cols=2, rows=1)
+                nestedLayout = GridLayout(cols=1, rows=2)
                 nestedLayout.add_widget(Label(text=" LEFT "))
                 nestedLayout.add_widget(Label(text=" RIGHT "))
                 layout.add_widget(nestedLayout)

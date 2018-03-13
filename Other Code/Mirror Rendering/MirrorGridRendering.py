@@ -125,6 +125,10 @@ def parseCommand(jsonCommand, gridLayout):
         print("Getting weather")
         getWeather(jsonCommand)
 
+    if "^/^tempature" in jsonCommand['messagePayload']:
+        print("Getting current Temp")
+        getTempature(jsonCommand)
+
 
 def getWeather(json):
     weatherAPI = list()
@@ -140,8 +144,6 @@ def getWeather(json):
     #update the default to the lat and long the user supplies
     weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
     JSONresult = requests.get(''.join(weatherAPI)).json()
-
-    #ToDo Implement the double widget logic so we can have icon and text for weather
 
     result = {}
     result['max'] = JSONresult['main']['temp_max']
@@ -160,6 +162,30 @@ def getWeather(json):
 
     updateWidget(outJSON)
 
+def getTempature(json):
+    weatherAPI = list()
+    # Sunny, Cloudy, Overcast, Rain
+    weatherImages = ["https://i.imgur.com/OGPHWZZ.png", "https://i.imgur.com/NbnlGbw.png",
+                     "https://i.imgur.com/uIC2Io8.png", "https://i.imgur.com/GWJ85t3.png"]
+
+    weatherAPI.append("http://api.openweathermap.org/data/2.5/weather?")
+    # Default location of Dublin
+    weatherAPI.append("lat=53.35&lon=-6.26")
+    weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
+
+    #update the default to the lat and long the user supplies
+    weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
+    JSONresult = requests.get(''.join(weatherAPI)).json()
+
+    result = {}
+    result['max'] = JSONresult['main']['temp_max']
+
+    outJSON = {}
+    outJSON['messagePayload'] = result['max'] + "C"
+    if ('location' in json):
+        outJSON['location'] = json['location']
+
+    updateWidget(outJSON)
 
 
 def setup():
@@ -191,6 +217,7 @@ class MirrorApplication(App):
 
         if 'http' in widget:
             obj.add_widget(AsyncImage(source=widget))
+
         else:
             label = Label(text=widget)
             if doesWidgetHaveSizeAttribute(y, x):
