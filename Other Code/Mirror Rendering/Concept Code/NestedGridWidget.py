@@ -1,15 +1,12 @@
-from kivy import Config
 from kivy.app import App
 from kivy.core.window import Window
-from kivy.uix.button import Label, Button
-import subprocess
-import operator
-import json
-import time
+from kivy.uix.button import Label
 
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.image import AsyncImage
-import requests
+
+# This is concept code for a grid that has nested grids.
+# Although, I am aware that this is opening a can of worms for development.
+# I fear it may not be worth it to implement but interesting idea nonetheless.
 
 
 class MyApp(App):
@@ -30,5 +27,5 @@ class MyApp(App):
         return layout
 
 
-# Window.fullscreen = 'auto'
+Window.fullscreen = 'auto'
 MyApp().run()
