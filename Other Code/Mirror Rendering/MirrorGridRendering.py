@@ -102,12 +102,22 @@ def getAndSetMongoWidgetObjectIdentifiers():
                 y = 0
 
 
-def performRequest():
+def performRequest(gridLayout):
     result = requests.get(base + queue + count).json()
 
     messageKey = 'Message 0'
+
     if (messageKey in result):
-        updateWidget(json.loads(result[messageKey]['Contents']))
+        if "^/^" in json.loads(result[messageKey]['Contents']['messagePayload']):
+            parseCommand(json.loads(result[messageKey]['Contents']), gridLayout)
+        else:
+            updateWidget(json.loads(result[messageKey]['Contents']))
+
+
+def parseCommand(jsonCommand, gridLayout):
+    if "^/^clear" in jsonCommand['messagePayload']:
+        print("clearing Mirror")
+        gridLayout.clear_widgets()
 
 
 def setup():
@@ -128,7 +138,7 @@ class MirrorApplication(App):
     def update(self, gridLayout):
         gridLayout.clear_widgets()
 
-        performRequest()
+        performRequest(gridLayout)
 
         for y in (0, 1, 2):
             for x in (0, 1, 2):
@@ -141,13 +151,12 @@ class MirrorApplication(App):
             obj.add_widget(AsyncImage(source=widget))
         else:
             label = Label(text=widget)
-            if (doesWidgetHaveSizeAttribute(y, x)):
+            if doesWidgetHaveSizeAttribute(y, x):
                 label.font_size = (str(getWidgetSizeAttribute(y, x)) + 'dp')
             else:
                 label.font_size = '25dp'
 
-            if (doesWidgetHaveColourAttribute(y, x)):
-                
+            if doesWidgetHaveColourAttribute(y, x):
                 # Python is a silly goose, hex2Colour returns a tuple but they're immutable.
                 #  so we make a new one with the (1,) then add that as the colour RGBA value
                 rgba = colors.hex2color(('#' + str((getWidgetColourAttribute(y, x))))) + (1,)

@@ -28,14 +28,25 @@ def lambda_handler(event, context):
         if 'fontcolour' in event['queryStringParameters']:
             message['fontColour'] = (event['queryStringParameters']['fontcolour'])
 
+        # Extra query parameters
+        if ('lat' in event['queryStringParameters']):
+            message['lat'] = (event['queryStringParameters']['lat'])
+
+        if ('long' in event['queryStringParameters']):
+            message['long'] = (event['queryStringParameters']['long'])
+
         sendMessage(queueURL, message)
 
         out['statusCode'] = 201
-        out['body'] = json.dumps("Success, message sent :)")
+        outResult = {}
+        outResult['result'] = "Success, message sent :)"
+        out['body'] = json.dumps(outResult)
 
     else:
         out['statusCode'] = 400
-        out['body'] = json.dumps("Queue or message payload were not passed :(")
+        outResult = {}
+        outResult['result'] = "Queue or message payload were not passed :("
+        out['body'] = json.dumps(outResult)
 
     out['headers'] = {
         "content-type": "application-json"

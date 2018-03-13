@@ -10,15 +10,21 @@ def sendMessage(message, queueURL):
 
 
 def lambda_handler(event, context):
+
+    # Event['body'] will throw exceptions testing in Lambda, but works with actual code. Update test cases.
+
     data = json.loads(event['body'])
 
     if (data['data'] is not None and data['queueurl'] is not None):
 
         sendMessage(data['data'], data['queueurl'])
+
+        result = {}
+        result['result'] = "Success"
         return {
             'statusCode': 200,
             'isBase64Encoded': False,
-            'body': "Success",
+            'body': json.dumps(result),
             'headers': {
                 'content-type': 'application/json'
             }

@@ -1,5 +1,6 @@
 import os
 import random
+
 import requests
 
 rehydrateCount = 0
@@ -18,15 +19,15 @@ while rehydrateCount < 100:
     # else:
 
 
-
-
     message = "&message=" + str(os.urandom(5)) + "test"
     fontColour = "&fontcolour=" + '%02X%02X%02X' % (
         random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
     location = "&location=" + str(x) + "," + str(y)
+    lat = "&lat=53.35"
+    long = "&long=-6.35"
 
-    result = requests.get(base + queue + message + fontColour + location)
-    print(base + queue + message + fontColour + location)
+    result = requests.get(base + queue + message + fontColour + lat + long + location)
+    print(base + queue + message + fontColour + lat + long + location)
     print("Y " + str(y) + " : X " + str(x))
 
     x += 1
