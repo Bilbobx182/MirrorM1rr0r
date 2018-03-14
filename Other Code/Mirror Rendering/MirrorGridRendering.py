@@ -86,6 +86,38 @@ def updateWidget(jsonContents):
     print(jsonContents)
 
 
+def updateWidgetDynamic(jsonContents):
+    yLocation = 1
+    xLocation = 1
+
+    fontSize = ""
+    fontColour = "ffffff"
+
+    if ('location' in jsonContents):
+        yLocation = int(jsonContents['location'].split(",")[0])
+        xLocation = int(jsonContents['location'].split(",")[1])
+
+    if ('fontColour' in jsonContents):
+        fontColour = jsonContents['fontColour']
+
+    if ('fontSize' in jsonContents):
+        fontSize = jsonContents['fontSize']
+    else:
+        fontSize = 25
+
+    collection.update_one({
+        '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
+    }, {
+        '$set': {
+            'messagePayload': jsonContents['messagePayload'],
+            'fontColour': fontColour,
+            'fontSize': fontSize
+        }
+    }, upsert=False)
+
+    print(jsonContents)
+
+
 def getAndSetMongoWidgetObjectIdentifiers():
     y = 0
     x = 0
@@ -102,6 +134,10 @@ def getAndSetMongoWidgetObjectIdentifiers():
                 y = 0
 
 
+def setup():
+    getAndSetMongoWidgetObjectIdentifiers()
+
+
 def performRequest(gridLayout):
     result = requests.get(base + queue + count).json()
 
@@ -110,7 +146,7 @@ def performRequest(gridLayout):
     if (messageKey in result):
         if "messagePayload" in json.loads(result[messageKey]['Contents']):
             payload = json.loads(result[messageKey]['Contents'])
-            if("^/^" in payload['messagePayload']):
+            if ("^/^" in payload['messagePayload']):
                 parseCommand(json.loads(result[messageKey]['Contents']), gridLayout)
             else:
                 updateWidget(json.loads(result[messageKey]['Contents']))
@@ -123,14 +159,14 @@ def parseCommand(jsonCommand, gridLayout):
 
     if "^/^weather" in jsonCommand['messagePayload']:
         print("Getting weather")
-        getWeather(jsonCommand)
+        setWeatherWidget(jsonCommand)
 
     if "^/^tempature" in jsonCommand['messagePayload']:
         print("Getting current Temp")
-        getTempature(jsonCommand)
+        setTempatureWidget(jsonCommand)
 
 
-def getWeather(json):
+def setWeatherWidget(json):
     weatherAPI = list()
     # Sunny, Cloudy, Overcast, Rain
     weatherImages = ["https://i.imgur.com/OGPHWZZ.png", "https://i.imgur.com/NbnlGbw.png",
@@ -141,7 +177,7 @@ def getWeather(json):
     weatherAPI.append("lat=53.35&lon=-6.26")
     weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
 
-    #update the default to the lat and long the user supplies
+    # update the default to the lat and long the user supplies
     weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
     JSONresult = requests.get(''.join(weatherAPI)).json()
 
@@ -150,30 +186,32 @@ def getWeather(json):
     result['type'] = JSONresult['weather'][0]['main']
 
     outJSON = {}
+
     if "Clear" in result['type']:
         outJSON['messagePayload'] = weatherImages[0]
     if "Cloud" in result['type']:
         outJSON['messagePayload'] = weatherImages[1]
-    if "Rain" in result['type']:
+    if "Rain" or "Drizzle" in result['type']:
         outJSON['messagePayload'] = weatherImages[3]
 
     if ('location' in json):
         outJSON['location'] = json['location']
 
+    dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
+
+    outJSON['dynamicIdentifier'] = dynamicUpdateOutJSON
+
     updateWidget(outJSON)
 
-def getTempature(json):
-    weatherAPI = list()
-    # Sunny, Cloudy, Overcast, Rain
-    weatherImages = ["https://i.imgur.com/OGPHWZZ.png", "https://i.imgur.com/NbnlGbw.png",
-                     "https://i.imgur.com/uIC2Io8.png", "https://i.imgur.com/GWJ85t3.png"]
 
+def setTempatureWidget(json):
+    weatherAPI = list()
     weatherAPI.append("http://api.openweathermap.org/data/2.5/weather?")
     # Default location of Dublin
     weatherAPI.append("lat=53.35&lon=-6.26")
     weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
 
-    #update the default to the lat and long the user supplies
+    # update the default to the lat and long the user supplies
     weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
     JSONresult = requests.get(''.join(weatherAPI)).json()
 
@@ -181,15 +219,13 @@ def getTempature(json):
     result['max'] = JSONresult['main']['temp_max']
 
     outJSON = {}
-    outJSON['messagePayload'] = result['max'] + "C"
+    outJSON['messagePayload'] = str(result['max']) + "C"
     if ('location' in json):
         outJSON['location'] = json['location']
 
+    dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
+    outJSON['dynamicIdentifier'] = dynamicUpdateOutJSON
     updateWidget(outJSON)
-
-
-def setup():
-    getAndSetMongoWidgetObjectIdentifiers()
 
 
 class MirrorApplication(App):

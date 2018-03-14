@@ -1,4 +1,3 @@
-import os
 import random
 
 import requests
@@ -10,7 +9,7 @@ y = 0
 # dogImages = ["https://i.imgur.com/6hcxDaE.jpg", "https://i.imgur.com/f7wDYxs.jpg", "https://i.imgur.com/aV0PkUu.jpg",
 #              "https://i.imgur.com/Vm3EGQf.png"]
 
-while rehydrateCount < 50:
+while rehydrateCount < 100:
     contents = "Message: " + str(rehydrateCount)
     base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendfifomessage"
     # queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
@@ -19,9 +18,10 @@ while rehydrateCount < 50:
     #     message = "&message=" + dogImages[randint(0, 3)]
     # else:
 
+    randomMessageType = ["Gone to Shop", "https://i.imgur.com/6hcxDaE.jpg", "^/^weather", "^/^tempature"]
 
     # message = "&message=" + str(os.urandom(5)) + "test"
-    message = "&message=^/^weather"
+    message = "&message=" + randomMessageType[random.randint(0, 3)]
     fontColour = "&fontcolour=" + '%02X%02X%02X' % (
         random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
     location = "&location=" + str(x) + "," + str(y)

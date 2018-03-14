@@ -1,4 +1,3 @@
-import pymongo
 from pymongo import MongoClient
 
 client = MongoClient()
@@ -16,7 +15,19 @@ y = 0
 while loopCount < 9:
 
     collection.insert_one(
-        {'messagePayload': str(loopCount), 'location': str(y) + "," + str(x)}
+        {
+            'messagePayload': str(loopCount),
+            'location': str(y) + "," + str(x),
+            "fontColour": "ffffff",
+            "fontSize": 25,
+
+            "dynamicIdentifier": {
+                "command": "",
+                "extraMessage": "",
+                "lat": "",
+                "long": ""
+            }
+        }
     )
 
     loopCount += 1
