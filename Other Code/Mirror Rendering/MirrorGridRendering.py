@@ -201,7 +201,7 @@ def setWeatherWidget(json):
 
     outJSON['dynamicIdentifier'] = dynamicUpdateOutJSON
 
-    updateWidget(outJSON)
+    updateDynamicWidget(outJSON)
 
 
 def setTempatureWidget(json):
@@ -225,7 +225,59 @@ def setTempatureWidget(json):
 
     dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
     outJSON['dynamicIdentifier'] = dynamicUpdateOutJSON
-    updateWidget(outJSON)
+    updateDynamicWidget(outJSON)
+
+
+def updateDynamicWidget(jsonContents):
+    yLocation = 1
+    xLocation = 1
+
+    fontColour = "ffffff"
+
+    extraMessage = " "
+    lat = " "
+    long = " "
+
+    if ('location' in jsonContents):
+        yLocation = int(jsonContents['location'].split(",")[0])
+        xLocation = int(jsonContents['location'].split(",")[1])
+
+    if ('fontColour' in jsonContents):
+        fontColour = jsonContents['fontColour']
+
+    if ('fontSize' in jsonContents):
+        fontSize = jsonContents['fontSize']
+    else:
+        fontSize = 25
+
+    command = jsonContents['dynamicIdentifier']['command']
+
+    if ('lat' in jsonContents['dynamicIdentifier']):
+        lat = jsonContents['dynamicIdentifier']['lat']
+
+    if ('long' in jsonContents['dynamicIdentifier']):
+        long = jsonContents['dynamicIdentifier']['long']
+
+    if ('extraMessage' in jsonContents['dynamicIdentifier']):
+        extraMessage = jsonContents['dynamicIdentifier']['extraMessage']
+
+    collection.update_one({
+        '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
+    }, {
+        '$set': {
+            'messagePayload': jsonContents['messagePayload'],
+            'fontColour': fontColour,
+            'fontSize': fontSize,
+            'dynamicIdentifier': {
+                'command': command,
+                'extraMessage': extraMessage,
+                'lat': lat,
+                'long': long
+            }
+        }
+    }, upsert=False)
+
+    print(jsonContents)
 
 
 class MirrorApplication(App):
