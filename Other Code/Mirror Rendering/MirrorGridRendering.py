@@ -57,8 +57,16 @@ def getWidgetSizeAttribute(y, x):
 def isDynamicWidget(y, x):
     widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
     if ('dynamicIdentifier' in widgetJSON):
-        if (not widgetJSON['dynamicIdentifier']['command']):
+        if (len(widgetJSON['dynamicIdentifier']['command']) > 2):
             return True
+    return False
+
+
+def getDynamicWidgetContents(y, x):
+    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
+    if ('dynamicIdentifier' in widgetJSON):
+        if (len(widgetJSON['dynamicIdentifier']['command']) > 2):
+            return widgetJSON
     return False
 
 
@@ -148,6 +156,20 @@ def parseCommand(jsonCommand, gridLayout):
         setTempatureWidget(jsonCommand)
 
 
+def parseDynamicCommand(jsonCommand, gridLayout):
+    if "^/^clear" in jsonCommand['dynamicIdentifier']['command']:
+        print("clearing Mirror")
+        gridLayout.clear_widgets()
+
+    if "^/^weather" in jsonCommand['dynamicIdentifier']['command']:
+        print("Getting weather")
+        setWeatherWidget(jsonCommand)
+
+    if "^/^tempature" in jsonCommand['dynamicIdentifier']['command']:
+        print("Getting current Temp")
+        setTempatureWidget(jsonCommand)
+
+
 def setWeatherWidget(json):
     weatherAPI = list()
     # Sunny, Cloudy, Overcast, Rain
@@ -160,7 +182,12 @@ def setWeatherWidget(json):
     weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
 
     # update the default to the lat and long the user supplies
-    weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
+    isDynamicBool = 'dynamicIdentifier' in json and len(json['dynamicIdentifier']['command']) > 2
+    if (isDynamicBool):
+            weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['lat']
+    else:
+        weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
+
     JSONresult = requests.get(''.join(weatherAPI)).json()
 
     result = {}
@@ -179,7 +206,11 @@ def setWeatherWidget(json):
     if ('location' in json):
         outJSON['location'] = json['location']
 
-    dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
+    if (isDynamicBool):
+        dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['dynamicIdentifier']['lat'],
+                                'long': json['dynamicIdentifier']['long']}
+    else:
+        dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
 
     outJSON['dynamicIdentifier'] = dynamicUpdateOutJSON
 
@@ -194,7 +225,12 @@ def setTempatureWidget(json):
     weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
 
     # update the default to the lat and long the user supplies
-    weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
+    isDynamicBool = 'dynamicIdentifier' in json and len(json['dynamicIdentifier']['command']) > 2
+    if (isDynamicBool):
+        weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['long']
+    else:
+        weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
+
     JSONresult = requests.get(''.join(weatherAPI)).json()
 
     result = {}
@@ -205,7 +241,11 @@ def setTempatureWidget(json):
     if ('location' in json):
         outJSON['location'] = json['location']
 
-    dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
+    if (isDynamicBool):
+        dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['dynamicIdentifier']['lat'],
+                                'long': json['dynamicIdentifier']['long']}
+    else:
+        dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
     outJSON['dynamicIdentifier'] = dynamicUpdateOutJSON
     updateDynamicWidget(outJSON)
 
@@ -259,7 +299,11 @@ def updateDynamicWidget(jsonContents):
         }
     }, upsert=False)
 
+    print("DYNAMIC UPDATED")
     print(jsonContents)
+
+
+updateTimerCurrentValue = 0
 
 
 class MirrorApplication(App):
@@ -276,6 +320,10 @@ class MirrorApplication(App):
     def update(self, gridLayout):
         gridLayout.clear_widgets()
 
+        global updateTimerCurrentValue
+        updateTimerCurrentValue += 5
+        print("UPDATE TIMER : " + str(updateTimerCurrentValue))
+
         performRequest(gridLayout)
 
         for y in (0, 1, 2):
@@ -283,6 +331,13 @@ class MirrorApplication(App):
                 self.createWidget(gridLayout, y, x)
 
     def createWidget(self, obj, y, x):
+
+        if (isDynamicWidget(y, x)):
+            global updateTimerCurrentValue
+            updateTimerMaxValue = 15
+            if (updateTimerCurrentValue >= updateTimerMaxValue):
+                parseDynamicCommand(getDynamicWidgetContents(y, x), obj)
+
         widget = getWidgetPayloadFrom(y, x)
 
         if 'http' in widget:
