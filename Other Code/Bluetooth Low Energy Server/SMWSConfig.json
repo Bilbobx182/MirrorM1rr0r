@@ -1,5 +1,5 @@
 {
-"queue" : "https://sqs.eu-west-1.amazonaws.com/186314837751/QUEUE.fifo",
+"queue" : "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranIsReallyCool.fifo",
 "WiFi" : "SSID",
 "Pass" : "PASS"
 }

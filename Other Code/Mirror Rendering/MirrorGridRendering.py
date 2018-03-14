@@ -1,4 +1,5 @@
 import json
+import os
 
 import matplotlib.colors as colors
 import requests
@@ -20,8 +21,16 @@ widgetsMongoObjectIdentifiers = [
     [" ", " ", " "]]
 
 messageCount = 1
+
+pathExtension = "Bluetooth Low Energy Server\SMWSConfig.json"
+currentPath = os.getcwd()
+
+configPath = ((currentPath.split("Mirror Rendering"))[0] + pathExtension)
+configData = json.load(open(configPath))
+
 base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getfifomessage"
-queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranIsReallyCool.fifo"
+queue = "?queueurl=" + configData['queue']
+
 count = "&count=" + str(messageCount)
 
 
@@ -184,7 +193,7 @@ def setWeatherWidget(json):
     # update the default to the lat and long the user supplies
     isDynamicBool = 'dynamicIdentifier' in json and len(json['dynamicIdentifier']['command']) > 2
     if (isDynamicBool):
-            weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['lat']
+        weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['lat']
     else:
         weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
 
