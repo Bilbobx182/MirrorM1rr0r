@@ -54,6 +54,14 @@ def getWidgetSizeAttribute(y, x):
     return widgetJSON['fontSize']
 
 
+def isDynamicWidget(y, x):
+    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
+    if ('dynamicIdentifier' in widgetJSON):
+        if (not widgetJSON['dynamicIdentifier']['command']):
+            return True
+    return False
+
+
 def updateWidget(jsonContents):
     yLocation = 1
     xLocation = 1
@@ -79,39 +87,13 @@ def updateWidget(jsonContents):
         '$set': {
             'messagePayload': jsonContents['messagePayload'],
             'fontColour': fontColour,
-            'fontSize': fontSize
-        }
-    }, upsert=False)
-
-    print(jsonContents)
-
-
-def updateWidgetDynamic(jsonContents):
-    yLocation = 1
-    xLocation = 1
-
-    fontSize = ""
-    fontColour = "ffffff"
-
-    if ('location' in jsonContents):
-        yLocation = int(jsonContents['location'].split(",")[0])
-        xLocation = int(jsonContents['location'].split(",")[1])
-
-    if ('fontColour' in jsonContents):
-        fontColour = jsonContents['fontColour']
-
-    if ('fontSize' in jsonContents):
-        fontSize = jsonContents['fontSize']
-    else:
-        fontSize = 25
-
-    collection.update_one({
-        '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
-    }, {
-        '$set': {
-            'messagePayload': jsonContents['messagePayload'],
-            'fontColour': fontColour,
-            'fontSize': fontSize
+            'fontSize': fontSize,
+            'dynamicIdentifier': {
+                'command': '',
+                'extraMessage': '',
+                'lat': '',
+                'long': ''
+            }
         }
     }, upsert=False)
 
