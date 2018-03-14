@@ -18,7 +18,7 @@ import java.util.Map;
 import static android.content.Context.MODE_PRIVATE;
 
 public class DBManager {
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
     private static final String DATABASE_NAME = "SMWS.db";
 
     private static final String TABLE_MESSAGE_NAME = "Message";
@@ -42,6 +42,7 @@ public class DBManager {
             + " INTEGER PRIMARY KEY autoincrement, "
             + SENT_MESSAGE + " TEXT,"
             + SENT_COLOR + " TEXT,"
+            + SENT_SIZE + " TEXT,"
             + SENT_COORDS + " TEXT" + ");";
 
     private static final String DROP_MESSAGES_TABLE = "DROP TABLE " + TABLE_MESSAGE_NAME + " ;";

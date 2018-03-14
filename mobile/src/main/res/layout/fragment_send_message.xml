@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.github.bilbobx182.finalyearproject.fragments.SendMessage"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="25dp">
 
     <TextView
         android:id="@+id/queryHeaderText"
@@ -25,26 +25,27 @@
 
     <Button
         android:id="@+id/commitButton"
-        android:layout_width="403dp"
+        android:layout_width="411dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="6dp"
         android:text="Send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guideline"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
     <EditText
         android:id="@+id/queryEditText"
-        android:layout_height="50dp"
         android:layout_width="wrap_content"
-        android:ems="10"
+        android:layout_height="50dp"
+        android:layout_marginTop="165dp"
         android:backgroundTint="@color/colorAccentLight"
+        android:ems="10"
         android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1"
@@ -54,50 +55,154 @@
         android:id="@+id/queryResponseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="385dp"
         android:text=" "
-        app:layout_constraintBottom_toTopOf="@+id/posHeler"
+        app:layout_constraintBottom_toTopOf="@+id/queryHeaderText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/queryHeaderText" />
 
     <Spinner
         android:id="@+id/ySpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/xSpinner"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/xSpinner" />
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/textSizeHelper"
+        app:layout_constraintStart_toStartOf="@+id/posHeler" />
 
     <Spinner
         android:id="@+id/xSpinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="105dp"
-        android:layout_marginEnd="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_height="0dp"
+        android:layout_marginEnd="96dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ySpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ySpinner" />
 
     <TextView
         android:id="@+id/posHeler"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginBottom="180dp"
+        android:layout_height="31dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="101dp"
         android:text="Where do you want it on the mirror?"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/xSpinner"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/queryResponseTextView" />
+        app:layout_constraintTop_toTopOf="@+id/queryEditText"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/querySubText"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
+        android:layout_marginTop="5dp"
         android:text="Image URLs too*"
         app:layout_constraintEnd_toStartOf="@+id/queryResponseTextView"
         app:layout_constraintStart_toStartOf="@+id/queryResponseTextView"
         app:layout_constraintTop_toBottomOf="@+id/queryHeaderText" />
+
+    <TextView
+        android:id="@+id/textSizeHelper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="How Large on the screen?"
+        app:layout_constraintBottom_toTopOf="@+id/textSizeSpinner"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Spinner
+        android:id="@+id/textSizeSpinner"
+        android:layout_width="246dp"
+        android:layout_height="15dp"
+        android:layout_marginBottom="182dp"
+        android:layout_marginTop="182dp"
+        app:layout_constraintBottom_toTopOf="@+id/commitButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/colourGrid"
+        android:layout_width="306dp"
+        android:layout_height="53dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageButton
+            android:id="@+id/blueColourSelector"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:src="@android:color/holo_blue_dark"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:layout_editor_absoluteY="434dp" />
+
+        <ImageButton
+            android:id="@+id/greenColourSelector"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:src="@android:color/holo_green_light"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="434dp" />
+
+        <ImageButton
+            android:id="@+id/whiteColourSelector"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:src="@android:color/background_light"
+            tools:layout_editor_absoluteY="434dp" />
+
+        <ImageButton
+            android:id="@+id/yellowColourSelector"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:src="@color/colorAccentAltLight"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="434dp" />
+
+        <ImageButton
+            android:id="@+id/redColourSelector"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:src="@android:color/holo_red_light"
+            tools:layout_editor_absoluteX="111dp"
+            tools:layout_editor_absoluteY="434dp" />
+
+    </android.support.v7.widget.GridLayout>
+
+    <TextView
+        android:id="@+id/colourPickerHelper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Current Colour: "
+        app:layout_constraintBottom_toTopOf="@+id/colourGrid"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="605dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/commitButton"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
@@ -27,8 +31,18 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM2 = "param2";
     private Spinner ySpinner;
     private Spinner xSpinner;
+    private Spinner textSizeSpinner;
     private EditText queryInputEditText;
     private Button doneButton;
+
+    private ImageButton blueButton;
+    private ImageButton greenButton;
+    private ImageButton whiteButton;
+    private ImageButton yellowButton;
+    private ImageButton redButton;
+    private TextView colourSelector;
+    private String activeColour = "White";
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -65,6 +79,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
         ySpinner = inflated.findViewById(R.id.ySpinner);
         xSpinner = inflated.findViewById(R.id.xSpinner);
+        textSizeSpinner = inflated.findViewById(R.id.textSizeSpinner);
 
         setupSpinners();
         return inflated;
@@ -96,13 +111,37 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        doneButton = view.findViewById(R.id.commitButton);
         switch (view.getId()) {
             case (R.id.commitButton): {
 
                 processDoneButtonActions();
                 Toast.makeText(getContext(), "Message Sent!", Toast.LENGTH_SHORT).show();
                 getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+            }
+            case (R.id.blueColourSelector): {
+                colourSelector.setText("Current Colour: Blue");
+                activeColour = "Blue";
+                break;
+            }
+            case (R.id.greenColourSelector): {
+                colourSelector.setText("Current Colour: Green");
+                activeColour = "Green";
+                break;
+            }
+            case (R.id.whiteColourSelector): {
+                colourSelector.setText("Current Colour: White");
+                activeColour = "White";
+                break;
+            }
+            case (R.id.yellowColourSelector): {
+                colourSelector.setText("Current Colour: Yellow");
+                activeColour = "Yellow";
+                break;
+            }
+            case (R.id.redColourSelector): {
+                colourSelector.setText("Current Colour: Red");
+                activeColour = "Red";
+                break;
             }
         }
     }
@@ -118,8 +157,27 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        colourSelector = getActivity().findViewById(R.id.colourPickerHelper);
+
         doneButton = getActivity().findViewById(R.id.commitButton);
         doneButton.setOnClickListener(this);
+
+        blueButton = getActivity().findViewById(R.id.blueColourSelector);
+        blueButton.setOnClickListener(this);
+
+        greenButton = getActivity().findViewById(R.id.greenColourSelector);
+        greenButton.setOnClickListener(this);
+
+        whiteButton = getActivity().findViewById(R.id.whiteColourSelector);
+        whiteButton.setOnClickListener(this);
+
+        yellowButton = getActivity().findViewById(R.id.yellowColourSelector);
+        yellowButton.setOnClickListener(this);
+
+        redButton = getActivity().findViewById(R.id.redColourSelector);
+        redButton.setOnClickListener(this);
+
     }
 
     private void beginMessageTransformation() {
@@ -138,8 +196,15 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
         messageValues.put("message", input);
         messageValues.put("location", String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]));
-        messageValues.put("fontColour","ffffff");
-        //messageValues.put("message", input);
+        messageValues.put("fontsize", getTextSizeSpinnerValue());
+        HashMap<String, String> colourAndHex = new HashMap<>();
+        colourAndHex.put("Blue", "0099cc");
+        colourAndHex.put("Green", "99cc00");
+        colourAndHex.put("White", "ffffff");
+        colourAndHex.put("Yellow", "fdd835");
+        colourAndHex.put("Red", "ff4444");
+
+        messageValues.put("fontcolour", colourAndHex.get(activeColour));
         populateDatabaseWithMessage(messageValues);
 
         try {
@@ -175,6 +240,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         //ToDo Figure out how to reference these in Strings.XML as R.Array again
         String yArray[] = {"Top", "Center", "Bottom"};
         String xArray[] = {"Left", "Center", "Right"};
+        String textSizeArray[] = {"15", "25", "35"};
 
         ArrayAdapter<String> yAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, yArray);
         yAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -183,6 +249,14 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         ArrayAdapter<String> xAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, xArray);
         xAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         xSpinner.setAdapter(xAdapter);
+
+        ArrayAdapter<String> textSizeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, textSizeArray);
+        textSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        textSizeSpinner.setAdapter(textSizeAdapter);
+    }
+
+    private String getTextSizeSpinnerValue() {
+        return textSizeSpinner.getSelectedItem().toString();
     }
 
     private String[] getSpinnerValue() {
