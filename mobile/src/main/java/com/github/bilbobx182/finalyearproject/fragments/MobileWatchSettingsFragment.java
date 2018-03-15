@@ -119,8 +119,8 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
         switch (view.getId()) {
             case (R.id.setupWatchConnect): {
                 progressBar.setVisibility(View.VISIBLE);
-//                beginSendMessageToWear();
-//                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
+                beginSendMessageToWear();
+                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
             }
         }
 

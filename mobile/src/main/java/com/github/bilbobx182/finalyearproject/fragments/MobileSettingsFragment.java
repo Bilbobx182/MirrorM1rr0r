@@ -173,7 +173,6 @@ public class MobileSettingsFragment extends Fragment implements View.OnClickList
     }
 
     private void checkPermissions() {
-        // We need to check permissions before the image is displayed as of Android 6.0...
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)) {

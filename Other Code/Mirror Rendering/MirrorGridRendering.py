@@ -209,14 +209,18 @@ def setWeatherWidget(json):
         outJSON['messagePayload'] = weatherImages[0]
     if "Cloud" in result['type']:
         outJSON['messagePayload'] = weatherImages[1]
-    if "Rain" or "Drizzle" in result['type']:
+    if "Mist" in result['type']:
+        outJSON['messagePayload'] = weatherImages[1]
+    if "Rain" in result['type']:
+        outJSON['messagePayload'] = weatherImages[3]
+    if "Drizzle" in result['type']:
         outJSON['messagePayload'] = weatherImages[3]
 
     if ('location' in json):
         outJSON['location'] = json['location']
 
     if (isDynamicBool):
-        dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['dynamicIdentifier']['lat'],
+        dynamicUpdateOutJSON = {'command': json['dynamicIdentifier']['command'], 'lat': json['dynamicIdentifier']['lat'],
                                 'long': json['dynamicIdentifier']['long']}
     else:
         dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}

@@ -57,7 +57,7 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
 
         clearMirrorButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                sendMessage("clear", "/clear");
+                sendMessage("clear", "^/^clear");
             }
         });
     }
@@ -66,6 +66,7 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
     public void onMessageReceived(@NonNull MessageEvent messageEvent) {
         String queueURL = new String(messageEvent.getData());
         WatchDBManager watchDBManager = new WatchDBManager(this);
+        Toast.makeText(this, "Phone message recieved!", Toast.LENGTH_SHORT).show();
 
         try {
             watchDBManager.open();

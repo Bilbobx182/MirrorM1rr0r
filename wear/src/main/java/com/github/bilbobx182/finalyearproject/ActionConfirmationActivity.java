@@ -79,6 +79,7 @@ public class ActionConfirmationActivity extends Activity implements
         HashMap<String, String> messageValues = new HashMap<>();
         messageValues.put("queueurl", getQueue());
         messageValues.put("message", spokenText);
+        messageValues.put("location", "1,1");
 
         RequestPerformer requestPerformer = new RequestPerformer();
         requestPerformer.performSendMessage(messageValues);
