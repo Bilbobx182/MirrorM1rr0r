@@ -1,10 +1,13 @@
 {
-  "queueurl": "https://sqs.eu-west-1.amazonaws.com/186314837751/QUEUENAMEHERE.fifo",
+  "queueurl": "https://sqs.eu-west-1.amazonaws.com/186314837751/queueNameHere.fifo",
 
   "data": {
-    "message": "YOUR MESSAGE HERE",
-    "x": 1,
-    "y" :1,
-    "fontcolour":"red"
+    "message": "Hello World",
+    "location": "1,1",
+    "fontcolour":"ffffff"
   }
+}
+
+{
+  "result": "Success, message sent :)"
 }

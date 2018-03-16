@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
-import com.github.bilbobx182.finalyearproject.Encryptor;
 import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.sharedcode.RequestPerformer;
 import com.polidea.rxandroidble.RxBleClient;
@@ -283,7 +282,6 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         }
         String firstname = "";
         String surname = "";
-        Encryptor encryptor = new Encryptor();
         DBManager dbManager = new DBManager(getActivity());
         try {
             dbManager.open();
@@ -292,7 +290,8 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String queue = requestPerformer.createQueue(encryptor.hashCode(IMEI + firstname + surname));
+        String uniqueUserCharacteristics = IMEI + firstname + surname;
+        String queue = requestPerformer.createQueue(Integer.toHexString(uniqueUserCharacteristics.hashCode()));
         dbManager.updateUserInformation("queue", queue);
     }
 
