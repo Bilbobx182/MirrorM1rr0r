@@ -3,10 +3,11 @@ import os
 
 import matplotlib.colors as colors
 import requests
+import time
 from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.gridlayout import GridLayout
-from kivy.uix.image import AsyncImage
+from kivy.uix.image import AsyncImage, Image
 from kivy.uix.label import Label
 from pymongo import MongoClient
 
@@ -220,7 +221,8 @@ def setWeatherWidget(json):
         outJSON['location'] = json['location']
 
     if (isDynamicBool):
-        dynamicUpdateOutJSON = {'command': json['dynamicIdentifier']['command'], 'lat': json['dynamicIdentifier']['lat'],
+        dynamicUpdateOutJSON = {'command': json['dynamicIdentifier']['command'],
+                                'lat': json['dynamicIdentifier']['lat'],
                                 'long': json['dynamicIdentifier']['long']}
     else:
         dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
@@ -316,6 +318,17 @@ def updateDynamicWidget(jsonContents):
     print(jsonContents)
 
 
+def isConnectedToNetwork():
+    try:
+        # Because BBC is almost always up, and since it's large enough a ping to it wouldn't hurt them I ping them.
+        response = requests.get('http://www.bbc.com/')
+        if requests.codes.ok == response.status_code:
+            return True
+
+    except requests.exceptions.ConnectionError:
+        return False
+
+
 updateTimerCurrentValue = 0
 
 
@@ -324,7 +337,15 @@ class MirrorApplication(App):
         setup()
 
         gridLayout = GridLayout(cols=3, rows=3)
-        gridLayout.add_widget(Label(text="Loading now!"))
+
+        if (isConnectedToNetwork()):
+            gridLayout.add_widget(Label(text="Loading now!"))
+        else:
+            label = Label(text="No network detected, Reboot please :(")
+            label.font_size="30dp"
+            gridLayout.add_widget(label)
+            gridLayout.add_widget(Image(source='networkError.png'))
+            return gridLayout
 
         updateInterval = 5
         Clock.schedule_interval(lambda a: self.update(gridLayout), updateInterval)

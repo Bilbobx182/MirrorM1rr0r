@@ -122,7 +122,6 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
                 getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
             }
         }
-
     }
 
     public interface OnFragmentInteractionListener {
@@ -131,9 +130,7 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
     }
 
     private void beginSendMessageToWear() {
-
         setQueueToSend();
-
         AsyncTask.execute(() -> {
 
                 /*
@@ -157,7 +154,6 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
                 e.printStackTrace();
             }
         });
-
     }
 
 
@@ -170,7 +166,6 @@ public class MobileWatchSettingsFragment extends Fragment implements View.OnClic
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
     /*
     REFERENCE: Android Doccumentation

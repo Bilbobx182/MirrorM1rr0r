@@ -25,8 +25,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class SendMessage extends Fragment implements View.OnClickListener {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private Spinner ySpinner;
     private Spinner xSpinner;
     private Spinner textSizeSpinner;
