@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/posHeler"
+        android:id="@+id/mirrorLocationHelper"
         android:layout_width="wrap_content"
         android:layout_height="31dp"
         android:layout_marginBottom="64dp"
@@ -204,14 +204,14 @@
         android:layout_height="169dp"
         android:indeterminateTint="@color/colorAccentAltLight"
         android:indeterminateTintMode="src_atop"
-        app:layout_constraintBottom_toTopOf="@+id/posHeler"
+        app:layout_constraintBottom_toTopOf="@+id/mirrorLocationHelper"
         app:layout_constraintEnd_toStartOf="@+id/queryEditText"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/queryEditText"
         app:layout_constraintTop_toBottomOf="@+id/querySubText" />
 
     <TextView
-        android:id="@+id/spinnerTextSendMessage"
+        android:id="@+id/progressBarTextSendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="sending!"

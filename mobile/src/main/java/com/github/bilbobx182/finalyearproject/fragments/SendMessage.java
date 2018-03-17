@@ -1,8 +1,6 @@
 package com.github.bilbobx182.finalyearproject.fragments;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import com.github.bilbobx182.sharedcode.RequestPerformer;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Map;
 
 public class SendMessage extends Fragment implements View.OnClickListener {
     private static final String ARG_PARAM1 = "param1";
@@ -35,40 +33,71 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     private EditText queryInputEditText;
     private Button doneButton;
 
+    private TextView mirrorLocationHelperTextView;
+    private TextView colourPickerHelperTextView;
+    private TextView textSizeHelperTextView;
+    private TextView querySubTextView;
+    private TextView queryHeaderTextView;
+
+    private android.support.v7.widget.GridLayout colourGridLayout;
     private ImageButton blueButton;
     private ImageButton greenButton;
     private ImageButton whiteButton;
     private ImageButton yellowButton;
     private ImageButton redButton;
+
     private TextView colourSelector;
     private String activeColour = "White";
 
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private ProgressBar progressBar;
+    private TextView progressText;
     private OnFragmentInteractionListener mListener;
 
     public SendMessage() {
     }
 
-    public static SendMessage newInstance(String param1, String param2) {
-        SendMessage fragment = new SendMessage();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        colourSelector = getActivity().findViewById(R.id.colourPickerHelper);
+        colourGridLayout = getActivity().findViewById(R.id.colourGrid);
+
+        queryInputEditText = getView().findViewById(R.id.queryEditText);
+
+        doneButton = getActivity().findViewById(R.id.commitButton);
+        doneButton.setOnClickListener(this);
+
+        blueButton = getActivity().findViewById(R.id.blueColourSelector);
+        blueButton.setOnClickListener(this);
+
+        greenButton = getActivity().findViewById(R.id.greenColourSelector);
+        greenButton.setOnClickListener(this);
+
+        whiteButton = getActivity().findViewById(R.id.whiteColourSelector);
+        whiteButton.setOnClickListener(this);
+
+        yellowButton = getActivity().findViewById(R.id.yellowColourSelector);
+        yellowButton.setOnClickListener(this);
+
+        redButton = getActivity().findViewById(R.id.redColourSelector);
+        redButton.setOnClickListener(this);
+
+        progressBar = getView().findViewById(R.id.progressBarSendMessage);
+        progressText = getView().findViewById(R.id.progressBarTextSendMessage);
+        displayProgressBar(false);
+
+
+        queryHeaderTextView = getView().findViewById(R.id.queryHeaderText);
+        querySubTextView = getView().findViewById(R.id.querySubText);
+        mirrorLocationHelperTextView = getView().findViewById(R.id.mirrorLocationHelper);
+        textSizeHelperTextView = getView().findViewById(R.id.textSizeHelper);
+        colourPickerHelperTextView = getView().findViewById(R.id.colourPickerHelper);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -83,13 +112,6 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
         setupSpinners();
         return inflated;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
@@ -151,33 +173,38 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     }
 
     private void processDoneButtonActions() {
+        // This looks weird on fast devices. But it's great for slow devices
+        displayProgressBar(true);
+        hideSendMessageContents(true);
+
         beginMessageTransformation();
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    private void displayProgressBar(boolean shouldDisplay) {
+        if (shouldDisplay) {
+            progressBar.setVisibility(View.VISIBLE);
+            progressText.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            progressText.setVisibility(View.GONE);
+        }
+    }
 
-        colourSelector = getActivity().findViewById(R.id.colourPickerHelper);
+    private void hideSendMessageContents(boolean shouldHide) {
+        if (shouldHide) {
+            queryHeaderTextView.setVisibility(View.GONE);
+            querySubTextView.setVisibility(View.GONE);
+            colourPickerHelperTextView.setVisibility(View.GONE);
+            mirrorLocationHelperTextView.setVisibility(View.GONE);
+            textSizeHelperTextView.setVisibility(View.GONE);
+            queryInputEditText.setVisibility(View.GONE);
 
-        doneButton = getActivity().findViewById(R.id.commitButton);
-        doneButton.setOnClickListener(this);
+            xSpinner.setVisibility(View.GONE);
+            ySpinner.setVisibility(View.GONE);
+            textSizeSpinner.setVisibility(View.GONE);
 
-        blueButton = getActivity().findViewById(R.id.blueColourSelector);
-        blueButton.setOnClickListener(this);
-
-        greenButton = getActivity().findViewById(R.id.greenColourSelector);
-        greenButton.setOnClickListener(this);
-
-        whiteButton = getActivity().findViewById(R.id.whiteColourSelector);
-        whiteButton.setOnClickListener(this);
-
-        yellowButton = getActivity().findViewById(R.id.yellowColourSelector);
-        yellowButton.setOnClickListener(this);
-
-        redButton = getActivity().findViewById(R.id.redColourSelector);
-        redButton.setOnClickListener(this);
-
+            colourGridLayout.setVisibility(View.GONE);
+        }
     }
 
     private void beginMessageTransformation() {
@@ -194,7 +221,6 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         colourAndHex.put("Yellow", "fdd835");
         colourAndHex.put("Red", "ff4444");
 
-        queryInputEditText = getView().findViewById(R.id.queryEditText);
         String input = queryInputEditText.getText().toString();
         String[] spinnerValues = getSpinnerValue();
 
