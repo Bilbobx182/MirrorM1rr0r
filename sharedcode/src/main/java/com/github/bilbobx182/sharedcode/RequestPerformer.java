@@ -1,12 +1,6 @@
 package com.github.bilbobx182.sharedcode;
 
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.telephony.TelephonyManager;
-
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 

@@ -187,6 +187,12 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
     private void groupValuesBeforeSending() {
         HashMap<String, String> messageValues = new HashMap<>();
+        HashMap<String, String> colourAndHex = new HashMap<>();
+        colourAndHex.put("Blue", "0099cc");
+        colourAndHex.put("Green", "99cc00");
+        colourAndHex.put("White", "ffffff");
+        colourAndHex.put("Yellow", "fdd835");
+        colourAndHex.put("Red", "ff4444");
 
         queryInputEditText = getView().findViewById(R.id.queryEditText);
         String input = queryInputEditText.getText().toString();
@@ -197,12 +203,6 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         messageValues.put("message", input);
         messageValues.put("location", String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]));
         messageValues.put("fontsize", getTextSizeSpinnerValue());
-        HashMap<String, String> colourAndHex = new HashMap<>();
-        colourAndHex.put("Blue", "0099cc");
-        colourAndHex.put("Green", "99cc00");
-        colourAndHex.put("White", "ffffff");
-        colourAndHex.put("Yellow", "fdd835");
-        colourAndHex.put("Red", "ff4444");
 
         messageValues.put("fontcolour", colourAndHex.get(activeColour));
         populateDatabaseWithMessage(messageValues);

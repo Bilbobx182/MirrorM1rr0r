@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
@@ -222,22 +223,12 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
         device.establishConnection(true)
                 .flatMap(rxBleConnection -> rxBleConnection.createNewLongWriteBuilder()
-                        .setCharacteristicUuid(writeID) // required or the .setCharacteristic()
-                        // .setCharacteristic() alternative if you have a specific BluetoothGattCharacteristic
-                        .setBytes(message)
-                        // .setMaxBatchSize(maxBatchSize) // optional -> default 20 or current MTU
-                        // .setWriteOperationAckStrategy(ackStrategy) // optional to postpone writing next batch
-                        .build()
+                        .setCharacteristicUuid(writeID).setBytes(message).build()
                 )
                 .subscribe(
-                        byteArray -> {
-                            // Written data.
-                        },
-                        throwable -> {
-                            // Handle an error here.
-                        }
+                        byteArray -> Log.d("SetupMirror", "Content Written"),
+                        throwable -> Toast.makeText(getContext(), "Sending message to mirror failed", Toast.LENGTH_SHORT).show()
                 );
-
         // End Reference
     }
 

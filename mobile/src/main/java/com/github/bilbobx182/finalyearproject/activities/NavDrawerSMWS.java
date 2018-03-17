@@ -80,8 +80,6 @@ public class NavDrawerSMWS extends AppCompatActivity
     }
 
     private void setHeaderText(NavigationView navigationView) {
-
-
         View headerView = navigationView.getHeaderView(0);
         navFirstNameTextView = headerView.findViewById(R.id.navFirstName);
         navSurnameTextView = headerView.findViewById(R.id.navSurname);
@@ -138,7 +136,6 @@ public class NavDrawerSMWS extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.nav_drawer_smw, menu);
         return true;
     }
@@ -146,7 +143,6 @@ public class NavDrawerSMWS extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Fragment fragment = new MobileSettingsFragment();
             switchToFragment(fragment);
@@ -187,7 +183,6 @@ public class NavDrawerSMWS extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        //you can leave it empty
     }
 
     private void switchToFragment(Fragment fragment) {
@@ -216,12 +211,4 @@ public class NavDrawerSMWS extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-    /*
-    //        for (Map.Entry<String, String> entry : test.entrySet()) {
-//            String key = entry.getKey();
-//            String value = entry.getValue();
-//            Log.d("Ciaran", value + " KEY : " + String.valueOf(key));
-//        }
-     */
 }

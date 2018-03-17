@@ -22,10 +22,10 @@ def lambda_handler(event, context):
         if ('location' in event['queryStringParameters']):
             message['location'] = (event['queryStringParameters']['location'])
 
-        if ('fontsize' in event['queryStringParameters']):
+        if ('fontSize' in event['queryStringParameters']):
             message['fontSize'] = (event['queryStringParameters']['fontsize'])
 
-        if 'fontcolour' in event['queryStringParameters']:
+        if 'fontColour' in event['queryStringParameters']:
             message['fontColour'] = (event['queryStringParameters']['fontcolour'])
 
         # Extra query parameters

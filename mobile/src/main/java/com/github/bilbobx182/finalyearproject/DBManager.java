@@ -218,9 +218,10 @@ public class DBManager {
 
             do {
                 //ToDo Refactor this, make it better. It's not the best right now
-                values.put(SENT_MESSAGE, result.getString(1));
-                values.put(SENT_COLOR, result.getString(2));
-                values.put(SENT_COORDS, result.getString(3));
+                values.put(SENT_MESSAGE.toLowerCase(), result.getString(1));
+                values.put(SENT_COLOR.toLowerCase(), result.getString(2));
+                values.put(SENT_SIZE.toLowerCase(), result.getString(3));
+                values.put(SENT_COORDS.toLowerCase(), result.getString(4));
             }
             while (result.moveToPrevious());
 

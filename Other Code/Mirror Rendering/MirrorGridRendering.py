@@ -347,9 +347,10 @@ class MirrorApplication(App):
 
         if (isDynamicWidget(y, x)):
             global updateTimerCurrentValue
-            updateTimerMaxValue = 15
+            updateTimerMaxValue = 60
             if (updateTimerCurrentValue >= updateTimerMaxValue):
                 parseDynamicCommand(getDynamicWidgetContents(y, x), obj)
+                updateTimerCurrentValue = 0
 
         widget = getWidgetPayloadFrom(y, x)
 

@@ -102,10 +102,9 @@ public class ActionConfirmationActivity extends Activity implements
     }
 
     private void displayToast() {
-        if(spokenText.equals("clear")) {
+        if (spokenText.equals("clear")) {
             Toast.makeText(this, "Didn't clear!", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             Toast.makeText(this, "Sending canceled!", Toast.LENGTH_SHORT).show();
         }
     }
