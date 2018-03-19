@@ -1,5 +1,8 @@
 import json
+
 import boto3
+
+print('Loading function')
 
 
 def lambda_handler(event, context):
@@ -9,12 +12,17 @@ def lambda_handler(event, context):
         "content-type": "application-json"
     }
 
+    count = {}
+
     try:
         sqs = boto3.resource('sqs')
-        queue = sqs.get_queue_by_name(QueueName=event['queryStringParameters']['queuename'])
-        out['body'] = queue.attributes.get('ApproximateNumberOfMessages')
+        queueName = (event['queryStringParameters']['queueurl']).split("/")[4]
+        queue = sqs.get_queue_by_name(QueueName=queueName)
+        count['result'] = queue.attributes.get('ApproximateNumberOfMessages')
+        out['body'] = json.dumps(count)
+
     except:
-        isEmpty = True
         out['statusCode'] = 400
-        out['body'] = "It messed up, you probably gave it wrong input. Sample correct  queueName=ciaranVis.fifo"
+        count['result'] = "no queuename param supplied"
+        out['body'] = json.dumps(count)
     return (out)

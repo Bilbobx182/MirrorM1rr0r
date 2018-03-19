@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "d2a4ae46-7783-5922-97be-9e06bb152001",
+		"name": "AWS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "fifo Post geo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"queueurl\": \"https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranIsReallyCool.fifo\",\n  \n  \"data\": {\n    \"message\": \"/weather\",\n    \"x\": 2,\n    \"y\" :2,\n    \"fontcolour\":\"028080\",\n    \"long\": -6.26,\n    \"lat\": 53.35\n  }\n}"
+				},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendmessagefifopost",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"sendmessagefifopost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send Fifo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b1b4bae3-09c3-4011-9b42-f2437c7b124b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"messageCreatedInQueueStatus\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Success\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Success\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo&message=b\\\\'\\\\x95\\\\x96BPp\\\\'test&fontcolour=A98111&lat=53.35&long=-6.35&location=0,0",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"sendfifomessage"
+					],
+					"query": [
+						{
+							"key": "queueurl",
+							"value": "https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
+						},
+						{
+							"key": "message",
+							"value": "b\\\\'\\\\x95\\\\x96BPp\\\\'test"
+						},
+						{
+							"key": "fontcolour",
+							"value": "A98111"
+						},
+						{
+							"key": "lat",
+							"value": "53.35"
+						},
+						{
+							"key": "long",
+							"value": "-6.35"
+						},
+						{
+							"key": "location",
+							"value": "0,0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFifoMessage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getfifomessage?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo&count=1",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"getfifomessage"
+					],
+					"query": [
+						{
+							"key": "queueurl",
+							"value": "https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo"
+						},
+						{
+							"key": "count",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Queue",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod//createfifoqueue?queueName=test",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"",
+						"createfifoqueue"
+					],
+					"query": [
+						{
+							"key": "queueName",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "messageCount",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6449d71e-1bf4-4dce-bd9e-6c6ddaeea72e",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"countResult\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"result\");",
+							"});",
+							"",
+							"pm.test(\"countResultPositive\", function () {",
+							"    var data = pm.response.json();",
+							"    pm.expect(parseInt(data.result)).to.be.above(-1);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessagecount?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"getmessagecount"
+					],
+					"query": [
+						{
+							"key": "queueurl",
+							"value": "https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

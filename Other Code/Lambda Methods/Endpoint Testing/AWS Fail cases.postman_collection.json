@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "bd221ae9-da49-4738-a860-8c1161d46a33",
+		"name": "AWS Fail cases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Queue No Params TEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20087bf2-f5bb-4919-a26c-ae188bc32132",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"queueFailCase\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Parameter 'queueName' was not passed\");",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod//createfifoqueue?queueName=",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"",
+						"createfifoqueue"
+					],
+					"query": [
+						{
+							"key": "queueName",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSendMessageNoMessage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6294d967-2a63-4c64-b333-e61b362f07a1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendfifomessage?message=b\\\\'\\\\x95\\\\x96BPp\\\\'test&fontcolour=A98111&lat=53.35&long=-6.35&location=0,0",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"sendfifomessage"
+					],
+					"query": [
+						{
+							"key": "message",
+							"value": "b\\\\'\\\\x95\\\\x96BPp\\\\'test"
+						},
+						{
+							"key": "fontcolour",
+							"value": "A98111"
+						},
+						{
+							"key": "lat",
+							"value": "53.35"
+						},
+						{
+							"key": "long",
+							"value": "-6.35"
+						},
+						{
+							"key": "location",
+							"value": "0,0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "noPostData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3bfdc307-c316-4cd2-9d63-e0bc9eb036b8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"noPostDataSent\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"POST Takes data {...} it wasn't present\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"queueurl\": \"https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranIsReallyCool.fifo\"\n}"
+				},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendmessagefifopost",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"sendmessagefifopost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "noPostQueue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a006965b-b611-4f64-af96-27abb8bd98f9",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"noPostQueueSent\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"POST takes queueurl : your-queue-here, it wasn't present\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"data\": {\n    \"message\": \"^/^weather\",\n    \"x\": 2,\n    \"y\" :2,\n    \"fontcolour\":\"028080\",\n    \"long\": -6.26,\n    \"lat\": 53.35\n  }\n}"
+				},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendmessagefifopost",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"sendmessagefifopost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "messageCountError",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9cb67cb-32b6-4ade-8b16-a367429b6248",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"countResult\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"result\");",
+							"});",
+							"",
+							"pm.test(\"countResultErrorMessage\", function () {",
+							"    var data = pm.response.json();",
+							"    ",
+							"    pm.expect(data.result).to.include(\"no queuename param supplied\");",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getmessagecount?queueurl=rthgrbf",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"getmessagecount"
+					],
+					"query": [
+						{
+							"key": "queueurl",
+							"value": "rthgrbf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Queue No Params",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1710efcb-9cbf-4419-a435-7be550e6c0c6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"incorrectParameterResponse\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Parameter 'queueName' was not passed\");",
+							"});",
+							"",
+							"pm.test(\"incorrectParameterStatus404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod//createfifoqueue?queue=test",
+					"protocol": "https",
+					"host": [
+						"tj5ur8uafi",
+						"execute-api",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"Prod",
+						"",
+						"createfifoqueue"
+					],
+					"query": [
+						{
+							"key": "queue",
+							"value": "test"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

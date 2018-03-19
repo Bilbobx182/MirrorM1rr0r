@@ -1,4 +1,5 @@
 import json
+
 import boto3
 
 
@@ -10,31 +11,32 @@ def sendMessage(message, queueURL):
 
 
 def lambda_handler(event, context):
-
     # Event['body'] will throw exceptions testing in Lambda, but works with actual code. Update test cases.
-
     data = json.loads(event['body'])
+    result = {}
 
-    if (data['data'] is not None and data['queueurl'] is not None):
+    out = {}
+    out['isBase64Encoded']: False
+    out['headers'] = {
+        "content-type": "application-json"
+    }
+
+    if ('data' not in data):
+        result['result'] = "POST Takes data {...} it wasn't present"
+        out['statusCode'] = 400
+        out['body'] = json.dumps(result)
+
+    elif ('queueurl' not in data):
+        result['result'] = "POST takes queueurl : your-queue-here, it wasn't present"
+        out['statusCode'] = 400
+        out['body'] = json.dumps(result)
+
+    elif (data['data'] is not None and data['queueurl'] is not None):
 
         sendMessage(data['data'], data['queueurl'])
-
         result = {}
         result['result'] = "Success"
-        return {
-            'statusCode': 200,
-            'isBase64Encoded': False,
-            'body': json.dumps(result),
-            'headers': {
-                'content-type': 'application/json'
-            }
-        };
-    else:
-        return {
-            'statusCode': 400,
-            'isBase64Encoded': False,
-            'body': "POST Takes data {...} and queueurl : your queue here. One or both weren't present",
-            'headers': {
-                'content-type': 'application/json'
-            }
-        };
+
+        out['statusCode'] = 200
+        out['body'] = json.dumps(result)
+    return out

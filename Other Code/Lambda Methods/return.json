@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "title": "gethelp",
+      "title": "help",
       "Description": "This returns a list of nodes with descriptions",
       "Parameters": "N/A",
       "Return": "List of type nodes"
@@ -37,6 +37,6 @@
       "Return": "String of status",
       "ErrorMessage": "Queue or message payload were not passed :(",
       "ErrorDescription" : "You didn't pass the query parameters of the queueurl correctly, or message correctly"
-    },
+    }
   ]
 }
