@@ -307,6 +307,8 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         yAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ySpinner.setAdapter(yAdapter);
 
+        advancedModeSpinner.setVisibility(View.GONE);
+
         ArrayAdapter<String> xAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, xArray);
         xAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         xSpinner.setAdapter(xAdapter);
