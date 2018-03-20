@@ -175,7 +175,7 @@ def parseDynamicCommand(jsonCommand, gridLayout):
         print("Getting weather")
         setWeatherWidget(jsonCommand)
 
-    if "^/^tempature" in jsonCommand['dynamicIdentifier']['command']:
+    if "^/^temperature" in jsonCommand['dynamicIdentifier']['command']:
         print("Getting current Temp")
         setTempatureWidget(jsonCommand)
 

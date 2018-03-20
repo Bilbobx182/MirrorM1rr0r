@@ -1,9 +1,15 @@
 package com.github.bilbobx182.finalyearproject.fragments;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +30,9 @@ import com.github.bilbobx182.sharedcode.RequestPerformer;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
+
+import static android.content.Context.LOCATION_SERVICE;
 
 public class SendMessage extends Fragment implements View.OnClickListener {
     private Spinner ySpinner;
@@ -49,6 +59,14 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
     private ProgressBar progressBar;
     private TextView progressText;
+
+    private Switch advancedMode;
+    private Spinner advancedModeSpinner;
+    private boolean isAdvanced;
+
+    private String lat;
+    private String lon;
+
     private OnFragmentInteractionListener mListener;
 
     public SendMessage() {
@@ -85,6 +103,12 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         progressText = getView().findViewById(R.id.progressBarTextSendMessage);
         displayProgressBar(false);
 
+        advancedMode = getActivity().findViewById(R.id.advancedMessage);
+        advancedMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            isAdvanced = isChecked;
+            shouldDisplayAdvancedOptions(isChecked);
+            setLatAndLong();
+        });
 
         queryHeaderTextView = getView().findViewById(R.id.queryHeaderText);
         querySubTextView = getView().findViewById(R.id.querySubText);
@@ -106,7 +130,9 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
         ySpinner = inflated.findViewById(R.id.ySpinner);
         xSpinner = inflated.findViewById(R.id.xSpinner);
+
         textSizeSpinner = inflated.findViewById(R.id.textSizeSpinner);
+        advancedModeSpinner = inflated.findViewById(R.id.advancedOptionsSpinner);
 
         setupSpinners();
         return inflated;
@@ -219,17 +245,27 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         colourAndHex.put("Yellow", "fdd835");
         colourAndHex.put("Red", "ff4444");
 
-        String input = queryInputEditText.getText().toString();
+
         String[] spinnerValues = getSpinnerValue();
+        String input = "";
 
         DBManager dbManager = new DBManager(getActivity());
-
+        if (isAdvanced) {
+            input = getAdvancedSpinnerValue();
+            messageValues.put("lat", lat);
+            messageValues.put("long", lon);
+        } else {
+            input = queryInputEditText.getText().toString();
+        }
         messageValues.put("message", input);
         messageValues.put("location", String.valueOf(spinnerValues[0]) + "," + String.valueOf(spinnerValues[1]));
         messageValues.put("fontsize", getTextSizeSpinnerValue());
-
         messageValues.put("fontcolour", colourAndHex.get(activeColour));
-        populateDatabaseWithMessage(messageValues);
+
+        // No need to store the values if it's a dynamic widget
+        if(!isAdvanced) {
+            populateDatabaseWithMessage(messageValues);
+        }
 
         try {
             dbManager.open();
@@ -265,6 +301,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         String yArray[] = {"Top", "Center", "Bottom"};
         String xArray[] = {"Left", "Center", "Right"};
         String textSizeArray[] = {"15", "25", "35"};
+        String advancedOptions[] = {"Weather current location", "Temperature current location"};
 
         ArrayAdapter<String> yAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, yArray);
         yAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -277,10 +314,54 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         ArrayAdapter<String> textSizeAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, textSizeArray);
         textSizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         textSizeSpinner.setAdapter(textSizeAdapter);
+
+        ArrayAdapter<String> advancedOptionsAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, advancedOptions);
+        advancedOptionsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        advancedModeSpinner.setAdapter(advancedOptionsAdapter);
     }
 
     private String getTextSizeSpinnerValue() {
         return textSizeSpinner.getSelectedItem().toString();
+    }
+
+    private String getAdvancedSpinnerValue() {
+        if (textSizeSpinner.getSelectedItem().toString().contains("Weather")) {
+            return "^/^weather";
+        } else {
+            return "^/^temperature";
+        }
+    }
+
+    private void setLatAndLong() {
+
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPerms();
+        }
+
+        LocationManager locationManager;
+        /*
+        Desc: Modified version of code from SO
+        Reference: https://stackoverflow.com/questions/20438627/getlastknownlocation-returns-null
+        Last Accessed: 20/March/2018
+         */
+        locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
+        List<String> providers = locationManager.getProviders(true);
+        Location mostAccurateLocation = null;
+
+        for (String provider : providers) {
+            Location currentProviderLocation = locationManager.getLastKnownLocation(provider);
+            if (mostAccurateLocation == null) {
+                if (currentProviderLocation != null) {
+                    mostAccurateLocation = currentProviderLocation;
+                }
+            } else if ((currentProviderLocation != null) && currentProviderLocation.getAccuracy() < mostAccurateLocation.getAccuracy()) {
+                mostAccurateLocation = currentProviderLocation;
+            }
+        }
+        // End Reference
+
+        setLat(String.valueOf(mostAccurateLocation.getLatitude()));
+        setLon(String.valueOf(mostAccurateLocation.getLongitude()));
     }
 
     private String[] getSpinnerValue() {
@@ -313,5 +394,41 @@ public class SendMessage extends Fragment implements View.OnClickListener {
             }
         }
         return results;
+    }
+
+    private void shouldDisplayAdvancedOptions(boolean shouldDisplay) {
+        if (shouldDisplay) {
+            queryInputEditText.setVisibility(View.GONE);
+            advancedModeSpinner.setVisibility(View.VISIBLE);
+        } else {
+            queryInputEditText.setVisibility(View.VISIBLE);
+            advancedModeSpinner.setVisibility(View.GONE);
+        }
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    private void requestPerms() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            } else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            }
+        }
     }
 }

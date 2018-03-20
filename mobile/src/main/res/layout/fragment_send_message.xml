@@ -60,15 +60,16 @@
     <TextView
         android:id="@+id/mirrorLocationHelper"
         android:layout_width="wrap_content"
-        android:layout_height="31dp"
-        android:layout_marginBottom="64dp"
-        android:layout_marginTop="66dp"
+        android:layout_height="27dp"
         android:text="Where do you want it on the mirror?"
-        app:layout_constraintBottom_toTopOf="@+id/textSizeHelper"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.467" />
 
     <Spinner
         android:id="@+id/ySpinner"
@@ -92,11 +93,14 @@
         android:id="@+id/textSizeHelper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="205dp"
+        android:layout_marginTop="330dp"
         android:text="How Large on the screen?"
-        app:layout_constraintBottom_toTopOf="@+id/textSizeSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/commitButton"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/textSizeSpinner"
@@ -188,12 +192,12 @@
     <Button
         android:id="@+id/commitButton"
         android:layout_width="411dp"
-        android:layout_height="0dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
         android:text="Send"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
@@ -208,7 +212,8 @@
         app:layout_constraintEnd_toStartOf="@+id/queryEditText"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/queryEditText"
-        app:layout_constraintTop_toBottomOf="@+id/querySubText" />
+        app:layout_constraintTop_toBottomOf="@+id/querySubText"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/progressBarTextSendMessage"
@@ -221,14 +226,29 @@
         app:layout_constraintStart_toEndOf="@+id/queryEditText"
         app:layout_constraintTop_toBottomOf="@+id/queryEditText" />
 
-    <Switch android:theme="@style/AppTheme.switchTheme"
+    <Switch
         android:id="@+id/advancedMessage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
+        android:layout_height="8dp"
         android:text="Advanced"
+        android:theme="@style/AppTheme.switchTheme"
+        app:layout_constraintBottom_toTopOf="@+id/progressBarSendMessage"
+        app:layout_constraintEnd_toStartOf="@+id/querySubText"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/queryHeaderText" />
+
+    <Spinner
+        android:id="@+id/advancedOptionsSpinner"
+        android:layout_width="289dp"
+        android:layout_height="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBarSendMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteY="34dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarTextSendMessage"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </android.support.constraint.ConstraintLayout>
