@@ -29,7 +29,7 @@ currentPath = os.getcwd()
 configPath = ((currentPath.split("Mirror Rendering"))[0] + pathExtension)
 configData = json.load(open(configPath))
 
-base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/getfifomessage"
+base = "https://trbcvi749b.execute-api.eu-west-1.amazonaws.com/Prod/getmessage"
 queue = "?queueurl=" + configData['queue']
 
 count = "&count=" + str(messageCount)

@@ -4,7 +4,7 @@ import os
 
 # contents = str(os.urandom(5))
 contents = "oh hi mark"
-base = "https://tj5ur8uafi.execute-api.us-west-2.amazonaws.com/Prod/sendfifomessage"
+base = "https://trbcvi749b.execute-api.eu-west-1.amazonaws.com/Prod/sendmessage/"
 queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo"
 message = "&message=" + "^/^temp"
 location = "&location=" + "0,1"

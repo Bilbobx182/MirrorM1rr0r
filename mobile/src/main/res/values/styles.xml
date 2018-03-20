@@ -22,4 +22,10 @@
         <item name="android:windowBackground">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.switchTheme" parent="">
+        <item name="android:colorControlActivated">@color/colorAccentAltLight</item>
+        <item name="colorSwitchThumbNormal">@color/colorAccentLight</item>
+        <item name="android:colorForeground">@color/colorAccentDark</item>
+    </style>
+
 </resources>

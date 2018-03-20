@@ -27,7 +27,7 @@
     <SUITE FILE_PATH="coverage/Other_Code$populateInitialDB.coverage" NAME="populateInitialDB Coverage Results" MODIFIED="1520798350516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
     <SUITE FILE_PATH="coverage/Other_Code$NestedGridWidget.coverage" NAME="NestedGridWidget Coverage Results" MODIFIED="1520943506090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
     <SUITE FILE_PATH="coverage/Other_Code$animationExample.coverage" NAME="animationExample Coverage Results" MODIFIED="1509783947460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
-    <SUITE FILE_PATH="coverage/Other_Code$sendOneFIFOMessage.coverage" NAME="sendOneFIFOMessage Coverage Results" MODIFIED="1521127267514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
+    <SUITE FILE_PATH="coverage/Other_Code$sendOneFIFOMessage.coverage" NAME="sendOneFIFOMessage Coverage Results" MODIFIED="1521464310889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
     <SUITE FILE_PATH="coverage/Other_Code$test.coverage" NAME="test Coverage Results" MODIFIED="1511603769681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
     <SUITE FILE_PATH="coverage/Other_Code$sendMessageFIFOPost.coverage" NAME="sendMessageFIFOPost Coverage Results" MODIFIED="1518714748337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods/Local Lambda" />
     <SUITE FILE_PATH="coverage/Other_Code$MirrorOccupiedChecker.coverage" NAME="MirrorOccupiedChecker Coverage Results" MODIFIED="1511287468897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
@@ -46,79 +46,57 @@
       <file leaf-file-name="MirrorGridRendering.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="31" column="68" lean-forward="false" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="82" />
+            <state relative-caret-position="340">
+              <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#399#463#0" expanded="false" />
-                <element signature="e#892#1003#0" expanded="false" />
-                <element signature="e#1051#1194#0" expanded="false" />
-                <element signature="e#1240#1381#0" expanded="false" />
-                <element signature="e#1424#1529#0" expanded="false" />
-                <element signature="e#1570#1673#0" expanded="false" />
-                <element signature="e#1707#1927#0" expanded="false" />
-                <element signature="e#1829#1910#0" expanded="false" />
-                <element signature="e#1970#2196#0" expanded="false" />
-                <element signature="e#2092#2179#0" expanded="false" />
-                <element signature="e#2235#3162#0" expanded="false" />
-                <element signature="e#2358#2477#0" expanded="false" />
-                <element signature="e#2707#2781#0" expanded="false" />
-                <element signature="e#2783#3122#0" expanded="false" />
-                <element signature="e#2801#3116#0" expanded="false" />
-                <element signature="e#2970#3106#0" expanded="false" />
-                <element signature="e#3214#3514#0" expanded="false" />
-                <element signature="e#3341#3514#0" expanded="false" />
-                <element signature="e#3443#3514#0" expanded="false" />
-                <element signature="e#3534#3573#0" expanded="false" />
-                <element signature="e#3733#4093#0" expanded="false" />
-                <element signature="e#3812#4093#0" expanded="false" />
-                <element signature="e#4143#4519#0" expanded="false" />
-                <element signature="e#4199#4258#0" expanded="false" />
-                <element signature="e#4322#4384#0" expanded="false" />
-                <element signature="e#4450#4519#0" expanded="false" />
-                <element signature="e#4576#4994#0" expanded="false" />
-                <element signature="e#4646#4705#0" expanded="false" />
-                <element signature="e#4783#4845#0" expanded="false" />
-                <element signature="e#4925#4994#0" expanded="false" />
-                <element signature="e#5029#7049#0" expanded="false" />
-                <element signature="e#5105#5266#0" expanded="false" />
-                <element signature="e#6619#6839#0" expanded="false" />
-                <element signature="e#6642#6839#0" expanded="false" />
-                <element signature="e#7086#8406#0" expanded="false" />
-                <element signature="e#8024#8198#0" expanded="false" />
-                <element signature="e#8047#8198#0" expanded="false" />
-                <element signature="e#8452#9878#0" expanded="false" />
-                <element signature="e#8610#8729#0" expanded="false" />
-                <element signature="e#9376#9450#0" expanded="false" />
-                <element signature="e#9452#9809#0" expanded="false" />
-                <element signature="e#9470#9803#0" expanded="false" />
-                <element signature="e#9639#9793#0" expanded="false" />
-                <element signature="e#11331#11580#0" expanded="false" />
-                <element signature="e#11480#11580#0" expanded="false" />
-                <element signature="e#12019#12317#0" expanded="false" />
-                <element signature="e#12019#12095#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SMWSConfig.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Bluetooth Low Energy Server/SMWSConfig.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sendMessageFIFO.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lambda Methods/sendMessageFIFO.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="52" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#888#999#0" expanded="false" />
+                <element signature="e#1047#1190#0" expanded="false" />
+                <element signature="e#1236#1377#0" expanded="false" />
+                <element signature="e#1420#1525#0" expanded="false" />
+                <element signature="e#1566#1669#0" expanded="false" />
+                <element signature="e#1703#1923#0" expanded="false" />
+                <element signature="e#1825#1906#0" expanded="false" />
+                <element signature="e#1966#2192#0" expanded="false" />
+                <element signature="e#2088#2175#0" expanded="false" />
+                <element signature="e#2231#3158#0" expanded="false" />
+                <element signature="e#2354#2473#0" expanded="false" />
+                <element signature="e#2703#2777#0" expanded="false" />
+                <element signature="e#2779#3118#0" expanded="false" />
+                <element signature="e#2797#3112#0" expanded="false" />
+                <element signature="e#2966#3102#0" expanded="false" />
+                <element signature="e#3210#3510#0" expanded="false" />
+                <element signature="e#3337#3510#0" expanded="false" />
+                <element signature="e#3439#3510#0" expanded="false" />
+                <element signature="e#3530#3569#0" expanded="false" />
+                <element signature="e#3729#4089#0" expanded="false" />
+                <element signature="e#3808#4089#0" expanded="false" />
+                <element signature="e#4139#4515#0" expanded="false" />
+                <element signature="e#4195#4254#0" expanded="false" />
+                <element signature="e#4318#4380#0" expanded="false" />
+                <element signature="e#4446#4515#0" expanded="false" />
+                <element signature="e#4572#4990#0" expanded="false" />
+                <element signature="e#4642#4701#0" expanded="false" />
+                <element signature="e#4779#4841#0" expanded="false" />
+                <element signature="e#4921#4990#0" expanded="false" />
+                <element signature="e#5025#7045#0" expanded="false" />
+                <element signature="e#5101#5262#0" expanded="false" />
+                <element signature="e#6615#6835#0" expanded="false" />
+                <element signature="e#6638#6835#0" expanded="false" />
+                <element signature="e#7082#8402#0" expanded="false" />
+                <element signature="e#8020#8194#0" expanded="false" />
+                <element signature="e#8043#8194#0" expanded="false" />
+                <element signature="e#8448#9874#0" expanded="false" />
+                <element signature="e#8606#8725#0" expanded="false" />
+                <element signature="e#9372#9446#0" expanded="false" />
+                <element signature="e#9448#9805#0" expanded="false" />
+                <element signature="e#9466#9799#0" expanded="false" />
+                <element signature="e#9635#9789#0" expanded="false" />
+                <element signature="e#11327#11576#0" expanded="false" />
+                <element signature="e#11476#11576#0" expanded="false" />
+                <element signature="e#12015#12313#0" expanded="false" />
+                <element signature="e#12015#12091#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -127,7 +105,7 @@
       <file leaf-file-name="FileForEditingCodeToFitReport.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/FileForEditingCodeToFitReport.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="187">
               <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -188,11 +166,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getNodes.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="getNodes.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lambda Methods/getNodes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-222">
+            <state relative-caret-position="-208">
               <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rehydrateFIFO.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="13" column="72" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="72" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sendOneFIFOMessage.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/sendOneFIFOMessage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -259,7 +257,6 @@
         <option value="$PROJECT_DIR$/Lambda Methods/Local Lambda/sendMessageFIFOPost.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/JavaScriptWrite.js" />
         <option value="$PROJECT_DIR$/Mirror Rendering/BLEListener.js" />
-        <option value="$PROJECT_DIR$/Mirror Rendering/fixMessages.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed/Grid.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/populateInitialDB.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/RequestAPI.py" />
@@ -269,11 +266,8 @@
         <option value="$PROJECT_DIR$/Mirror Rendering/populateInitialDB.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/Ciaran1.py" />
         <option value="$PROJECT_DIR$/Bluetooth Low Energy Server/SMWSConfig.json" />
-        <option value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/sendOneFIFOMessage.py" />
-        <option value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/test" />
         <option value="$PROJECT_DIR$/Lambda Methods/sendMessageFIFO.py" />
-        <option value="$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/FileForEditingCodeToFitReport.py" />
         <option value="$PROJECT_DIR$/Lambda Methods/getMessageCount.py" />
         <option value="$PROJECT_DIR$/Lambda Methods/sendMessageFIFOPost.py" />
@@ -281,6 +275,10 @@
         <option value="$PROJECT_DIR$/Lambda Methods/return.json" />
         <option value="$PROJECT_DIR$/Lambda Methods/help.py" />
         <option value="$PROJECT_DIR$/Lambda Methods/getNodes.py" />
+        <option value="$PROJECT_DIR$/Mirror Rendering/fixMessages.py" />
+        <option value="$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py" />
+        <option value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py" />
+        <option value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/sendOneFIFOMessage.py" />
       </list>
     </option>
   </component>
@@ -315,7 +313,7 @@
         </expanded-state>
         <selected-state>
           <State>
-            <id>PyChainedComparisonsInspection</id>
+            <id>PyCompatibilityInspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -412,7 +410,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.help">
+  <component name="RunManager" selected="Python.sendOneFIFOMessage">
     <configuration name="MirrorGridRendering" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -512,11 +510,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.help" />
-        <item index="1" class="java.lang.String" itemvalue="Python.getMessageCount" />
-        <item index="2" class="java.lang.String" itemvalue="Python.rehydrateFIFO" />
-        <item index="3" class="java.lang.String" itemvalue="Python.MirrorGridRendering" />
-        <item index="4" class="java.lang.String" itemvalue="Python.sendOneFIFOMessage" />
+        <item index="0" class="java.lang.String" itemvalue="Python.sendOneFIFOMessage" />
+        <item index="1" class="java.lang.String" itemvalue="Python.help" />
+        <item index="2" class="java.lang.String" itemvalue="Python.getMessageCount" />
+        <item index="3" class="java.lang.String" itemvalue="Python.rehydrateFIFO" />
+        <item index="4" class="java.lang.String" itemvalue="Python.MirrorGridRendering" />
       </list>
     </recent_temporary>
   </component>
@@ -535,7 +533,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14179105" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -543,7 +540,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36774194" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36774194" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.49791667" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -671,24 +668,11 @@
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/API Tutorial/PostSample.json" />
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/BLEListener.js" />
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/JavaScriptWrite.js" />
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/fixMessages">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/fixMessages.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="53" column="13" lean-forward="false" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/kivy/uix/gridlayout.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="356" column="0" lean-forward="false" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -696,6 +680,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="795" column="8" lean-forward="false" selection-start-line="795" selection-start-column="8" selection-end-line="795" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -703,6 +688,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="154" column="43" lean-forward="true" selection-start-line="154" selection-start-column="43" selection-end-line="154" selection-end-column="43" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -744,20 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/sendOneFIFOMessage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="109" lean-forward="false" selection-start-line="15" selection-start-column="109" selection-end-line="15" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/icons/Clear.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -791,6 +763,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="554" column="13" lean-forward="false" selection-start-line="554" selection-start-column="13" selection-end-line="554" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -798,6 +771,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="90" column="8" lean-forward="false" selection-start-line="90" selection-start-column="8" selection-end-line="90" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -816,63 +790,6 @@
         <state relative-caret-position="17">
           <caret line="1" column="11" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="97" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="31" column="68" lean-forward="false" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="82" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#399#463#0" expanded="false" />
-            <element signature="e#892#1003#0" expanded="false" />
-            <element signature="e#1051#1194#0" expanded="false" />
-            <element signature="e#1240#1381#0" expanded="false" />
-            <element signature="e#1424#1529#0" expanded="false" />
-            <element signature="e#1570#1673#0" expanded="false" />
-            <element signature="e#1707#1927#0" expanded="false" />
-            <element signature="e#1829#1910#0" expanded="false" />
-            <element signature="e#1970#2196#0" expanded="false" />
-            <element signature="e#2092#2179#0" expanded="false" />
-            <element signature="e#2235#3162#0" expanded="false" />
-            <element signature="e#2358#2477#0" expanded="false" />
-            <element signature="e#2707#2781#0" expanded="false" />
-            <element signature="e#2783#3122#0" expanded="false" />
-            <element signature="e#2801#3116#0" expanded="false" />
-            <element signature="e#2970#3106#0" expanded="false" />
-            <element signature="e#3214#3514#0" expanded="false" />
-            <element signature="e#3341#3514#0" expanded="false" />
-            <element signature="e#3443#3514#0" expanded="false" />
-            <element signature="e#3534#3573#0" expanded="false" />
-            <element signature="e#3733#4093#0" expanded="false" />
-            <element signature="e#3812#4093#0" expanded="false" />
-            <element signature="e#4143#4519#0" expanded="false" />
-            <element signature="e#4199#4258#0" expanded="false" />
-            <element signature="e#4322#4384#0" expanded="false" />
-            <element signature="e#4450#4519#0" expanded="false" />
-            <element signature="e#4576#4994#0" expanded="false" />
-            <element signature="e#4646#4705#0" expanded="false" />
-            <element signature="e#4783#4845#0" expanded="false" />
-            <element signature="e#4925#4994#0" expanded="false" />
-            <element signature="e#5029#7049#0" expanded="false" />
-            <element signature="e#5105#5266#0" expanded="false" />
-            <element signature="e#6619#6839#0" expanded="false" />
-            <element signature="e#6642#6839#0" expanded="false" />
-            <element signature="e#7086#8406#0" expanded="false" />
-            <element signature="e#8024#8198#0" expanded="false" />
-            <element signature="e#8047#8198#0" expanded="false" />
-            <element signature="e#8452#9878#0" expanded="false" />
-            <element signature="e#8610#8729#0" expanded="false" />
-            <element signature="e#9376#9450#0" expanded="false" />
-            <element signature="e#9452#9809#0" expanded="false" />
-            <element signature="e#9470#9803#0" expanded="false" />
-            <element signature="e#9639#9793#0" expanded="false" />
-            <element signature="e#11331#11580#0" expanded="false" />
-            <element signature="e#11480#11580#0" expanded="false" />
-            <element signature="e#12019#12317#0" expanded="false" />
-            <element signature="e#12019#12095#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -901,16 +818,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lambda Methods/PostManTests.js" />
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/FileForEditingCodeToFitReport.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lambda Methods/Endpoint Testing/PostManTests.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="627">
@@ -969,10 +876,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/FileForEditingCodeToFitReport.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="24" lean-forward="false" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mirror Rendering/fixMessages.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-514">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mirror Rendering/fixMessages">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lambda Methods/getNodes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-222">
+        <state relative-caret-position="-208">
           <caret line="15" column="21" lean-forward="false" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#399#463#0" expanded="false" />
+            <element signature="e#888#999#0" expanded="false" />
+            <element signature="e#1047#1190#0" expanded="false" />
+            <element signature="e#1236#1377#0" expanded="false" />
+            <element signature="e#1420#1525#0" expanded="false" />
+            <element signature="e#1566#1669#0" expanded="false" />
+            <element signature="e#1703#1923#0" expanded="false" />
+            <element signature="e#1825#1906#0" expanded="false" />
+            <element signature="e#1966#2192#0" expanded="false" />
+            <element signature="e#2088#2175#0" expanded="false" />
+            <element signature="e#2231#3158#0" expanded="false" />
+            <element signature="e#2354#2473#0" expanded="false" />
+            <element signature="e#2703#2777#0" expanded="false" />
+            <element signature="e#2779#3118#0" expanded="false" />
+            <element signature="e#2797#3112#0" expanded="false" />
+            <element signature="e#2966#3102#0" expanded="false" />
+            <element signature="e#3210#3510#0" expanded="false" />
+            <element signature="e#3337#3510#0" expanded="false" />
+            <element signature="e#3439#3510#0" expanded="false" />
+            <element signature="e#3530#3569#0" expanded="false" />
+            <element signature="e#3729#4089#0" expanded="false" />
+            <element signature="e#3808#4089#0" expanded="false" />
+            <element signature="e#4139#4515#0" expanded="false" />
+            <element signature="e#4195#4254#0" expanded="false" />
+            <element signature="e#4318#4380#0" expanded="false" />
+            <element signature="e#4446#4515#0" expanded="false" />
+            <element signature="e#4572#4990#0" expanded="false" />
+            <element signature="e#4642#4701#0" expanded="false" />
+            <element signature="e#4779#4841#0" expanded="false" />
+            <element signature="e#4921#4990#0" expanded="false" />
+            <element signature="e#5025#7045#0" expanded="false" />
+            <element signature="e#5101#5262#0" expanded="false" />
+            <element signature="e#6615#6835#0" expanded="false" />
+            <element signature="e#6638#6835#0" expanded="false" />
+            <element signature="e#7082#8402#0" expanded="false" />
+            <element signature="e#8020#8194#0" expanded="false" />
+            <element signature="e#8043#8194#0" expanded="false" />
+            <element signature="e#8448#9874#0" expanded="false" />
+            <element signature="e#8606#8725#0" expanded="false" />
+            <element signature="e#9372#9446#0" expanded="false" />
+            <element signature="e#9448#9805#0" expanded="false" />
+            <element signature="e#9466#9799#0" expanded="false" />
+            <element signature="e#9635#9789#0" expanded="false" />
+            <element signature="e#11327#11576#0" expanded="false" />
+            <element signature="e#11476#11576#0" expanded="false" />
+            <element signature="e#12015#12313#0" expanded="false" />
+            <element signature="e#12015#12091#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/rehydrateFIFO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="72" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Mirror Rendering/Convenience Code/sendOneFIFOMessage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="33" lean-forward="true" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
           <folding />
         </state>
       </provider>
