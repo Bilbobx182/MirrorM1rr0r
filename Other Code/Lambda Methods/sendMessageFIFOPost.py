@@ -1,7 +1,5 @@
 import json
-
 import boto3
-
 
 def sendMessage(message, queueURL):
     sqs = boto3.client('sqs', region_name='eu-west-1')

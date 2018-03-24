@@ -1,11 +1,12 @@
 import json
 import os
+import struct
 
 import matplotlib.colors as colors
 import requests
-import time
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage, Image
 from kivy.uix.label import Label
@@ -386,10 +387,13 @@ class MirrorApplication(App):
                 label.font_size = '25dp'
 
             if doesWidgetHaveColourAttribute(y, x):
-                # Python is a silly goose, hex2Colour returns a tuple but they're immutable.
-                #  so we make a new one with the (1,) then add that as the colour RGBA value
-                rgba = colors.hex2color(('#' + str((getWidgetColourAttribute(y, x))))) + (1,)
-                label.color = rgba
+                fullRGB = struct.unpack('BBB', bytes.fromhex(getWidgetColourAttribute(y, x)))
+                RGBA = []
+
+                for colour in fullRGB:
+                    RGBA.append(colour / 255)
+                RGBA.append(1)
+                label.color = RGBA
 
             obj.add_widget(label)
 
