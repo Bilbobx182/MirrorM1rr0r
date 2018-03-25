@@ -35,7 +35,7 @@
     <SUITE FILE_PATH="coverage/Other_Code$MirrorOccupiedChecker.coverage" NAME="MirrorOccupiedChecker Coverage Results" MODIFIED="1511287468897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$RequestAPI.coverage" NAME="RequestAPI Coverage Results" MODIFIED="1520942535668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
     <SUITE FILE_PATH="coverage/Other_Code$MongoLearnning.coverage" NAME="MongoLearnning Coverage Results" MODIFIED="1517046501578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
-    <SUITE FILE_PATH="coverage/otherCode$MirrorGridRendering__1_.coverage" NAME="MirrorGridRendering (1) Coverage Results" MODIFIED="1522000192558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering" />
+    <SUITE FILE_PATH="coverage/otherCode$MirrorGridRendering__1_.coverage" NAME="MirrorGridRendering (1) Coverage Results" MODIFIED="1522000934904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering" />
     <SUITE FILE_PATH="coverage/Other_Code$help.coverage" NAME="help Coverage Results" MODIFIED="1521458674270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$reHydrateQueue.coverage" NAME="reHydrateQueue Coverage Results" MODIFIED="1511600464201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
     <SUITE FILE_PATH="coverage/Other_Code$populateInitialDB__1_.coverage" NAME="populateInitialDB (1) Coverage Results" MODIFIED="1521115432334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
@@ -49,28 +49,20 @@
       <file leaf-file-name="MirrorGridRendering.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="141" column="17" lean-forward="true" selection-start-line="141" selection-start-column="17" selection-end-line="141" selection-end-column="17" />
+            <state relative-caret-position="350">
+              <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#908#1242#0" expanded="false" />
-                <element signature="e#4152#4633#0" expanded="false" />
-                <element signature="e#4683#5059#0" expanded="false" />
-                <element signature="e#5116#5536#0" expanded="false" />
-                <element signature="e#5571#7591#0" expanded="false" />
-                <element signature="e#7628#8948#0" expanded="false" />
-                <element signature="e#8994#10296#0" expanded="false" />
-                <element signature="e#10331#10654#0" expanded="false" />
-                <marker date="1522000150986" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
-                <marker date="1522000150986" expanded="true" signature="1314:1360" ph="SELECT messa... Message" />
-                <marker date="1522000150986" expanded="true" signature="1547:1589" ph="SELECT fontC... Message" />
-                <marker date="1522000150986" expanded="true" signature="1847:1887" ph="SELECT fontS... Message" />
-                <marker date="1522000150986" expanded="true" signature="2142:2184" ph="SELECT fontC... Message" />
-                <marker date="1522000150986" expanded="true" signature="2364:2404" ph="SELECT fontS... Message" />
-                <marker date="1522000150986" expanded="true" signature="2577:2618" ph="SELECT fontC... Message" />
-                <marker date="1522000150986" expanded="true" signature="2881:2942" ph="SELECT comma... Message" />
-                <marker date="1522000150986" expanded="true" signature="3719:3856" ph="UPDATE Messa... " />
-                <marker date="1522000150986" expanded="true" signature="9916:10053" ph="UPDATE Messa... " />
+                <marker date="1522000934886" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
+                <marker date="1522000934886" expanded="true" signature="1314:1360" ph="SELECT messa... Message" />
+                <marker date="1522000934886" expanded="true" signature="1547:1589" ph="SELECT fontC... Message" />
+                <marker date="1522000934886" expanded="true" signature="1847:1887" ph="SELECT fontS... Message" />
+                <marker date="1522000934886" expanded="true" signature="2142:2184" ph="SELECT fontC... Message" />
+                <marker date="1522000934886" expanded="true" signature="2364:2404" ph="SELECT fontS... Message" />
+                <marker date="1522000934886" expanded="true" signature="2577:2618" ph="SELECT fontC... Message" />
+                <marker date="1522000934886" expanded="true" signature="2881:2915" ph="SELECT comma... Message" />
+                <marker date="1522000934886" expanded="true" signature="3976:4113" ph="UPDATE Messa... " />
+                <marker date="1522000934886" expanded="true" signature="10189:10326" ph="UPDATE Messa... " />
               </folding>
             </state>
           </provider>
@@ -524,11 +516,6 @@
           <option name="timeStamp" value="305" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py</url>
-          <line>181</line>
-          <option name="timeStamp" value="306" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py</url>
           <line>104</line>
           <option name="timeStamp" value="311" />
@@ -574,13 +561,15 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="315" />
+      <option name="time" value="317" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="'UPDATE Message SET ' +         'messagePayload = ' + &quot;'python'&quot;         + ' fontColour = ' + &quot;'8080'&quot;         + ' fontSize = ' + &quot;'25'&quot;         + ' isDynamic = ' + &quot;'false'&quot;         + ' command = ' + &quot;'EMPTY'&quot;         + ' extraMessage = ' +  &quot;'EMPTY'&quot;         + ' lat = ' + &quot;'EMPTY'&quot;         +' long = ' + &quot;'EMPTY'&quot;         + ' WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';'" language="Python" />
         <watch expression="c.execute(&quot;UPDATE Message SET messagePayload = ? WHERE ID = ?&quot;, (&quot;PYTHONTESET&quot;, 1))" language="Python" />
         <watch expression="c.execute(&quot;UPDATE Message SET messagePayload=? WHERE ID=?&quot;, (&quot;lol&quot;,1))" language="Python" />
+        <watch expression="'dynamicIdentifier' in json and (&quot;EMPTY&quot; not in json['dynamicIdentifier']['command'])" language="Python" />
+        <watch expression="'dynamicIdentifier' in json" language="Python" />
       </configuration>
     </watches-manager>
   </component>
@@ -706,28 +695,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="141" column="17" lean-forward="true" selection-start-line="141" selection-start-column="17" selection-end-line="141" selection-end-column="17" />
+        <state relative-caret-position="350">
+          <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#908#1242#0" expanded="false" />
-            <element signature="e#4152#4633#0" expanded="false" />
-            <element signature="e#4683#5059#0" expanded="false" />
-            <element signature="e#5116#5536#0" expanded="false" />
-            <element signature="e#5571#7591#0" expanded="false" />
-            <element signature="e#7628#8948#0" expanded="false" />
-            <element signature="e#8994#10296#0" expanded="false" />
-            <element signature="e#10331#10654#0" expanded="false" />
-            <marker date="1522000150986" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
-            <marker date="1522000150986" expanded="true" signature="1314:1360" ph="SELECT messa... Message" />
-            <marker date="1522000150986" expanded="true" signature="1547:1589" ph="SELECT fontC... Message" />
-            <marker date="1522000150986" expanded="true" signature="1847:1887" ph="SELECT fontS... Message" />
-            <marker date="1522000150986" expanded="true" signature="2142:2184" ph="SELECT fontC... Message" />
-            <marker date="1522000150986" expanded="true" signature="2364:2404" ph="SELECT fontS... Message" />
-            <marker date="1522000150986" expanded="true" signature="2577:2618" ph="SELECT fontC... Message" />
-            <marker date="1522000150986" expanded="true" signature="2881:2942" ph="SELECT comma... Message" />
-            <marker date="1522000150986" expanded="true" signature="3719:3856" ph="UPDATE Messa... " />
-            <marker date="1522000150986" expanded="true" signature="9916:10053" ph="UPDATE Messa... " />
+            <marker date="1522000934886" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
+            <marker date="1522000934886" expanded="true" signature="1314:1360" ph="SELECT messa... Message" />
+            <marker date="1522000934886" expanded="true" signature="1547:1589" ph="SELECT fontC... Message" />
+            <marker date="1522000934886" expanded="true" signature="1847:1887" ph="SELECT fontS... Message" />
+            <marker date="1522000934886" expanded="true" signature="2142:2184" ph="SELECT fontC... Message" />
+            <marker date="1522000934886" expanded="true" signature="2364:2404" ph="SELECT fontS... Message" />
+            <marker date="1522000934886" expanded="true" signature="2577:2618" ph="SELECT fontC... Message" />
+            <marker date="1522000934886" expanded="true" signature="2881:2915" ph="SELECT comma... Message" />
+            <marker date="1522000934886" expanded="true" signature="3976:4113" ph="UPDATE Messa... " />
+            <marker date="1522000934886" expanded="true" signature="10189:10326" ph="UPDATE Messa... " />
           </folding>
         </state>
       </provider>

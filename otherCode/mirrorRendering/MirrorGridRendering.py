@@ -107,14 +107,23 @@ def isDynamicWidget(y, x):
 
 def getDynamicWidgetContents(y, x):
     widgetJSON = c.execute(
-        'SELECT command,extraMessage,lat,long FROM Message WHERE ID = ' + str(
+        'SELECT *  FROM Message WHERE ID = ' + str(
             widgetsMongoObjectIdentifiers[y][x]) + ';')
     for result in widgetJSON:
         out = {}
-        out['command'] = result[0]
-        out['extraMessage'] = result[1]
-        out['lat'] = result[2]
-        out['long'] = result[3]
+        out['messagePayload'] = result[1]
+        out['fontColour'] = result[2]
+        out['fontSize'] = result[3]
+        out['isDynamic'] = result[4]
+
+        dynamicContents = {}
+        dynamicContents['command'] = result[5]
+        dynamicContents['extraMessage'] = result[6]
+        dynamicContents['lat'] = result[7]
+        dynamicContents['long'] = result[8]
+
+        out['dynamicIdentifier'] = dynamicContents
+
         return out
 
 
@@ -204,7 +213,7 @@ def setWeatherWidget(json):
     weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
 
     # update the default to the lat and long the user supplies
-    isDynamicBool = 'dynamicIdentifier' in json and len(json['dynamicIdentifier']['command']) > 2
+    isDynamicBool = 'dynamicIdentifier' in json and ("EMPTY" not in json['dynamicIdentifier']['command'])
     if (isDynamicBool):
         weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['lat']
     else:
@@ -252,7 +261,7 @@ def setTempatureWidget(json):
     weatherAPI.append("&units=metric&APPID=c050be8146f9067def4aabdd5c51b98b")
 
     # update the default to the lat and long the user supplies
-    isDynamicBool = 'dynamicIdentifier' in json and len(json['dynamicIdentifier']['command']) > 2
+    isDynamicBool = 'dynamicIdentifier' in json and ("EMPTY" not in json['dynamicIdentifier']['command'])
     if (isDynamicBool):
         weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['long']
     else:
@@ -370,7 +379,7 @@ class MirrorApplication(App):
 
         if (isDynamicWidget(y, x)):
             global updateTimerCurrentValue
-            updateTimerMaxValue = 60
+            updateTimerMaxValue = 15
             if (updateTimerCurrentValue >= updateTimerMaxValue):
                 parseDynamicCommand(getDynamicWidgetContents(y, x), obj)
                 updateTimerCurrentValue = 0
@@ -397,7 +406,6 @@ class MirrorApplication(App):
                 label.color = RGBA
 
             obj.add_widget(label)
-
 
 # Window.fullscreen = 'auto'
 MirrorApplication().run()
