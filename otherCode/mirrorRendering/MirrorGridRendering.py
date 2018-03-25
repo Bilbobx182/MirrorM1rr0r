@@ -2,7 +2,6 @@ import json
 import os
 import struct
 
-import matplotlib.colors as colors
 import requests
 from kivy.app import App
 from kivy.clock import Clock
@@ -27,7 +26,7 @@ messageCount = 1
 pathExtension = "Bluetooth Low Energy Server\SMWSConfig.json"
 currentPath = os.getcwd()
 
-configPath = ((currentPath.split("Mirror Rendering"))[0] + pathExtension)
+configPath = ((currentPath.split("mirrorRendering"))[0] + pathExtension)
 configData = json.load(open(configPath))
 
 base = "https://trbcvi749b.execute-api.eu-west-1.amazonaws.com/Prod/getmessage"
