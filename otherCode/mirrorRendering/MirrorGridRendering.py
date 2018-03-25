@@ -10,7 +10,6 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage, Image
 from kivy.uix.label import Label
 
-
 currentPath = os.path.dirname(os.path.abspath(__file__))
 dbPath = currentPath.split("mirrorRendering")[0] + "SMWS.db"
 conn = sqlite3.connect(dbPath)
@@ -52,6 +51,7 @@ def getAndSetWidgetIDs():
             y += 1
             if (y == 3):
                 y = 0
+
 
 def getWidgetPayloadFrom(y, x):
     widgetJSON = c.execute(
@@ -107,7 +107,8 @@ def isDynamicWidget(y, x):
 
 def getDynamicWidgetContents(y, x):
     widgetJSON = c.execute(
-        'SELECT command,extraMessage,lat,long FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+        'SELECT command,extraMessage,lat,long FROM Message WHERE ID = ' + str(
+            widgetsMongoObjectIdentifiers[y][x]) + ';')
     for result in widgetJSON:
         out = {}
         out['command'] = result[0]
@@ -136,27 +137,18 @@ def updateWidget(jsonContents):
     else:
         fontSize = 25
 
-    # collection.update_one({
-    #     '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
-    # }, {
-    #     '$set': {
-    #         'messagePayload': jsonContents['messagePayload'],
-    #         'fontColour': fontColour,
-    #         'fontSize': fontSize,
-    #         'dynamicIdentifier': {
-    #             'command': '',
-    #             'extraMessage': '',
-    #             'lat': '',
-    #             'long': ''
-    #         }
-    #     }
-    # }, upsert=False)
+    c.execute(
+        "UPDATE Message SET messagePayload = ? ,fontColour = ? ,fontSize = ?,isDynamic= ?, command = ?,extraMessage= ?,lat= ?,long= ? WHERE ID = ?;",
+        (jsonContents['messagePayload'], fontColour, fontSize, "false", "EMPTY", "EMPTY", "EMPTY", "EMPTY",
+         widgetsMongoObjectIdentifiers[yLocation][xLocation]))
+    conn.commit()
 
     print(jsonContents)
 
 
 def setup():
     getAndSetWidgetIDs()
+
 
 def performRequest(gridLayout):
     result = requests.get(base + queue + count).json()
@@ -318,21 +310,11 @@ def updateDynamicWidget(jsonContents):
     if ('extraMessage' in jsonContents['dynamicIdentifier']):
         extraMessage = jsonContents['dynamicIdentifier']['extraMessage']
 
-    # collection.update_one({
-    #     '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
-    # }, {
-    #     '$set': {
-    #         'messagePayload': jsonContents['messagePayload'],
-    #         'fontColour': fontColour,
-    #         'fontSize': fontSize,
-    #         'dynamicIdentifier': {
-    #             'command': command,
-    #             'extraMessage': extraMessage,
-    #             'lat': lat,
-    #             'long': long
-    #         }
-    #     }
-    # }, upsert=False)
+    c.execute(
+        "UPDATE Message SET messagePayload = ? ,fontColour = ? ,fontSize = ?,isDynamic= ?, command = ?,extraMessage= ?,lat= ?,long= ? WHERE ID = ?;",
+        (jsonContents['messagePayload'], fontColour, fontSize, "true", command, extraMessage, lat, long,
+         widgetsMongoObjectIdentifiers[yLocation][xLocation]))
+    conn.commit()
 
     print("DYNAMIC UPDATED")
     print(jsonContents)
