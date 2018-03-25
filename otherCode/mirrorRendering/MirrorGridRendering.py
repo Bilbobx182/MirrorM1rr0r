@@ -1,11 +1,11 @@
 import json
 import os
+import sqlite3
 import struct
 
 import requests
 from kivy.app import App
 from kivy.clock import Clock
-from kivy.core.window import Window
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage, Image
 from kivy.uix.label import Label
@@ -15,6 +15,11 @@ client = MongoClient()
 
 db = client.SMWS
 collection = db.SMWSCollection
+
+currentPath = os.path.dirname(os.path.abspath(__file__))
+dbPath = currentPath.split("mirrorRendering")[0] + "SMWS.db"
+conn = sqlite3.connect(dbPath)
+c = conn.cursor()
 
 widgetsMongoObjectIdentifiers = [
     [" ", " ", " "],
@@ -35,41 +40,89 @@ queue = "?queueurl=" + configData['queue']
 count = "&count=" + str(messageCount)
 
 
+def getAndSetWidgetIDs():
+    y = 0
+    x = 0
+    global widgetsMongoObjectIdentifiers
+
+    results = c.execute('SELECT * FROM Message;')
+
+    for result in results:
+        print(result)
+
+        widgetsMongoObjectIdentifiers[y][x] = result[0]
+        x += 1
+        if (x == 3):
+            x = 0
+            y += 1
+            if (y == 3):
+                y = 0
+
+
+def getAndSetMongoWidgetObjectIdentifiers():
+    y = 0
+    x = 0
+    global widgetsMongoObjectIdentifiers
+
+    cursor = collection.find({})
+    for document in cursor:
+        widgetsMongoObjectIdentifiers[y][x] = document['_id']
+        x += 1
+        if (x == 3):
+            x = 0
+            y += 1
+            if (y == 3):
+                y = 0
+
+
 def getWidgetPayloadFrom(y, x):
     widgetText = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
     return (widgetText['messagePayload'])
 
 
 def doesWidgetHaveColourAttribute(y, x):
-    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
-    if ('fontColour' in widgetJSON):
-        return True
-    return False
+    widgetJSON = c.execute(
+        'SELECT fontColour FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+    for result in widgetJSON:
+        if (result[0] == 'EMPTY'):
+            return False
+        else:
+            return True
 
 
 def doesWidgetHaveSizeAttribute(y, x):
-    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
-    if ('fontSize' in widgetJSON):
-        return True
-    return False
+    widgetJSON = c.execute(
+        'SELECT fontSize FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+    for result in widgetJSON:
+        if (result[0] == 'EMPTY'):
+            return False
+        else:
+            return True
 
 
 def getWidgetColourAttribute(y, x):
-    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
-    return widgetJSON['fontColour']
+    widgetJSON = c.execute(
+        'SELECT fontColour FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+    for result in widgetJSON:
+        return result[0]
 
 
 def getWidgetSizeAttribute(y, x):
-    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
-    return widgetJSON['fontSize']
+    widgetJSON = c.execute(
+        'SELECT fontSize FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+    for result in widgetJSON:
+        return result[0]
 
 
 def isDynamicWidget(y, x):
-    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
-    if ('dynamicIdentifier' in widgetJSON):
-        if (len(widgetJSON['dynamicIdentifier']['command']) > 2):
+    widgetJSON = c.execute(
+        'SELECT isDynamic FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+    for result in widgetJSON:
+
+        if (result[0].lower() == 'true'):
             return True
-    return False
+        else:
+            return False
 
 
 def getDynamicWidgetContents(y, x):
@@ -99,39 +152,23 @@ def updateWidget(jsonContents):
     else:
         fontSize = 25
 
-    collection.update_one({
-        '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
-    }, {
-        '$set': {
-            'messagePayload': jsonContents['messagePayload'],
-            'fontColour': fontColour,
-            'fontSize': fontSize,
-            'dynamicIdentifier': {
-                'command': '',
-                'extraMessage': '',
-                'lat': '',
-                'long': ''
-            }
-        }
-    }, upsert=False)
+    # collection.update_one({
+    #     '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
+    # }, {
+    #     '$set': {
+    #         'messagePayload': jsonContents['messagePayload'],
+    #         'fontColour': fontColour,
+    #         'fontSize': fontSize,
+    #         'dynamicIdentifier': {
+    #             'command': '',
+    #             'extraMessage': '',
+    #             'lat': '',
+    #             'long': ''
+    #         }
+    #     }
+    # }, upsert=False)
 
     print(jsonContents)
-
-
-def getAndSetMongoWidgetObjectIdentifiers():
-    y = 0
-    x = 0
-    global widgetsMongoObjectIdentifiers
-
-    cursor = collection.find({})
-    for document in cursor:
-        widgetsMongoObjectIdentifiers[y][x] = document['_id']
-        x += 1
-        if (x == 3):
-            x = 0
-            y += 1
-            if (y == 3):
-                y = 0
 
 
 def setup():
@@ -342,7 +379,7 @@ class MirrorApplication(App):
             gridLayout.add_widget(Label(text="Loading now!"))
         else:
             label = Label(text="No network detected, Reboot please :(")
-            label.font_size="30dp"
+            label.font_size = "30dp"
             gridLayout.add_widget(label)
             gridLayout.add_widget(Image(source='networkError.png'))
             return gridLayout

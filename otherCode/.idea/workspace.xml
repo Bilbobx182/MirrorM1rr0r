@@ -19,7 +19,7 @@
     <SUITE FILE_PATH="coverage/Other_Code$QueueListening.coverage" NAME="QueueListening Coverage Results" MODIFIED="1518718523855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
     <SUITE FILE_PATH="coverage/Other_Code$getMessageCount.coverage" NAME="getMessageCount Coverage Results" MODIFIED="1521397024611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$fixMessages.coverage" NAME="fixMessages Coverage Results" MODIFIED="1520614728192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
-    <SUITE FILE_PATH="coverage/otherCode$populateInitialDB__1_.coverage" NAME="populateInitialDB (1) Coverage Results" MODIFIED="1521987592520" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering" />
+    <SUITE FILE_PATH="coverage/otherCode$populateInitialDB__1_.coverage" NAME="populateInitialDB (1) Coverage Results" MODIFIED="1521990787069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering" />
     <SUITE FILE_PATH="coverage/Other_Code$Grid.coverage" NAME="Grid Coverage Results" MODIFIED="1511601797964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$Ciaran1.coverage" NAME="Ciaran1 Coverage Results" MODIFIED="1521894719507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
     <SUITE FILE_PATH="coverage/Other_Code$MirrorGridRendering.coverage" NAME="MirrorGridRendering Coverage Results" MODIFIED="1521894740594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
@@ -47,10 +47,24 @@
       <file leaf-file-name="MirrorGridRendering.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="49" />
+            <state relative-caret-position="189">
+              <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="124" selection-end-column="24" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#1031#1365#0" expanded="false" />
+                <element signature="e#1417#1717#0" expanded="false" />
+                <element signature="e#1756#1867#0" expanded="false" />
+                <element signature="e#3249#3475#0" expanded="false" />
+                <element signature="e#3514#4471#0" expanded="false" />
+                <element signature="e#8045#9365#0" expanded="false" />
+                <element signature="e#9411#10837#0" expanded="false" />
+                <element signature="e#10872#11195#0" expanded="false" />
+                <marker date="1521990766687" expanded="true" signature="1114:1135" ph="SELECT * FRO... Message" />
+                <marker date="1521990766687" expanded="true" signature="1948:1990" ph="SELECT fontC... Message" />
+                <marker date="1521990766687" expanded="true" signature="2248:2288" ph="SELECT fontS... Message" />
+                <marker date="1521990766687" expanded="true" signature="2543:2585" ph="SELECT fontC... Message" />
+                <marker date="1521990766687" expanded="true" signature="2765:2805" ph="SELECT fontS... Message" />
+                <marker date="1521990766687" expanded="true" signature="2978:3019" ph="SELECT fontC... Message" />
               </folding>
             </state>
           </provider>
@@ -59,11 +73,17 @@
       <file leaf-file-name="populateInitialDB.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="43" lean-forward="false" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+            <state relative-caret-position="354">
+              <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1521987558570" expanded="true" signature="220:241" ph="select * fro... Message" />
+                <marker date="1521990787038" expanded="true" signature="376:406" ph="SELECT * FRO... Message" />
+                <marker date="1521990787038" expanded="true" signature="376:417" ph="SELECT * FRO... Message" />
+                <marker date="1521990787038" expanded="true" signature="376:418" ph="SELECT * FRO... Message" />
+                <marker date="1521990787038" expanded="true" signature="676:716" ph="SELECT fontS... Message" />
+                <marker date="1521990787038" expanded="true" signature="1011:1032" ph="SELECT * FRO... Message" />
+                <marker date="1521990787038" expanded="true" signature="1338:1380" ph="SELECT fontC... Message" />
+                <marker date="1521990787038" expanded="true" signature="1552:1593" ph="SELECT isDyn... Message" />
               </folding>
             </state>
           </provider>
@@ -162,10 +182,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1706" />
-    <option name="y" value="-27" />
-    <option name="width" value="974" />
-    <option name="height" value="1041" />
+    <option name="x" value="-8" />
+    <option name="y" value="22" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -373,27 +393,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="22" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14978679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.386149" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32150537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32150537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.49791667" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14978679" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47634408" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47634408" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -497,21 +516,15 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="293" />
+      <option name="time" value="304" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="queryResult" language="Python" />
-        <watch expression="db.SMWSCollection.find()" language="Python" />
-        <watch expression="db.collection.find(&quot;Test&quot;)" language="Python" />
-        <watch expression="db.collection.find( { qty: { $gt: 4 } } )" language="Python" />
-        <watch expression="db.collection.find().count()" language="Python" />
-        <watch expression="dir.split(&quot;\&quot;)" language="Python" />
-        <watch expression="dir.split('\\')" language="Python" />
-        <watch expression="os.getcwd()" language="Python" />
-        <watch expression="dir.split(&quot;Mirror Rendering&quot;)[0]" language="Python" />
-        <watch expression="c.execute('select * from Message;')" language="Python" />
-        <watch expression="__py_debug_temp_var_576311508.description[0]" />
+        <watch expression="result[2]" language="Python" />
+        <watch expression="' ' in result[0]" language="Python" />
+        <watch expression="' ' not in result[0]" language="Python" />
+        <watch expression="'SELECT fontColour FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';'" language="Python" />
+        <watch expression="result[0] == 'EMPTY'" language="Python" />
       </configuration>
     </watches-manager>
   </component>
@@ -607,21 +620,41 @@
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/populateInitialDB.py" />
     <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="28" column="49" lean-forward="false" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="49" />
+        <state relative-caret-position="189">
+          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="124" selection-end-column="24" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#1031#1365#0" expanded="false" />
+            <element signature="e#1417#1717#0" expanded="false" />
+            <element signature="e#1756#1867#0" expanded="false" />
+            <element signature="e#3249#3475#0" expanded="false" />
+            <element signature="e#3514#4471#0" expanded="false" />
+            <element signature="e#8045#9365#0" expanded="false" />
+            <element signature="e#9411#10837#0" expanded="false" />
+            <element signature="e#10872#11195#0" expanded="false" />
+            <marker date="1521990766687" expanded="true" signature="1114:1135" ph="SELECT * FRO... Message" />
+            <marker date="1521990766687" expanded="true" signature="1948:1990" ph="SELECT fontC... Message" />
+            <marker date="1521990766687" expanded="true" signature="2248:2288" ph="SELECT fontS... Message" />
+            <marker date="1521990766687" expanded="true" signature="2543:2585" ph="SELECT fontC... Message" />
+            <marker date="1521990766687" expanded="true" signature="2765:2805" ph="SELECT fontS... Message" />
+            <marker date="1521990766687" expanded="true" signature="2978:3019" ph="SELECT fontC... Message" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="43" lean-forward="false" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+        <state relative-caret-position="354">
+          <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1521987558570" expanded="true" signature="220:241" ph="select * fro... Message" />
+            <marker date="1521990787038" expanded="true" signature="376:406" ph="SELECT * FRO... Message" />
+            <marker date="1521990787038" expanded="true" signature="376:417" ph="SELECT * FRO... Message" />
+            <marker date="1521990787038" expanded="true" signature="376:418" ph="SELECT * FRO... Message" />
+            <marker date="1521990787038" expanded="true" signature="676:716" ph="SELECT fontS... Message" />
+            <marker date="1521990787038" expanded="true" signature="1011:1032" ph="SELECT * FRO... Message" />
+            <marker date="1521990787038" expanded="true" signature="1338:1380" ph="SELECT fontC... Message" />
+            <marker date="1521990787038" expanded="true" signature="1552:1593" ph="SELECT isDyn... Message" />
           </folding>
         </state>
       </provider>
