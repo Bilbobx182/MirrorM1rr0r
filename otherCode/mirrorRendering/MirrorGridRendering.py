@@ -9,12 +9,7 @@ from kivy.clock import Clock
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.image import AsyncImage, Image
 from kivy.uix.label import Label
-from pymongo import MongoClient
 
-client = MongoClient()
-
-db = client.SMWS
-collection = db.SMWSCollection
 
 currentPath = os.path.dirname(os.path.abspath(__file__))
 dbPath = currentPath.split("mirrorRendering")[0] + "SMWS.db"
@@ -28,7 +23,7 @@ widgetsMongoObjectIdentifiers = [
 
 messageCount = 1
 
-pathExtension = "Bluetooth Low Energy Server\SMWSConfig.json"
+pathExtension = "BLEServer\SMWSConfig.json"
 currentPath = os.getcwd()
 
 configPath = ((currentPath.split("mirrorRendering"))[0] + pathExtension)
@@ -58,26 +53,11 @@ def getAndSetWidgetIDs():
             if (y == 3):
                 y = 0
 
-
-def getAndSetMongoWidgetObjectIdentifiers():
-    y = 0
-    x = 0
-    global widgetsMongoObjectIdentifiers
-
-    cursor = collection.find({})
-    for document in cursor:
-        widgetsMongoObjectIdentifiers[y][x] = document['_id']
-        x += 1
-        if (x == 3):
-            x = 0
-            y += 1
-            if (y == 3):
-                y = 0
-
-
 def getWidgetPayloadFrom(y, x):
-    widgetText = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
-    return (widgetText['messagePayload'])
+    widgetJSON = c.execute(
+        'SELECT messagePayload FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+    for result in widgetJSON:
+        return result[0]
 
 
 def doesWidgetHaveColourAttribute(y, x):
@@ -126,11 +106,15 @@ def isDynamicWidget(y, x):
 
 
 def getDynamicWidgetContents(y, x):
-    widgetJSON = collection.find_one(widgetsMongoObjectIdentifiers[y][x])
-    if ('dynamicIdentifier' in widgetJSON):
-        if (len(widgetJSON['dynamicIdentifier']['command']) > 2):
-            return widgetJSON
-    return False
+    widgetJSON = c.execute(
+        'SELECT command,extraMessage,lat,long FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
+    for result in widgetJSON:
+        out = {}
+        out['command'] = result[0]
+        out['extraMessage'] = result[1]
+        out['lat'] = result[2]
+        out['long'] = result[3]
+        return out
 
 
 def updateWidget(jsonContents):
@@ -172,8 +156,7 @@ def updateWidget(jsonContents):
 
 
 def setup():
-    getAndSetMongoWidgetObjectIdentifiers()
-
+    getAndSetWidgetIDs()
 
 def performRequest(gridLayout):
     result = requests.get(base + queue + count).json()
@@ -335,21 +318,21 @@ def updateDynamicWidget(jsonContents):
     if ('extraMessage' in jsonContents['dynamicIdentifier']):
         extraMessage = jsonContents['dynamicIdentifier']['extraMessage']
 
-    collection.update_one({
-        '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
-    }, {
-        '$set': {
-            'messagePayload': jsonContents['messagePayload'],
-            'fontColour': fontColour,
-            'fontSize': fontSize,
-            'dynamicIdentifier': {
-                'command': command,
-                'extraMessage': extraMessage,
-                'lat': lat,
-                'long': long
-            }
-        }
-    }, upsert=False)
+    # collection.update_one({
+    #     '_id': widgetsMongoObjectIdentifiers[yLocation][xLocation]
+    # }, {
+    #     '$set': {
+    #         'messagePayload': jsonContents['messagePayload'],
+    #         'fontColour': fontColour,
+    #         'fontSize': fontSize,
+    #         'dynamicIdentifier': {
+    #             'command': command,
+    #             'extraMessage': extraMessage,
+    #             'lat': lat,
+    #             'long': long
+    #         }
+    #     }
+    # }, upsert=False)
 
     print("DYNAMIC UPDATED")
     print(jsonContents)

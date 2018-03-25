@@ -19,7 +19,7 @@
     <SUITE FILE_PATH="coverage/Other_Code$QueueListening.coverage" NAME="QueueListening Coverage Results" MODIFIED="1518718523855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
     <SUITE FILE_PATH="coverage/Other_Code$getMessageCount.coverage" NAME="getMessageCount Coverage Results" MODIFIED="1521397024611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$fixMessages.coverage" NAME="fixMessages Coverage Results" MODIFIED="1520614728192" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
-    <SUITE FILE_PATH="coverage/otherCode$populateInitialDB__1_.coverage" NAME="populateInitialDB (1) Coverage Results" MODIFIED="1521990787069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering" />
+    <SUITE FILE_PATH="coverage/otherCode$populateInitialDB__1_.coverage" NAME="populateInitialDB (1) Coverage Results" MODIFIED="1521999668756" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering" />
     <SUITE FILE_PATH="coverage/Other_Code$Grid.coverage" NAME="Grid Coverage Results" MODIFIED="1511601797964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$Ciaran1.coverage" NAME="Ciaran1 Coverage Results" MODIFIED="1521894719507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
     <SUITE FILE_PATH="coverage/Other_Code$MirrorGridRendering.coverage" NAME="MirrorGridRendering Coverage Results" MODIFIED="1521894740594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
@@ -27,6 +27,7 @@
     <SUITE FILE_PATH="coverage/Other_Code$SingeRender.coverage" NAME="SingeRender Coverage Results" MODIFIED="1518718546842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
     <SUITE FILE_PATH="coverage/Other_Code$NestedGridWidget.coverage" NAME="NestedGridWidget Coverage Results" MODIFIED="1520943506090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Code that won't be demoed" />
     <SUITE FILE_PATH="coverage/Other_Code$populateInitialDB.coverage" NAME="populateInitialDB Coverage Results" MODIFIED="1521987384634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
+    <SUITE FILE_PATH="coverage/otherCode$rehydrateFIFO.coverage" NAME="rehydrateFIFO Coverage Results" MODIFIED="1521992899414" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering/convenienceCode" />
     <SUITE FILE_PATH="coverage/Other_Code$animationExample.coverage" NAME="animationExample Coverage Results" MODIFIED="1509783947460" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$sendOneFIFOMessage.coverage" NAME="sendOneFIFOMessage Coverage Results" MODIFIED="1521464310889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
     <SUITE FILE_PATH="coverage/Other_Code$test.coverage" NAME="test Coverage Results" MODIFIED="1511603769681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
@@ -34,6 +35,7 @@
     <SUITE FILE_PATH="coverage/Other_Code$MirrorOccupiedChecker.coverage" NAME="MirrorOccupiedChecker Coverage Results" MODIFIED="1511287468897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
     <SUITE FILE_PATH="coverage/Other_Code$RequestAPI.coverage" NAME="RequestAPI Coverage Results" MODIFIED="1520942535668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
     <SUITE FILE_PATH="coverage/Other_Code$MongoLearnning.coverage" NAME="MongoLearnning Coverage Results" MODIFIED="1517046501578" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
+    <SUITE FILE_PATH="coverage/otherCode$MirrorGridRendering__1_.coverage" NAME="MirrorGridRendering (1) Coverage Results" MODIFIED="1521997074219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/mirrorRendering" />
     <SUITE FILE_PATH="coverage/Other_Code$help.coverage" NAME="help Coverage Results" MODIFIED="1521458674270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Lambda Methods" />
     <SUITE FILE_PATH="coverage/Other_Code$reHydrateQueue.coverage" NAME="reHydrateQueue Coverage Results" MODIFIED="1511600464201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
     <SUITE FILE_PATH="coverage/Other_Code$populateInitialDB__1_.coverage" NAME="populateInitialDB (1) Coverage Results" MODIFIED="1521115432334" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Mirror Rendering" />
@@ -47,24 +49,22 @@
       <file leaf-file-name="MirrorGridRendering.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="124" selection-end-column="24" />
+            <state relative-caret-position="-381">
+              <caret line="287" column="4" lean-forward="false" selection-start-line="287" selection-start-column="4" selection-end-line="287" selection-end-column="4" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#1031#1365#0" expanded="false" />
-                <element signature="e#1417#1717#0" expanded="false" />
-                <element signature="e#1756#1867#0" expanded="false" />
-                <element signature="e#3249#3475#0" expanded="false" />
-                <element signature="e#3514#4471#0" expanded="false" />
-                <element signature="e#8045#9365#0" expanded="false" />
-                <element signature="e#9411#10837#0" expanded="false" />
-                <element signature="e#10872#11195#0" expanded="false" />
-                <marker date="1521990766687" expanded="true" signature="1114:1135" ph="SELECT * FRO... Message" />
-                <marker date="1521990766687" expanded="true" signature="1948:1990" ph="SELECT fontC... Message" />
-                <marker date="1521990766687" expanded="true" signature="2248:2288" ph="SELECT fontS... Message" />
-                <marker date="1521990766687" expanded="true" signature="2543:2585" ph="SELECT fontC... Message" />
-                <marker date="1521990766687" expanded="true" signature="2765:2805" ph="SELECT fontS... Message" />
-                <marker date="1521990766687" expanded="true" signature="2978:3019" ph="SELECT fontC... Message" />
+                <element signature="e#909#1243#0" expanded="false" />
+                <element signature="e#3236#4193#0" expanded="false" />
+                <element signature="e#7747#9067#0" expanded="false" />
+                <element signature="e#10604#10927#0" expanded="false" />
+                <marker date="1521991669588" expanded="true" signature="992:1013" ph="SELECT * FRO... Message" />
+                <marker date="1521991669588" expanded="true" signature="1314:1360" ph="SELECT messa... Message" />
+                <marker date="1521991669588" expanded="true" signature="1547:1589" ph="SELECT fontC... Message" />
+                <marker date="1521991669588" expanded="true" signature="1847:1887" ph="SELECT fontS... Message" />
+                <marker date="1521991669588" expanded="true" signature="2142:2184" ph="SELECT fontC... Message" />
+                <marker date="1521991669588" expanded="true" signature="2364:2404" ph="SELECT fontS... Message" />
+                <marker date="1521991669588" expanded="true" signature="2577:2618" ph="SELECT fontC... Message" />
+                <marker date="1521991669588" expanded="true" signature="2881:2942" ph="SELECT comma... Message" />
               </folding>
             </state>
           </provider>
@@ -73,17 +73,43 @@
       <file leaf-file-name="populateInitialDB.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+            <state relative-caret-position="133">
+              <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1521990787038" expanded="true" signature="376:406" ph="SELECT * FRO... Message" />
-                <marker date="1521990787038" expanded="true" signature="376:417" ph="SELECT * FRO... Message" />
-                <marker date="1521990787038" expanded="true" signature="376:418" ph="SELECT * FRO... Message" />
-                <marker date="1521990787038" expanded="true" signature="676:716" ph="SELECT fontS... Message" />
-                <marker date="1521990787038" expanded="true" signature="1011:1032" ph="SELECT * FRO... Message" />
-                <marker date="1521990787038" expanded="true" signature="1338:1380" ph="SELECT fontC... Message" />
-                <marker date="1521990787038" expanded="true" signature="1552:1593" ph="SELECT isDyn... Message" />
+                <marker date="1521999719726" expanded="true" signature="376:406" ph="SELECT * FRO... Message" />
+                <marker date="1521999719726" expanded="true" signature="376:417" ph="SELECT * FRO... Message" />
+                <marker date="1521999719726" expanded="true" signature="376:418" ph="SELECT * FRO... Message" />
+                <marker date="1521999719726" expanded="true" signature="676:716" ph="SELECT fontS... Message" />
+                <marker date="1521999719726" expanded="true" signature="1011:1032" ph="SELECT * FRO... Message" />
+                <marker date="1521999719726" expanded="true" signature="1338:1380" ph="SELECT fontC... Message" />
+                <marker date="1521999719726" expanded="true" signature="1553:1594" ph="SELECT isDyn... Message" />
+                <marker date="1521999719726" expanded="true" signature="1853:1899" ph="SELECT messa... Message" />
+                <marker date="1521999719726" expanded="true" signature="2081:2142" ph="SELECT messa... Message" />
+                <marker date="1521999719726" expanded="true" signature="2671:2808" ph="UPDATE movie... " />
+                <marker date="1521999719726" expanded="true" signature="2970:3259" ph="UPDATE Messa... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SMWSConfig.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BLEServer/SMWSConfig.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rehydrateFIFO.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mirrorRendering/convenienceCode/rehydrateFIFO.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-136">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -238,7 +264,18 @@
             <path>
               <item name="otherCode" type="b2602c69:ProjectViewProjectNode" />
               <item name="otherCode" type="462c0819:PsiDirectoryNode" />
+              <item name="BLEServer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="otherCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="otherCode" type="462c0819:PsiDirectoryNode" />
               <item name="mirrorRendering" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="otherCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="otherCode" type="462c0819:PsiDirectoryNode" />
+              <item name="mirrorRendering" type="462c0819:PsiDirectoryNode" />
+              <item name="convenienceCode" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -272,20 +309,20 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.populateInitialDB (1)">
-    <configuration name="Ciaran1" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="MirrorGridRendering (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mirrorRendering" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Other Code" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/Ciaran1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -344,38 +381,38 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="sendOneFIFOMessage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="rehydrateFIFO" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Mirror Rendering/Convenience Code" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mirrorRendering/convenienceCode" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Other Code" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Mirror Rendering/Convenience Code/sendOneFIFOMessage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mirrorRendering/convenienceCode/rehydrateFIFO.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.MirrorGridRendering" />
-      <item index="1" class="java.lang.String" itemvalue="Python.sendOneFIFOMessage" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Ciaran1" />
-      <item index="3" class="java.lang.String" itemvalue="Python.populateInitialDB" />
-      <item index="4" class="java.lang.String" itemvalue="Python.populateInitialDB (1)" />
+      <item index="1" class="java.lang.String" itemvalue="Python.populateInitialDB" />
+      <item index="2" class="java.lang.String" itemvalue="Python.populateInitialDB (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Python.MirrorGridRendering (1)" />
+      <item index="4" class="java.lang.String" itemvalue="Python.rehydrateFIFO" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.populateInitialDB (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.populateInitialDB" />
-        <item index="2" class="java.lang.String" itemvalue="Python.MirrorGridRendering" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Ciaran1" />
-        <item index="4" class="java.lang.String" itemvalue="Python.sendOneFIFOMessage" />
+        <item index="1" class="java.lang.String" itemvalue="Python.MirrorGridRendering (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.rehydrateFIFO" />
+        <item index="3" class="java.lang.String" itemvalue="Python.populateInitialDB" />
+        <item index="4" class="java.lang.String" itemvalue="Python.MirrorGridRendering" />
       </list>
     </recent_temporary>
   </component>
@@ -394,6 +431,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.386149" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
@@ -406,7 +444,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47634408" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47634408" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -475,6 +513,26 @@
           <line>143</line>
           <option name="timeStamp" value="287" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py</url>
+          <line>88</line>
+          <option name="timeStamp" value="305" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py</url>
+          <line>189</line>
+          <option name="timeStamp" value="306" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py</url>
+          <line>251</line>
+          <option name="timeStamp" value="308" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="311" />
+        </line-breakpoint>
         <breakpoint enabled="true" type="python-exception">
           <properties notifyOnTerminate="true" exception="botocore.exceptions.BotoCoreError">
             <option name="notifyOnTerminate" value="true" />
@@ -516,28 +574,17 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="304" />
+      <option name="time" value="314" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="result[2]" language="Python" />
-        <watch expression="' ' in result[0]" language="Python" />
-        <watch expression="' ' not in result[0]" language="Python" />
-        <watch expression="'SELECT fontColour FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';'" language="Python" />
-        <watch expression="result[0] == 'EMPTY'" language="Python" />
+        <watch expression="'UPDATE Message SET ' +         'messagePayload = ' + &quot;'python'&quot;         + ' fontColour = ' + &quot;'8080'&quot;         + ' fontSize = ' + &quot;'25'&quot;         + ' isDynamic = ' + &quot;'false'&quot;         + ' command = ' + &quot;'EMPTY'&quot;         + ' extraMessage = ' +  &quot;'EMPTY'&quot;         + ' lat = ' + &quot;'EMPTY'&quot;         +' long = ' + &quot;'EMPTY'&quot;         + ' WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';'" language="Python" />
+        <watch expression="c.execute(&quot;UPDATE Message SET messagePayload = ? WHERE ID = ?&quot;, (&quot;PYTHONTESET&quot;, 1))" language="Python" />
+        <watch expression="c.execute(&quot;UPDATE Message SET messagePayload=? WHERE ID=?&quot;, (&quot;lol&quot;,1))" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/JavaScriptWrite.js" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/kivy/uix/gridlayout.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="356" column="0" lean-forward="false" selection-start-line="356" selection-start-column="0" selection-end-line="356" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/kivy/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -618,43 +665,63 @@
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/Ciaran1.py" />
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/MirrorGridRendering.py" />
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/populateInitialDB.py" />
+    <entry file="file://$PROJECT_DIR$/BLEServer/SMWSConfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="124" selection-end-column="24" />
+        <state relative-caret-position="-381">
+          <caret line="287" column="4" lean-forward="false" selection-start-line="287" selection-start-column="4" selection-end-line="287" selection-end-column="4" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#1031#1365#0" expanded="false" />
-            <element signature="e#1417#1717#0" expanded="false" />
-            <element signature="e#1756#1867#0" expanded="false" />
-            <element signature="e#3249#3475#0" expanded="false" />
-            <element signature="e#3514#4471#0" expanded="false" />
-            <element signature="e#8045#9365#0" expanded="false" />
-            <element signature="e#9411#10837#0" expanded="false" />
-            <element signature="e#10872#11195#0" expanded="false" />
-            <marker date="1521990766687" expanded="true" signature="1114:1135" ph="SELECT * FRO... Message" />
-            <marker date="1521990766687" expanded="true" signature="1948:1990" ph="SELECT fontC... Message" />
-            <marker date="1521990766687" expanded="true" signature="2248:2288" ph="SELECT fontS... Message" />
-            <marker date="1521990766687" expanded="true" signature="2543:2585" ph="SELECT fontC... Message" />
-            <marker date="1521990766687" expanded="true" signature="2765:2805" ph="SELECT fontS... Message" />
-            <marker date="1521990766687" expanded="true" signature="2978:3019" ph="SELECT fontC... Message" />
+            <element signature="e#909#1243#0" expanded="false" />
+            <element signature="e#3236#4193#0" expanded="false" />
+            <element signature="e#7747#9067#0" expanded="false" />
+            <element signature="e#10604#10927#0" expanded="false" />
+            <marker date="1521991669588" expanded="true" signature="992:1013" ph="SELECT * FRO... Message" />
+            <marker date="1521991669588" expanded="true" signature="1314:1360" ph="SELECT messa... Message" />
+            <marker date="1521991669588" expanded="true" signature="1547:1589" ph="SELECT fontC... Message" />
+            <marker date="1521991669588" expanded="true" signature="1847:1887" ph="SELECT fontS... Message" />
+            <marker date="1521991669588" expanded="true" signature="2142:2184" ph="SELECT fontC... Message" />
+            <marker date="1521991669588" expanded="true" signature="2364:2404" ph="SELECT fontS... Message" />
+            <marker date="1521991669588" expanded="true" signature="2577:2618" ph="SELECT fontC... Message" />
+            <marker date="1521991669588" expanded="true" signature="2881:2942" ph="SELECT comma... Message" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mirrorRendering/convenienceCode/rehydrateFIFO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+        <state relative-caret-position="133">
+          <caret line="102" column="18" lean-forward="false" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1521990787038" expanded="true" signature="376:406" ph="SELECT * FRO... Message" />
-            <marker date="1521990787038" expanded="true" signature="376:417" ph="SELECT * FRO... Message" />
-            <marker date="1521990787038" expanded="true" signature="376:418" ph="SELECT * FRO... Message" />
-            <marker date="1521990787038" expanded="true" signature="676:716" ph="SELECT fontS... Message" />
-            <marker date="1521990787038" expanded="true" signature="1011:1032" ph="SELECT * FRO... Message" />
-            <marker date="1521990787038" expanded="true" signature="1338:1380" ph="SELECT fontC... Message" />
-            <marker date="1521990787038" expanded="true" signature="1552:1593" ph="SELECT isDyn... Message" />
+            <marker date="1521999719726" expanded="true" signature="376:406" ph="SELECT * FRO... Message" />
+            <marker date="1521999719726" expanded="true" signature="376:417" ph="SELECT * FRO... Message" />
+            <marker date="1521999719726" expanded="true" signature="376:418" ph="SELECT * FRO... Message" />
+            <marker date="1521999719726" expanded="true" signature="676:716" ph="SELECT fontS... Message" />
+            <marker date="1521999719726" expanded="true" signature="1011:1032" ph="SELECT * FRO... Message" />
+            <marker date="1521999719726" expanded="true" signature="1338:1380" ph="SELECT fontC... Message" />
+            <marker date="1521999719726" expanded="true" signature="1553:1594" ph="SELECT isDyn... Message" />
+            <marker date="1521999719726" expanded="true" signature="1853:1899" ph="SELECT messa... Message" />
+            <marker date="1521999719726" expanded="true" signature="2081:2142" ph="SELECT messa... Message" />
+            <marker date="1521999719726" expanded="true" signature="2671:2808" ph="UPDATE movie... " />
+            <marker date="1521999719726" expanded="true" signature="2970:3259" ph="UPDATE Messa... " />
           </folding>
         </state>
       </provider>
