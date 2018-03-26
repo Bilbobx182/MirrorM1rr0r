@@ -21,6 +21,9 @@ WriteOnlyCharacteristic.prototype.onWriteRequest = function(data, offset, withou
   console.log('WriteOnlyCharacteristic write request: ' + data.toString());
 	console.log(data.toString());
 	chunkedJSON = chunkedJSON + data.toString();
+	if(data.toString().indexOf('}') > -1){
+		writeInputToFile(chunkedJSON);
+	}
   callback(this.RESULT_SUCCESS);
 };
 
