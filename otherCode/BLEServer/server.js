@@ -19,9 +19,16 @@ util.inherits(WriteOnlyCharacteristic, BlenoCharacteristic);
 
 WriteOnlyCharacteristic.prototype.onWriteRequest = function(data, offset, withoutResponse, callback) {
   console.log('WriteOnlyCharacteristic write request: ' + data.toString());
+	console.log(data.toString());
 	chunkedJSON = chunkedJSON + data.toString();
   callback(this.RESULT_SUCCESS);
 };
+
+
+var sys = require('sys')
+var exec = require('child_process').exec;
+var child;
+
 
 function writeInputToFile(data){
 	fs.writeFile("SMWSConfig.json",data.toString(),function (error) {
@@ -30,6 +37,14 @@ function writeInputToFile(data){
 		}
 		else {
 			console.log("Info Dumped");
+			console.log(data.toString());
+			child = exec("cd /home/pi/MirrorM1rr0r/otherCode/BLEServer && ./updateMirrorPref.sh", function (error, stdout, stderr) {
+			sys.print('stdout: ' + stdout);
+  			sys.print('stderr: ' + stderr);
+  				if (error !== null) {
+    				console.log('exec error: ' + error);
+  				}
+			});
 		}
 	});
 }

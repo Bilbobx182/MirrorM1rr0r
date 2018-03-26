@@ -1,5 +1,5 @@
 {
-"queue" : "https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo",
-"WiFi" : "Is this the krusty krab",
-"Pass" : "N0thisispatrick"
+"queue" : "https://eu-west-1.queue.amazonaws.com/186314837751/3a22e9d4.fifo",
+"WiFi" : "Ciaran",
+"Pass" : "ciaran182"
 }

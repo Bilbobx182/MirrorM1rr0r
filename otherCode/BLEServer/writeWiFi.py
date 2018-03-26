@@ -16,10 +16,13 @@ currentPath = os.getcwd()
 configPath = ((currentPath.split("mirrorRendering"))[0] + pathExtension)
 configData = json.load(open(configPath))
 
-with open(os.getcwd() + "/dummyConfig.conf", "a") as wifiConfigFile:
-	wifiConfigFile.write("\n")
-	wifiConfigFile.write("network={ \n")
+with open("/etc/wpa_supplicant/wpa_supplicant.conf", "w") as wifiConfigFile:
+
+	wifiConfigFile.write("ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\n")
+	wifiConfigFile.write("update_config=1\n")
+	wifiConfigFile.write("country=GB\n")
+	wifiConfigFile.write("network={\n")
 	wifiConfigFile.write("	ssid=\"" + configData['WiFi'] + "\"" + "\n")
-	wifiConfigFile.write("	pass=\"" + configData['Pass'] + "\"" + "\n")
-	wifiConfigFile.write("	key_mgmt=WPA-PSK \n")
+	wifiConfigFile.write("	psk=\"" + configData['Pass'] + "\"" + "\n")
+	wifiConfigFile.write("	key_mgmt=WPA-PSK\n")
 	wifiConfigFile.write("}")
