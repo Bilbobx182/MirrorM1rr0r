@@ -22,7 +22,7 @@ widgetsMongoObjectIdentifiers = [
 
 messageCount = 1
 
-pathExtension = "BLEServer\SMWSConfig.json"
+pathExtension = "BLEServer/SMWSConfig.json"
 currentPath = os.getcwd()
 
 configPath = ((currentPath.split("mirrorRendering"))[0] + pathExtension)
