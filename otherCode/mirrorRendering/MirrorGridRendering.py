@@ -53,6 +53,12 @@ def getAndSetWidgetIDs():
                 y = 0
 
 
+def getDynamicCount():
+    results = c.execute("SELECT count(lat) FROM Message WHERE lat NOT LIKE 'EMPTY'; ")
+    for result in results:
+        return result[0]
+
+
 def getWidgetPayloadFrom(y, x):
     widgetJSON = c.execute(
         'SELECT messagePayload FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
@@ -115,6 +121,7 @@ def getDynamicWidgetContents(y, x):
         out['fontColour'] = result[2]
         out['fontSize'] = result[3]
         out['isDynamic'] = result[4]
+        out['location'] = str(y) + "," + str(x)
 
         dynamicContents = {}
         dynamicContents['command'] = result[5]
@@ -215,7 +222,7 @@ def setWeatherWidget(json):
     # update the default to the lat and long the user supplies
     isDynamicBool = 'dynamicIdentifier' in json and ("EMPTY" not in json['dynamicIdentifier']['command'])
     if (isDynamicBool):
-        weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['lat']
+        weatherAPI[1] = "lat=" + json['dynamicIdentifier']['lat'] + "&lon=" + json['dynamicIdentifier']['long']
     else:
         weatherAPI[1] = "lat=" + json['lat'] + "&lon=" + json['long']
 
@@ -278,7 +285,8 @@ def setTempatureWidget(json):
         outJSON['location'] = json['location']
 
     if (isDynamicBool):
-        dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['dynamicIdentifier']['lat'],
+        dynamicUpdateOutJSON = {'command': json['dynamicIdentifier']['command'],
+                                'lat': json['dynamicIdentifier']['lat'],
                                 'long': json['dynamicIdentifier']['long']}
     else:
         dynamicUpdateOutJSON = {'command': json['messagePayload'], 'lat': json['lat'], 'long': json['long']}
@@ -341,6 +349,7 @@ def isConnectedToNetwork():
 
 
 updateTimerCurrentValue = 0
+dynamicsUpdated = 0
 
 
 class MirrorApplication(App):
@@ -377,12 +386,20 @@ class MirrorApplication(App):
 
     def createWidget(self, obj, y, x):
 
-        if (isDynamicWidget(y, x)):
+        if isDynamicWidget(y, x):
+
             global updateTimerCurrentValue
+            global dynamicsUpdated
             updateTimerMaxValue = 15
-            if (updateTimerCurrentValue >= updateTimerMaxValue):
+
+            if updateTimerCurrentValue >= updateTimerMaxValue:
                 parseDynamicCommand(getDynamicWidgetContents(y, x), obj)
-                updateTimerCurrentValue = 0
+
+                if dynamicsUpdated < getDynamicCount():
+                    dynamicsUpdated += 1
+                else:
+                    updateTimerCurrentValue = 0
+                    dynamicsUpdated = 0
 
         widget = getWidgetPayloadFrom(y, x)
 
@@ -406,6 +423,7 @@ class MirrorApplication(App):
                 label.color = RGBA
 
             obj.add_widget(label)
+
 
 # Window.fullscreen = 'auto'
 MirrorApplication().run()

@@ -106,7 +106,6 @@ public class DBManager {
 
     public DBManager open() throws SQLException {
         db = DBHelper.getWritableDatabase();
-        ciaranTest();
         return this;
     }
 

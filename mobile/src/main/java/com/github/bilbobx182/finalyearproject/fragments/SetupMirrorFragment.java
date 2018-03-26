@@ -26,6 +26,7 @@ import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.sharedcode.RequestPerformer;
 import com.polidea.rxandroidble.RxBleClient;
 import com.polidea.rxandroidble.RxBleDevice;
+import com.polidea.rxandroidble.internal.operations.DisconnectOperation;
 import com.polidea.rxandroidble.scan.ScanResult;
 import com.polidea.rxandroidble.scan.ScanSettings;
 
@@ -47,6 +48,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
     private static RequestPerformer requestPerformer;
     private static String wifiSSID;
     private static String wifiPass;
+    private static Context context;
 
     private int setupCount = 0;
 
@@ -89,6 +91,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         dbManager = new DBManager(getActivity());
+        this.context = getContext();
         requestPerformer = new RequestPerformer();
         if (!isCoarse()) {
             createRequestDialogue();
@@ -142,11 +145,6 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
                         wifiPass = wifiPassEditText.getText().toString();
                         createQueueSetup();
                         testPiMethod();
-
-                        //TODO IF THE BLE STUFF DOESN'T SEND WITH THIS ENABLED IT COULD BE BECAUSE I AM EXITING TOO QUICKLY
-                        getActivity().finish();
-                        startActivity(getActivity().getIntent());
-                        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
                     }
                     setupCount++;
 
@@ -205,11 +203,18 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
     }
 
     private void doWrite(ScanResult scanResult) {
+        dbManager = new DBManager(context);
+        try {
+            dbManager.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         String messageString = "{\n" +
                 "\"queue\" : \"" + dbManager.getUserInformationByColumn("queue") + "\",\n" +
-                "\"WiFi\" : \"" + wifiSSID + "\",\n" +
+                "\"WiFi\" : \"" + wifiSSID.replaceAll("\"","") + "\",\n" +
                 "\"Pass\" : \"" + wifiPass + "\"\n" +
                 "}";
+        dbManager.close();
         byte[] message = messageString.getBytes();
         final UUID writeID = UUID.fromString("ffffffff-ffff-ffff-ffff-fffffffffff4");
         RxBleDevice device = scanResult.getBleDevice();
@@ -226,10 +231,18 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
                         .setCharacteristicUuid(writeID).setBytes(message).build()
                 )
                 .subscribe(
-                        byteArray -> Log.d("SetupMirror", "Content Written"),
-                        throwable -> Toast.makeText(getContext(), "Sending message to mirror failed", Toast.LENGTH_SHORT).show()
+                        byteArray -> Log.d("BLE","working"),
+                        throwable -> Log.d("BLE","nope")
                 );
         // End Reference
+        cleanup(true);
+    }
+
+    private void cleanup(boolean toast) {
+        //TODO IF THE BLE STUFF DOESN'T SEND WITH THIS ENABLED IT COULD BE BECAUSE I AM EXITING TOO QUICKLY
+        getActivity().finish();
+        startActivity(getActivity().getIntent());
+        getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
     }
 
     @Override
