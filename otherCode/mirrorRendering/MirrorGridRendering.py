@@ -46,10 +46,10 @@ def getAndSetWidgetIDs():
 
         widgetsMongoObjectIdentifiers[y][x] = result[0]
         x += 1
-        if (x == 3):
+        if x == 3:
             x = 0
             y += 1
-            if (y == 3):
+            if y == 3:
                 y = 0
 
 
@@ -70,7 +70,7 @@ def doesWidgetHaveColourAttribute(y, x):
     widgetJSON = c.execute(
         'SELECT fontColour FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
     for result in widgetJSON:
-        if (result[0] == 'EMPTY'):
+        if result[0] == 'EMPTY':
             return False
         else:
             return True
@@ -80,7 +80,7 @@ def doesWidgetHaveSizeAttribute(y, x):
     widgetJSON = c.execute(
         'SELECT fontSize FROM Message WHERE ID = ' + str(widgetsMongoObjectIdentifiers[y][x]) + ';')
     for result in widgetJSON:
-        if (result[0] == 'EMPTY'):
+        if result[0] == 'EMPTY':
             return False
         else:
             return True
@@ -116,18 +116,10 @@ def getDynamicWidgetContents(y, x):
         'SELECT *  FROM Message WHERE ID = ' + str(
             widgetsMongoObjectIdentifiers[y][x]) + ';')
     for result in widgetJSON:
-        out = {}
-        out['messagePayload'] = result[1]
-        out['fontColour'] = result[2]
-        out['fontSize'] = result[3]
-        out['isDynamic'] = result[4]
-        out['location'] = str(y) + "," + str(x)
+        out = {'messagePayload': result[1], 'fontColour': result[2], 'fontSize': result[3], 'isDynamic': result[4],
+               'location': str(y) + "," + str(x)}
 
-        dynamicContents = {}
-        dynamicContents['command'] = result[5]
-        dynamicContents['extraMessage'] = result[6]
-        dynamicContents['lat'] = result[7]
-        dynamicContents['long'] = result[8]
+        dynamicContents = {'command': result[5], 'extraMessage': result[6], 'lat': result[7], 'long': result[8]}
 
         out['dynamicIdentifier'] = dynamicContents
 
@@ -141,14 +133,14 @@ def updateWidget(jsonContents):
     fontSize = ""
     fontColour = "ffffff"
 
-    if ('location' in jsonContents):
+    if 'location' in jsonContents:
         yLocation = int(jsonContents['location'].split(",")[0])
         xLocation = int(jsonContents['location'].split(",")[1])
 
-    if ('fontColour' in jsonContents):
+    if 'fontColour' in jsonContents:
         fontColour = jsonContents['fontColour']
 
-    if ('fontSize' in jsonContents):
+    if 'fontSize' in jsonContents:
         fontSize = jsonContents['fontSize']
     else:
         fontSize = 25
@@ -164,6 +156,13 @@ def updateWidget(jsonContents):
 
 def setup():
     getAndSetWidgetIDs()
+
+
+def purgeDB():
+    c.execute(
+        "UPDATE Message SET messagePayload = ? ,fontColour = ? ,fontSize = ?,isDynamic= ?, command = ?,extraMessage= ?,lat= ?,long= ?;",
+        (" ", "ffffff", "25", "false", "EMPTY", "EMPTY", "EMPTY", "EMPTY"))
+    conn.commit()
 
 
 def performRequest(gridLayout):
@@ -184,12 +183,13 @@ def parseCommand(jsonCommand, gridLayout):
     if "@@clear" in jsonCommand['messagePayload']:
         print("clearing Mirror")
         gridLayout.clear_widgets()
+        purgeDB()
 
     if "@@weather" in jsonCommand['messagePayload']:
         print("Getting weather")
         setWeatherWidget(jsonCommand)
 
-    if "@@tempature" in jsonCommand['messagePayload']:
+    if "@@temperature" in jsonCommand['messagePayload']:
         print("Getting current Temp")
         setTempatureWidget(jsonCommand)
 
@@ -211,8 +211,9 @@ def parseDynamicCommand(jsonCommand, gridLayout):
 def setWeatherWidget(json):
     weatherAPI = list()
     # Sunny, Cloudy, Overcast, Rain
-    weatherImages = ["https://i.imgur.com/OGPHWZZ.png", "https://i.imgur.com/NbnlGbw.png",
-                     "https://i.imgur.com/uIC2Io8.png", "https://i.imgur.com/GWJ85t3.png"]
+    Image(source='networkError.png')
+    weatherImages = ["icons/clear.png", "icons/Clouds.png",
+                     "icons/overcast.png", "icons.Rain.png"]
 
     weatherAPI.append("http://api.openweathermap.org/data/2.5/weather?")
     # Default location of Dublin
@@ -279,9 +280,8 @@ def setTempatureWidget(json):
     result = {}
     result['max'] = JSONresult['main']['temp_max']
 
-    outJSON = {}
-    outJSON['messagePayload'] = str(result['max']) + "C"
-    if ('location' in json):
+    outJSON = {'messagePayload': str(result['max']) + "C"}
+    if 'location' in json:
         outJSON['location'] = json['location']
 
     if (isDynamicBool):
@@ -304,27 +304,27 @@ def updateDynamicWidget(jsonContents):
     lat = " "
     long = " "
 
-    if ('location' in jsonContents):
+    if 'location' in jsonContents:
         yLocation = int(jsonContents['location'].split(",")[0])
         xLocation = int(jsonContents['location'].split(",")[1])
 
-    if ('fontColour' in jsonContents):
+    if 'fontColour' in jsonContents:
         fontColour = jsonContents['fontColour']
 
-    if ('fontSize' in jsonContents):
+    if 'fontSize' in jsonContents:
         fontSize = jsonContents['fontSize']
     else:
         fontSize = 25
 
     command = jsonContents['dynamicIdentifier']['command']
 
-    if ('lat' in jsonContents['dynamicIdentifier']):
+    if 'lat' in jsonContents['dynamicIdentifier']:
         lat = jsonContents['dynamicIdentifier']['lat']
 
-    if ('long' in jsonContents['dynamicIdentifier']):
+    if 'long' in jsonContents['dynamicIdentifier']:
         long = jsonContents['dynamicIdentifier']['long']
 
-    if ('extraMessage' in jsonContents['dynamicIdentifier']):
+    if 'extraMessage' in jsonContents['dynamicIdentifier']:
         extraMessage = jsonContents['dynamicIdentifier']['extraMessage']
 
     c.execute(
@@ -390,7 +390,7 @@ class MirrorApplication(App):
 
             global updateTimerCurrentValue
             global dynamicsUpdated
-            updateTimerMaxValue = 15
+            updateTimerMaxValue = 600
 
             if updateTimerCurrentValue >= updateTimerMaxValue:
                 parseDynamicCommand(getDynamicWidgetContents(y, x), obj)
@@ -407,22 +407,27 @@ class MirrorApplication(App):
             obj.add_widget(AsyncImage(source=widget))
 
         else:
-            label = Label(text=widget)
-            if doesWidgetHaveSizeAttribute(y, x):
-                label.font_size = (str(getWidgetSizeAttribute(y, x)) + 'dp')
+
+            if ("icons" in widget):
+                weatherImage = Image(source=widget)
+                obj.add_widget(weatherImage)
             else:
-                label.font_size = '25dp'
+                label = Label(text=widget)
+                if doesWidgetHaveSizeAttribute(y, x):
+                    label.font_size = (str(getWidgetSizeAttribute(y, x)) + 'dp')
+                else:
+                    label.font_size = '25dp'
 
-            if doesWidgetHaveColourAttribute(y, x):
-                fullRGB = struct.unpack('BBB', bytes.fromhex(getWidgetColourAttribute(y, x)))
-                RGBA = []
+                if doesWidgetHaveColourAttribute(y, x):
+                    fullRGB = struct.unpack('BBB', bytes.fromhex(getWidgetColourAttribute(y, x)))
+                    RGBA = []
 
-                for colour in fullRGB:
-                    RGBA.append(colour / 255)
-                RGBA.append(1)
-                label.color = RGBA
+                    for colour in fullRGB:
+                        RGBA.append(colour / 255)
+                    RGBA.append(1)
+                    label.color = RGBA
 
-            obj.add_widget(label)
+                obj.add_widget(label)
 
 
 # Window.fullscreen = 'auto'

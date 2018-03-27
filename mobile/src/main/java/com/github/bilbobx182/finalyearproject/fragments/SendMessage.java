@@ -3,8 +3,6 @@ package com.github.bilbobx182.finalyearproject.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -32,9 +30,6 @@ import com.google.android.gms.location.LocationServices;
 
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.List;
-
-import static android.content.Context.LOCATION_SERVICE;
 
 public class SendMessage extends Fragment implements View.OnClickListener {
     private Spinner ySpinner;
@@ -42,7 +37,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     private Spinner textSizeSpinner;
     private EditText queryInputEditText;
     private Button doneButton;
-    private FusedLocationProviderClient mFusedLocationClient;
+    private FusedLocationProviderClient locationClient;
 
 
     private TextView mirrorLocationHelperTextView;
@@ -79,7 +74,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
+        locationClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         colourSelector = getActivity().findViewById(R.id.colourPickerHelper);
         colourGridLayout = getActivity().findViewById(R.id.colourGrid);
@@ -331,7 +326,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     }
 
     private String getAdvancedSpinnerValue() {
-        if (textSizeSpinner.getSelectedItem().toString().contains("Weather")) {
+        if (advancedModeSpinner.getSelectedItem().toString().contains("Weather")) {
             //Commands were changed to @@ because Android for some reason was having issues with
             // ^/^ as the thing for commands. Avoided single @ since Twitter.
             return "@@weather";
@@ -346,7 +341,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
             requestPerms();
         }
 
-        mFusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), location -> {
+        locationClient.getLastLocation().addOnSuccessListener(getActivity(), location -> {
             if (location != null) {
                 setLat(String.valueOf(location.getLatitude()));
                 setLon(String.valueOf(location.getLongitude()));
