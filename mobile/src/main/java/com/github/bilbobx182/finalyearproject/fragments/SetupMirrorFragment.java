@@ -52,9 +52,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
 
     private int setupCount = 0;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,23 +60,10 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
-    public static SetupMirrorFragment newInstance(String param1, String param2) {
-        SetupMirrorFragment fragment = new SetupMirrorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -93,6 +78,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         dbManager = new DBManager(getActivity());
         this.context = getContext();
         requestPerformer = new RequestPerformer();
+
         if (!isCoarse()) {
             createRequestDialogue();
         }
@@ -107,6 +93,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         setupFirstInstruction = getActivity().findViewById(R.id.setupInstruction1);
         setupSecondInstruction = getActivity().findViewById(R.id.setupInstruction2);
         wifiPassEditText = getActivity().findViewById(R.id.wifiEntry);
+        wifiPassEditText.setVisibility(View.GONE);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -138,6 +125,7 @@ public class SetupMirrorFragment extends Fragment implements View.OnClickListene
         switch (view.getId()) {
             case (R.id.setupInstructionDetect): {
                 NetworkInfo wifiConnection = getWifiInformation();
+                wifiPassEditText.setVisibility(View.VISIBLE);
 
                 if (wifiConnection.isConnected()) {
                     updateWidgets(wifiConnection.getExtraInfo());
