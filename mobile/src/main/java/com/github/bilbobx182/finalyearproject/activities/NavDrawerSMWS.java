@@ -28,6 +28,7 @@ import com.github.bilbobx182.finalyearproject.fragments.BluetoothSenderFragment;
 import com.github.bilbobx182.finalyearproject.fragments.MenuDefaultFragment;
 import com.github.bilbobx182.finalyearproject.fragments.MobileSettingsFragment;
 import com.github.bilbobx182.finalyearproject.fragments.MobileWatchSettingsFragment;
+import com.github.bilbobx182.finalyearproject.fragments.OtherActionsFragment;
 import com.github.bilbobx182.finalyearproject.fragments.PreviousSentMessagesFragment;
 import com.github.bilbobx182.finalyearproject.fragments.SendMessage;
 import com.github.bilbobx182.finalyearproject.fragments.SetupMirrorFragment;
@@ -45,7 +46,8 @@ public class NavDrawerSMWS extends AppCompatActivity
         SetupMirrorFragment.OnFragmentInteractionListener,
         MobileWatchSettingsFragment.OnFragmentInteractionListener,
         PreviousSentMessagesFragment.OnListFragmentInteractionListener,
-        BluetoothSenderFragment.OnFragmentInteractionListener{
+        BluetoothSenderFragment.OnFragmentInteractionListener,
+        OtherActionsFragment.OnFragmentInteractionListener{
 
     TextView navFirstNameTextView;
     TextView navSurnameTextView;
@@ -169,7 +171,7 @@ public class NavDrawerSMWS extends AppCompatActivity
         } else if (id == R.id.navSetupMirror) {
             fragment = new SetupMirrorFragment();
         } else if (id == R.id.navSettings) {
-            fragment = new MobileWatchSettingsFragment();
+            fragment = new OtherActionsFragment();
         }
 
         if (fragment != null) {
