@@ -27,6 +27,8 @@ import android.widget.Toast;
 import com.github.bilbobx182.finalyearproject.DBManager;
 import com.github.bilbobx182.finalyearproject.R;
 import com.github.bilbobx182.sharedcode.RequestPerformer;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -40,6 +42,8 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     private Spinner textSizeSpinner;
     private EditText queryInputEditText;
     private Button doneButton;
+    private FusedLocationProviderClient mFusedLocationClient;
+
 
     private TextView mirrorLocationHelperTextView;
     private TextView colourPickerHelperTextView;
@@ -75,6 +79,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         colourSelector = getActivity().findViewById(R.id.colourPickerHelper);
         colourGridLayout = getActivity().findViewById(R.id.colourGrid);
@@ -247,13 +252,13 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
 
         String[] spinnerValues = getSpinnerValue();
-        String input = "";
+        String input;
 
         DBManager dbManager = new DBManager(getActivity());
         if (isAdvanced) {
             input = getAdvancedSpinnerValue();
-            messageValues.put("lat", lat);
-            messageValues.put("long", lon);
+            messageValues.put("lat",lat);
+            messageValues.put("long",lon);
         } else {
             input = queryInputEditText.getText().toString();
         }
@@ -263,7 +268,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         messageValues.put("fontcolour", colourAndHex.get(activeColour));
 
         // No need to store the values if it's a dynamic widget
-        if(!isAdvanced) {
+        if (!isAdvanced) {
             populateDatabaseWithMessage(messageValues);
         }
 
@@ -277,6 +282,10 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
         sendMessage(messageValues);
     }
+    private void sendMessage(HashMap values) {
+        RequestPerformer requestPerformer = new RequestPerformer();
+        requestPerformer.performSendMessage(values);
+    }
 
     private void populateDatabaseWithMessage(HashMap<String, String> messageValues) {
         DBManager db = new DBManager(getContext());
@@ -289,11 +298,6 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         } catch (Exception ex) {
             Log.d("SendMessageActivity", "Failure");
         }
-    }
-
-    private void sendMessage(HashMap values) {
-        RequestPerformer requestPerformer = new RequestPerformer();
-        requestPerformer.performSendMessage(values);
     }
 
     private void setupSpinners() {
@@ -328,9 +332,11 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
     private String getAdvancedSpinnerValue() {
         if (textSizeSpinner.getSelectedItem().toString().contains("Weather")) {
-            return "^/^weather";
+            //Commands were changed to @@ because Android for some reason was having issues with
+            // ^/^ as the thing for commands. Avoided single @ since Twitter.
+            return "@@weather";
         } else {
-            return "^/^temperature";
+            return "@@temperature";
         }
     }
 
@@ -340,30 +346,17 @@ public class SendMessage extends Fragment implements View.OnClickListener {
             requestPerms();
         }
 
-        LocationManager locationManager;
-        /*
-        Desc: Modified version of code from SO
-        Reference: https://stackoverflow.com/questions/20438627/getlastknownlocation-returns-null
-        Last Accessed: 20/March/2018
-         */
-        locationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
-        List<String> providers = locationManager.getProviders(true);
-        Location mostAccurateLocation = null;
-
-        for (String provider : providers) {
-            Location currentProviderLocation = locationManager.getLastKnownLocation(provider);
-            if (mostAccurateLocation == null) {
-                if (currentProviderLocation != null) {
-                    mostAccurateLocation = currentProviderLocation;
-                }
-            } else if ((currentProviderLocation != null) && currentProviderLocation.getAccuracy() < mostAccurateLocation.getAccuracy()) {
-                mostAccurateLocation = currentProviderLocation;
+        mFusedLocationClient.getLastLocation().addOnSuccessListener(getActivity(), location -> {
+            if (location != null) {
+                setLat(String.valueOf(location.getLatitude()));
+                setLon(String.valueOf(location.getLongitude()));
+            } else {
+                // Defaulted to Dublin Ireland
+                setLat("53.291");
+                setLon("-6.141");
+                Toast.makeText(getContext(), "No location :( Defaulted to Dublin,IRL", Toast.LENGTH_LONG).show();
             }
-        }
-        // End Reference
-
-        setLat(String.valueOf(mostAccurateLocation.getLatitude()));
-        setLon(String.valueOf(mostAccurateLocation.getLongitude()));
+        });
     }
 
     private String[] getSpinnerValue() {

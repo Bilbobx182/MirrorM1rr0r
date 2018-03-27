@@ -174,36 +174,36 @@ def performRequest(gridLayout):
     if (messageKey in result):
         if "messagePayload" in json.loads(result[messageKey]['Contents']):
             payload = json.loads(result[messageKey]['Contents'])
-            if ("^/^" in payload['messagePayload']):
+            if ("@@" in payload['messagePayload']):
                 parseCommand(json.loads(result[messageKey]['Contents']), gridLayout)
             else:
                 updateWidget(json.loads(result[messageKey]['Contents']))
 
 
 def parseCommand(jsonCommand, gridLayout):
-    if "^/^clear" in jsonCommand['messagePayload']:
+    if "@@clear" in jsonCommand['messagePayload']:
         print("clearing Mirror")
         gridLayout.clear_widgets()
 
-    if "^/^weather" in jsonCommand['messagePayload']:
+    if "@@weather" in jsonCommand['messagePayload']:
         print("Getting weather")
         setWeatherWidget(jsonCommand)
 
-    if "^/^tempature" in jsonCommand['messagePayload']:
+    if "@@tempature" in jsonCommand['messagePayload']:
         print("Getting current Temp")
         setTempatureWidget(jsonCommand)
 
 
 def parseDynamicCommand(jsonCommand, gridLayout):
-    if "^/^clear" in jsonCommand['dynamicIdentifier']['command']:
+    if "@@clear" in jsonCommand['dynamicIdentifier']['command']:
         print("clearing Mirror")
         gridLayout.clear_widgets()
 
-    if "^/^weather" in jsonCommand['dynamicIdentifier']['command']:
+    if "@@weather" in jsonCommand['dynamicIdentifier']['command']:
         print("Getting weather")
         setWeatherWidget(jsonCommand)
 
-    if "^/^temperature" in jsonCommand['dynamicIdentifier']['command']:
+    if "@@temperature" in jsonCommand['dynamicIdentifier']['command']:
         print("Getting current Temp")
         setTempatureWidget(jsonCommand)
 

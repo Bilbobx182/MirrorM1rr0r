@@ -57,7 +57,7 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
 
         clearMirrorButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                sendMessage("clear", "^/^clear");
+                sendMessage("clear", "@@clear");
             }
         });
     }

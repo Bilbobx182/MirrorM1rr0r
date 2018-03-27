@@ -34,7 +34,6 @@ public class RequestPerformer {
 
     public String performOperation(String fullQuery) {
         String result = "";
-        //TODo Remove when I want to send requests again. Don't want to spam the API with requests.
         httpAsyncRequest.execute(fullQuery);
         try {
             result = httpAsyncRequest.get().toString();

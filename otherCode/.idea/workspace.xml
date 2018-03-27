@@ -51,22 +51,22 @@
       <file leaf-file-name="MirrorGridRendering.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="278" column="15" lean-forward="false" selection-start-line="278" selection-start-column="15" selection-end-line="278" selection-end-column="15" />
+            <state relative-caret-position="226">
+              <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#3718#4542#0" expanded="false" />
-                <marker date="1522091580820" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
-                <marker date="1522091580820" expanded="true" signature="1293:1350" ph="Select count... Message" />
-                <marker date="1522091580820" expanded="true" signature="1478:1524" ph="SELECT messa... Message" />
-                <marker date="1522091580820" expanded="true" signature="1711:1753" ph="SELECT fontC... Message" />
-                <marker date="1522091580820" expanded="true" signature="2011:2051" ph="SELECT fontS... Message" />
-                <marker date="1522091580820" expanded="true" signature="2306:2348" ph="SELECT fontC... Message" />
-                <marker date="1522091580820" expanded="true" signature="2528:2568" ph="SELECT fontS... Message" />
-                <marker date="1522091580820" expanded="true" signature="2741:2782" ph="SELECT fontC... Message" />
-                <marker date="1522091580820" expanded="true" signature="3045:3079" ph="SELECT comma... Message" />
-                <marker date="1522091580820" expanded="true" signature="4188:4325" ph="UPDATE Messa... " />
-                <marker date="1522091580820" expanded="true" signature="10448:10585" ph="UPDATE Messa... " />
+                <marker date="1522158911024" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
+                <marker date="1522158911024" expanded="true" signature="1293:1350" ph="SELECT count... Message" />
+                <marker date="1522158911024" expanded="true" signature="1478:1524" ph="SELECT messa... Message" />
+                <marker date="1522158911024" expanded="true" signature="1711:1753" ph="SELECT fontC... Message" />
+                <marker date="1522158911024" expanded="true" signature="2011:2051" ph="SELECT fontS... Message" />
+                <marker date="1522158911024" expanded="true" signature="2306:2348" ph="SELECT fontC... Message" />
+                <marker date="1522158911024" expanded="true" signature="2528:2568" ph="SELECT fontS... Message" />
+                <marker date="1522158911024" expanded="true" signature="2741:2782" ph="SELECT isDyn... Message" />
+                <marker date="1522158911024" expanded="true" signature="3045:3079" ph="SELECT * FRO... Message" />
+                <marker date="1522158911024" expanded="true" signature="4188:4325" ph="UPDATE Messa... " />
+                <marker date="1522158911024" expanded="true" signature="10441:10578" ph="UPDATE Messa... " />
               </folding>
             </state>
           </provider>
@@ -214,7 +214,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -249,6 +248,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -401,17 +401,17 @@
     <frame x="-8" y="22" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15458423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15618336" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.386149" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32150537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32150537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.49791667" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47634408" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -606,22 +606,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="278" column="15" lean-forward="false" selection-start-line="278" selection-start-column="15" selection-end-line="278" selection-end-column="15" />
+        <state relative-caret-position="226">
+          <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#3718#4542#0" expanded="false" />
-            <marker date="1522091580820" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
-            <marker date="1522091580820" expanded="true" signature="1293:1350" ph="Select count... Message" />
-            <marker date="1522091580820" expanded="true" signature="1478:1524" ph="SELECT messa... Message" />
-            <marker date="1522091580820" expanded="true" signature="1711:1753" ph="SELECT fontC... Message" />
-            <marker date="1522091580820" expanded="true" signature="2011:2051" ph="SELECT fontS... Message" />
-            <marker date="1522091580820" expanded="true" signature="2306:2348" ph="SELECT fontC... Message" />
-            <marker date="1522091580820" expanded="true" signature="2528:2568" ph="SELECT fontS... Message" />
-            <marker date="1522091580820" expanded="true" signature="2741:2782" ph="SELECT fontC... Message" />
-            <marker date="1522091580820" expanded="true" signature="3045:3079" ph="SELECT comma... Message" />
-            <marker date="1522091580820" expanded="true" signature="4188:4325" ph="UPDATE Messa... " />
-            <marker date="1522091580820" expanded="true" signature="10448:10585" ph="UPDATE Messa... " />
+            <marker date="1522158911024" expanded="true" signature="991:1012" ph="SELECT * FRO... Message" />
+            <marker date="1522158911024" expanded="true" signature="1293:1350" ph="SELECT count... Message" />
+            <marker date="1522158911024" expanded="true" signature="1478:1524" ph="SELECT messa... Message" />
+            <marker date="1522158911024" expanded="true" signature="1711:1753" ph="SELECT fontC... Message" />
+            <marker date="1522158911024" expanded="true" signature="2011:2051" ph="SELECT fontS... Message" />
+            <marker date="1522158911024" expanded="true" signature="2306:2348" ph="SELECT fontC... Message" />
+            <marker date="1522158911024" expanded="true" signature="2528:2568" ph="SELECT fontS... Message" />
+            <marker date="1522158911024" expanded="true" signature="2741:2782" ph="SELECT isDyn... Message" />
+            <marker date="1522158911024" expanded="true" signature="3045:3079" ph="SELECT * FRO... Message" />
+            <marker date="1522158911024" expanded="true" signature="4188:4325" ph="UPDATE Messa... " />
+            <marker date="1522158911024" expanded="true" signature="10441:10578" ph="UPDATE Messa... " />
           </folding>
         </state>
       </provider>

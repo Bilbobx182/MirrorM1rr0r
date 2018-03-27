@@ -38,6 +38,8 @@ dependencies {
     wearApp project(':wear')
     implementation 'com.google.android.gms:play-services-wearable:+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.google.android.gms:play-services-location:+'
+    compile 'com.google.android.gms:play-services-ads:+'
     compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
     compile 'com.polidea.rxandroidble:rxandroidble:1.4.2'
     compile 'com.android.support:appcompat-v7:26.+'
