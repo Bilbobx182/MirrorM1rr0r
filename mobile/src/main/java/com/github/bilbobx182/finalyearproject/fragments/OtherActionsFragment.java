@@ -79,6 +79,7 @@ public class OtherActionsFragment extends Fragment implements View.OnClickListen
 
                     RequestPerformer requestPerformer = new RequestPerformer();
                     requestPerformer.performSendMessage(messageValues);
+                    getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
 
                 } catch (SQLException e) {
                     e.printStackTrace();
