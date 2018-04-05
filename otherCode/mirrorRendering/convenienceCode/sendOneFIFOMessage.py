@@ -1,17 +1,20 @@
+import random
+
 import requests
-import time
-import os
 
 # contents = str(os.urandom(5))
 contents = "oh hi mark"
 base = "https://trbcvi749b.execute-api.eu-west-1.amazonaws.com/Prod/sendmessage/"
-queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo"
-message = "&message=" + "^/^temp"
-location = "&location=" + "0,1"
+queue = "?queueurl=https://eu-west-1.queue.amazonaws.com/186314837751/3a22e9d4.fifo"
+message = "&message=" + "@@temp"
+fontColour = "&fontcolour=" + '%02X%02X%02X' % (
+    random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+location = "&location=" + "0,2"
 lat = "&lat=53.35"
-long = "&long=-6.35"
+long = "&long=-6.45"
 # location = "&location=" + str(x) + "," + str(y)
-
-result = requests.get(base + queue + message + location + lat + long)
+url = base + queue + message + location + lat + long + fontColour
+result = requests.get(url)
+print(url)
 print(result)
 print("done")

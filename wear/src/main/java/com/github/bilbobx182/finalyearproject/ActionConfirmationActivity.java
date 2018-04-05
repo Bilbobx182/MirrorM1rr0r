@@ -40,7 +40,7 @@ public class ActionConfirmationActivity extends Activity implements
 
         if (getIntent().getExtras().getString("clear") != null) {
             clearCommand = getIntent().getExtras().getString("clear");
-            spokenText = "/clear";
+            spokenText = "@@clear";
 
             setWarningText("Clearing now", "scrubbing without the soap!");
         }

@@ -284,6 +284,9 @@ def setTempatureWidget(json):
     if 'location' in json:
         outJSON['location'] = json['location']
 
+    if 'fontColour' in json:
+        outJSON['fontColour'] = json['fontColour']
+
     if (isDynamicBool):
         dynamicUpdateOutJSON = {'command': json['dynamicIdentifier']['command'],
                                 'lat': json['dynamicIdentifier']['lat'],

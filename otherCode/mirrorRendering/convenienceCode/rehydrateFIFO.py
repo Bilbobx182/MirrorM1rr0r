@@ -13,15 +13,15 @@ while rehydrateCount < 100:
     contents = "Message: " + str(rehydrateCount)
     base = "https://trbcvi749b.execute-api.eu-west-1.amazonaws.com/Prod/sendmessage"
     # queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/ciaranVis.fifo"
-    queue = "?queueurl=https://sqs.eu-west-1.amazonaws.com/186314837751/1143c19ff83da8d2de3fa74df9fbcbcf.fifo"
+    queue = "?queueurl=https://eu-west-1.queue.amazonaws.com/186314837751/3a22e9d4.fifo"
     # if (rehydrateCount % 3 == 0):
     #     message = "&message=" + dogImages[randint(0, 3)]
     # else:
 
-    randomMessageType = ["Gone to Shop", "https://i.imgur.com/6hcxDaE.jpg", "^/^weather", "^/^tempature"]
+    # randomMessageType = ["Gone to Shop", "https://i.imgur.com/6hcxDaE.jpg", "@@weather", "@@tempature"]
 
-    # message = "&message=" + str(os.urandom(5)) + "test"
-    message = "&message=" + randomMessageType[random.randint(0, 3)]
+    message = "&message=" + "@@temperature"
+    #message = "&message=" + randomMessageType[random.randint(0, 3)]
     fontColour = "&fontcolour=" + '%02X%02X%02X' % (
         random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
     location = "&location=" + str(x) + "," + str(y)
