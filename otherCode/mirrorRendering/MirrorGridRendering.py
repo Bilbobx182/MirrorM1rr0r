@@ -213,7 +213,7 @@ def setWeatherWidget(json):
     # Sunny, Cloudy, Overcast, Rain
     Image(source='networkError.png')
     weatherImages = ["icons/clear.png", "icons/Clouds.png",
-                     "icons/overcast.png", "icons.Rain.png"]
+                     "icons/overcast.png", "icons/Rain.png"]
 
     weatherAPI.append("http://api.openweathermap.org/data/2.5/weather?")
     # Default location of Dublin
@@ -393,7 +393,7 @@ class MirrorApplication(App):
 
             global updateTimerCurrentValue
             global dynamicsUpdated
-            updateTimerMaxValue = 600
+            updateTimerMaxValue = 150
 
             if updateTimerCurrentValue >= updateTimerMaxValue:
                 parseDynamicCommand(getDynamicWidgetContents(y, x), obj)
