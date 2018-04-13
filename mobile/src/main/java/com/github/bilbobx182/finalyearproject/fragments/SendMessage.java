@@ -252,8 +252,8 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         DBManager dbManager = new DBManager(getActivity());
         if (isAdvanced) {
             input = getAdvancedSpinnerValue();
-            messageValues.put("lat",lat);
-            messageValues.put("long",lon);
+            messageValues.put("lat", lat);
+            messageValues.put("long", lon);
         } else {
             input = queryInputEditText.getText().toString();
         }
@@ -277,6 +277,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
 
         sendMessage(messageValues);
     }
+
     private void sendMessage(HashMap values) {
         RequestPerformer requestPerformer = new RequestPerformer();
         requestPerformer.performSendMessage(values);
@@ -299,7 +300,7 @@ public class SendMessage extends Fragment implements View.OnClickListener {
         //ToDo Figure out how to reference these in Strings.XML as R.Array again
         String yArray[] = {"Top", "Center", "Bottom"};
         String xArray[] = {"Left", "Center", "Right"};
-        String textSizeArray[] = {"15", "25", "35"};
+        String textSizeArray[] = {"15", "25", "35", "45", "55"};
         String advancedOptions[] = {"Weather current location", "Temperature current location"};
 
         ArrayAdapter<String> yAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, yArray);

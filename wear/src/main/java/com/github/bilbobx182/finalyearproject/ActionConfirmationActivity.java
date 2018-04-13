@@ -45,7 +45,11 @@ public class ActionConfirmationActivity extends Activity implements
             setWarningText("Clearing now", "scrubbing without the soap!");
         }
 
-
+        /*
+        REFERENCE Android wear confirmation doccumentation
+        https://developer.android.com/training/wearables/ui/confirm.html
+        Last Accessed : 13/April/2018
+         */
         circularProgressLayout = findViewById(R.id.circular_progress);
         circularProgressLayout.setOnTimerFinishedListener(this);
         circularProgressLayout.setOnClickListener(this);
@@ -65,6 +69,7 @@ public class ActionConfirmationActivity extends Activity implements
         startActivity(intent);
         finish();
     }
+    // End Reference
 
     @Override
     public void onClick(View view) {
@@ -93,7 +98,7 @@ public class ActionConfirmationActivity extends Activity implements
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return ("CHANGE ME LATER I NEED REAL ERROR VALIDATION!");
+        return ("NOOOO!");
     }
 
     private void setWarningText(String header, String sub) {

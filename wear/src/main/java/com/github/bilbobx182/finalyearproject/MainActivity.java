@@ -77,6 +77,12 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
         }
     }
 
+         /*
+        Reference: Android wear voice documentation
+      https://developer.android.com/training/wearables/apps/voice.html
+        Last Accessed : 13/April/2018
+         */
+
     private void displaySpeechRecognizer() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -91,10 +97,12 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
             List<String> results = data.getStringArrayListExtra(
                     RecognizerIntent.EXTRA_RESULTS);
             String spokenText = results.get(0);
+            // End Reference
             sendMessage("spokenText", spokenText);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 
     private void sendMessage(String key, String messageToSend) {
 
