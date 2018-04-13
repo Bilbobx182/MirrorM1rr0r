@@ -66,7 +66,7 @@ public class MainActivity extends WearableActivity implements MessageClient.OnMe
     public void onMessageReceived(@NonNull MessageEvent messageEvent) {
         String queueURL = new String(messageEvent.getData());
         WatchDBManager watchDBManager = new WatchDBManager(this);
-        Toast.makeText(this, "Phone message recieved!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Connected to Mirror!", Toast.LENGTH_SHORT).show();
 
         try {
             watchDBManager.open();
