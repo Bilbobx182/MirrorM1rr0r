@@ -1,5 +1,5 @@
 {
-"queue" : "https://eu-west-1.queue.amazonaws.com/186314837751/3a22e9d4.fifo",
+"queue" : "https://eu-west-1.queue.amazonaws.com/186314837751/queuehere.fifo",
 "WiFi" : "testingSMWS",
 "Pass" : "testtest"
 }
