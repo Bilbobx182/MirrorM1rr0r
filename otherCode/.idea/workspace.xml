@@ -88,21 +88,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="1" column="76" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="76" />
-              <folding>
-                <marker date="1523631530817" expanded="true" signature="0:126" ph="{&quot;queue&quot;: &quot;https://eu-west-1.queue.amazonaws.com/186314837751/3a22e9d4.fifo&quot;...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rehydrateFIFO.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mirrorRendering/convenienceCode/rehydrateFIFO.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="22" column="42" lean-forward="false" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,16 +101,6 @@
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="populateInitialDB.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mirrorRendering/populateInitialDB.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1751">
-              <caret line="104" column="0" lean-forward="false" selection-start-line="104" selection-start-column="0" selection-end-line="108" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -163,11 +139,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="badInputGetMessageCount.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="badInputGetMessageCount.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lambdaMethods/Lambda Test inputs/getMessageCount/badInputGetMessageCount.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="updateMirrorPref.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BLEServer/updateMirrorPref.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BLEServer/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PostSample.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/APITutorial/PostSample.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -208,7 +214,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Mirror Rendering/TestingAWS.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/grid2.py" />
         <option value="$PROJECT_DIR$/Mirror Rendering/info.txt" />
         <option value="$PROJECT_DIR$/Mirror Rendering/readTextFile.py" />
@@ -259,6 +264,7 @@
         <option value="$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py" />
         <option value="$PROJECT_DIR$/mirrorRendering/convenienceCode/sendOneFIFOMessage.py" />
         <option value="$PROJECT_DIR$/lambdaMethods/getNodes.py" />
+        <option value="$PROJECT_DIR$/APITutorial/PostSample.json" />
       </list>
     </option>
   </component>
@@ -329,7 +335,7 @@
             <path>
               <item name="otherCode" type="b2602c69:ProjectViewProjectNode" />
               <item name="otherCode" type="462c0819:PsiDirectoryNode" />
-              <item name="BLEServer" type="462c0819:PsiDirectoryNode" />
+              <item name="APITutorial" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -560,9 +566,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/icons/Clouds.png" />
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/icons/overcast.png" />
-    <entry file="file://$PROJECT_DIR$/Mirror Rendering/icons/Rain.png" />
     <entry file="file://$PROJECT_DIR$/Mirror Rendering/ThrowAwayPythonCode/test" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/requests/models.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -686,16 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BLEServer/SMWSConfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="76" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="76" />
-          <folding>
-            <marker date="1523631530817" expanded="true" signature="0:126" ph="{&quot;queue&quot;: &quot;https://eu-west-1.queue.amazonaws.com/186314837751/3a22e9d4.fifo&quot;...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mirrorRendering/MirrorGridRendering.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -763,6 +756,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLEServer/updateMirrorPref.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLEServer/SMWSConfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="76" lean-forward="false" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BLEServer/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/APITutorial/PostSample.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
           <folding />
         </state>
       </provider>
